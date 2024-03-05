@@ -10,6 +10,9 @@ export default {
 
 <template>
   <Main />
+  <router-view> </router-view>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+@use "./style/general.scss";
+</style>
