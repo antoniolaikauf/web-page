@@ -1,15 +1,15 @@
 <script>
-import main from "./components/main.vue";
+import Main from "./components/MainComponents.vue";
 
 export default {
   components: {
-    main,
+    Main,
   },
 };
 </script>
 
 <template>
-  <main />
+  <Main />
 </template>
 
 <style scoped></style>
