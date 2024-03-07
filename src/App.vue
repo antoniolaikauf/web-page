@@ -12,13 +12,13 @@ export default {
 
 <template>
   <div id="bg-project">
-    <NavBar />
-    <div class="container">
-      <div class="row">
-        <Main />
-        <router-view> </router-view>
-      </div>
-    </div>
+    <header>
+      <NavBar />
+    </header>
+    <section class="text-center">
+      <Main />
+    </section>
+    <router-view> </router-view>
   </div>
 </template>
 

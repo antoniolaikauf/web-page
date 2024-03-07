@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-4">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../../public/img/cyberia.png" alt="#" class="logo-img"
@@ -41,9 +41,6 @@ export default {
               <router-link :to="{ name: 'skils' }"> tags </router-link></a
             >
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li> -->
         </ul>
       </div>
     </div>
