@@ -11,13 +11,5 @@ export default {
 <style lang="scss">
 @import "./../style/general.scss";
 
-// animazione per testo
-@keyframes type {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
+
 </style>

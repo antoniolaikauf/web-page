@@ -1,14 +1,23 @@
 <script>
+import { store } from "../store";
+
 export default {
   name: "AppHome",
+  data() {
+    return {
+      text: "salve sono cyberia l'intelligenza arificiale di antonio si trova nella sezione home",
+    };
+  },
+  mounted() {
+    const place_text = document.getElementById("text-container");
+    store.transformElement(this.text, place_text);
+  },
 };
 </script>
 
 <template>
   <div class="d-inline-block">
-    <div id="text-container">
-      salve sono cyberia l'intelligenza arificiale di antonio si trova nella sezione home
-    </div>
+    <h3 id="text-container"></h3>
   </div>
 </template>
 

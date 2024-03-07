@@ -1,15 +1,23 @@
 <script>
+// import store
+import { store } from "../store";
 export default {
   name: "AppAbout",
+  data() {
+    return {
+      text: " Ciao sono cyberia l'intelligenza arificiale di antonio si trova nella sezione about",
+    };
+  },
+  mounted() {
+    const place_text = document.getElementById("text-container");
+    store.transformElement(this.text, place_text);
+  },
 };
 </script>
 
 <template>
   <div class="d-inline-block">
-    <div id="text-container">
-      salve sono cyberia l'intelligenza arificiale di antonio si trova nella
-      sezione about
-    </div>
+    <h3 id="text-container"></h3>
   </div>
 </template>
 

@@ -7,11 +7,12 @@ export default {
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-4">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand container-img" href="#">
         <img src="../../public/img/cyberia.png" alt="#" class="logo-img"
       /></a>
       <button
-        class="navbar-toggler"
+        class="navbar-toggler button"
+        id="drop-bottone"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -49,7 +50,17 @@ export default {
 
 <style>
 @import "./../style/general.scss";
-.logo-img {
-  width: 15%;
+
+.container-img {
+  width: 100px;
+  height: 100px;
+
+  .logo-img {
+    width: 100%;
+  }
+}
+
+#drop-bottone {
+  background-color: ghostwhite;
 }
 </style>
