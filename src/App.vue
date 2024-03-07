@@ -11,11 +11,23 @@ export default {
 </script>
 
 <template>
-  <NavBar />
-  <Main />
-  <router-view> </router-view>
+  <div id="bg-project">
+    <NavBar />
+    <div class="container">
+      <div class="row">
+        <Main />
+        <router-view> </router-view>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @import "./style/general.scss";
+
+#bg-project {
+  background-image: url(../public/img/sfondo.png);
+  background-size: cover;
+  height: 100vh;
+}
 </style>
