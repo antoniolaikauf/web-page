@@ -18,7 +18,6 @@ export default {
     <section class="text-center">
       <Main />
     </section>
-    <router-view> </router-view>
   </div>
 </template>
 

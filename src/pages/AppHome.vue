@@ -5,7 +5,11 @@ export default {
 </script>
 
 <template>
-  <div>qua ci andra l'home</div>
+  <div class="d-inline-block">
+    <div id="text-container">
+      salve sono cyberia l'intelligenza arificiale di antonio si trova nella sezione home
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
