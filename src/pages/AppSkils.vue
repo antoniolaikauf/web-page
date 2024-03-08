@@ -4,7 +4,7 @@ export default {
   name: "AppSkils",
   data() {
     return {
-      text: "salve sono cyberia l'intelligenza arificiale di antonio si trova nella sezione skils",
+      text: "salve sono cyberia l'intelligenza artificiale di antonio si trova nella sezione skils",
     };
   },
   mounted() {

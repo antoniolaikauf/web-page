@@ -5,7 +5,7 @@ export default {
   name: "AppHome",
   data() {
     return {
-      text: "salve sono cyberia l'intelligenza arificiale di antonio si trova nella sezione home",
+      text: "salve sono cyberia l'intelligenza artificiale di antonio si trova nella sezione home",
     };
   },
   mounted() {

@@ -5,7 +5,7 @@ export default {
   name: "AppAbout",
   data() {
     return {
-      text: " Ciao sono cyberia l'intelligenza arificiale di antonio si trova nella sezione about",
+      text: " Ciao sono cyberia l'intelligenza artificiale di antonio si trova nella sezione about",
     };
   },
   mounted() {
