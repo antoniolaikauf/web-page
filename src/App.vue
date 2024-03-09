@@ -15,13 +15,13 @@ export default {
     <header>
       <NavBar />
     </header>
-    <div class="container">
+    <main class="container">
       <div class="row">
         <section class="text-center">
           <Main />
         </section>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -32,5 +32,10 @@ export default {
   background-image: url(../public/img/sfondo.png);
   background-size: cover;
   height: 100vh;
+  overflow-y: scroll;
+}
+// nasconde la scroll bar
+::-webkit-scrollbar {
+    display: none;
 }
 </style>

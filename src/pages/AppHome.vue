@@ -8,9 +8,9 @@ export default {
       // frasi per che verranno inserite tramite js
       text: "salve sono cyberia l'intelligenza artificiale di antonio si trova nella sezione home",
       text_descrizione:
-        "ok ora si può andare nella pagina about se vuoi sapere di più sulla storia di antonio",
+        "ok ora può decidere dove andare se nella pagina about dove sapra piu sulla storia di antonio",
       text_skils:
-        "o puoi guardare sotto dove ci saranno i linguaggidi programmazione che antonio ha imparato e qualche link di riferimento che ha trovato molto utile nel suo percorso",
+        "o puoi guardare sotto dove ci saranno i linguaggi di programmazione che antonio ha imparato e qualche link di riferimento che ha trovato molto utile nel suo percorso",
       // variabile per funzione timer
       time_tot: 0,
       // variabile per array argomenti
@@ -106,7 +106,7 @@ export default {
     <div v-if="text_visibile">
       <ul v-for="(argomento, i) in argomenti">
         <h5 class="my-3">
-          questi sono i linguaggi che consosco fino ad ora <br />
+          linguaggi che consosco fino ad ora <br />
           ( ps. non li ho tutti allo stesso livello )
           <div class="d-flex flex-wrap">
             <li v-for="linguaggo in argomento.linguaggi" class="col-2">
@@ -115,12 +115,12 @@ export default {
           </div>
         </h5>
         <h5 class="my-3">
-          quesri sono i framework che conosco
+          questi sono i framework che conosco
           <li v-for="framework in argomento.framework">{{ framework }}</li>
         </h5>
         <h5 class="my-3">
-          quesri sono i canali che consiglierei alcuni parlano di tecnologia
-          altri sul corpo e come funziona
+          questi sono i canali che consiglierei, alcuni parlano di tecnologia e programmazione
+          altri sul corpo umano e come funziona
           <div class="d-flex flex-wrap">
             <li v-for="links in argomento.link" class="col-3">
               <p>descrizione canale:{{ links.descrizione }}</p>
