@@ -16,6 +16,8 @@ export default {
         "bravo hai scelto un gioco ma siccome sono io che gestisco questa pagina e ho voglia di giocare a sasso carta e forbice giochiamo a questo",
       ],
       nascondi_giochi: false,
+      scelta_utente: "",
+      scelte: ["sasso", "carta", "forbice"],
     };
   },
   methods: {
@@ -27,6 +29,29 @@ export default {
         store.transformElement(this.risposta[0], text_inizio_gioco);
       } else {
         store.transformElement(this.risposta[1], text_inizio_gioco);
+      }
+      text_inizio_gioco.innerHTML = "";
+    },
+    all_giochi() {
+      this.nascondi_giochi = false;
+      const text_inizio_gioco = document.querySelector(".inizio_gioco");
+
+      text_inizio_gioco.innerHTML = "";
+
+      // let ciao = 1;
+      // const text_inizio_gioco = document.querySelector(".inizio_gioco");
+      // store.transformElement(this.risposta[indice], text_inizio_gioco, ciao);
+    },
+    play() {
+      if (!this.scelte.includes(this.scelta_utente)) {
+        alert("devi scrivere sasso carta o forbice");
+      } else {
+        
+        let computer_scelta = Math.floor(Math.random() * this.scelte.length);
+        console.log(computer_scelta);
+        if (scelta_utente === 'sasso' && computer_scelta===0) {
+          let output_play= document.querySelector('.output').innerHTML='abbiamo pareggiato'
+        }
       }
     },
   },
@@ -48,11 +73,30 @@ export default {
         @click="gioco_sasso_carta_forbice(i)"
       >
         {{ gioco }}
-        
       </div>
-
+      <div class="inizio_gioco"></div>
+      <div v-if="nascondi_giochi">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            class="btn btn-primary"
+            @click="all_giochi(index)"
+          >
+            torna ai giochi
+          </button>
+        </div>
+        <div>
+          <h5>scegli sasso carta o forbice</h5>
+          <input type="text" v-model="scelta_utente" />
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" @click="play">
+              gioca
+            </button>
+          </div>
+          <div class="output"></div>
+        </div>
+      </div>
     </div>
-    <div class="inizio_gioco"></div>
   </div>
 </template>
 
