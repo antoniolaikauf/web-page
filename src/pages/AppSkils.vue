@@ -111,7 +111,7 @@ export default {
         // se si perde
         else {
           let output_play = (document.querySelector(".output").innerHTML =
-            "ho vinto ");
+            " sorry , ma ho vinto ");
         }
       }
     },
@@ -124,20 +124,20 @@ export default {
 </script>
 
 <template>
-  <h3 id="text-container" class="text-start"></h3>
+  <h3 id="text-container" class="text-start text-white"></h3>
   <div class="container">
     <div class="row">
       <div
-        class="col-4"
+        class="col-4 text-white fs-5"
         v-if="!nascondi_giochi"
         v-for="(gioco, i) in giochi"
         @click="gioco_sasso_carta_forbice(i)"
       >
         {{ gioco }}
       </div>
-      <div class="inizio_gioco"></div>
+      <div class="inizio_gioco fs-5"></div>
       <div v-if="nascondi_giochi">
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <div class="btn-group my-3" role="group" aria-label="Basic example">
           <button
             type="button"
             class="btn btn-primary"
@@ -147,7 +147,7 @@ export default {
           </button>
         </div>
         <div>
-          <h5>scegli sasso carta o forbice</h5>
+          <h5 class="text-white">scegli sasso carta o forbice</h5>
           <input type="text" v-model="scelta_utente" />
           <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-primary" @click="play">
@@ -156,7 +156,7 @@ export default {
           </div>
         </div>
       </div>
-      <div class="output"></div>
+      <div class="output fs-5"></div>
     </div>
   </div>
 </template>
