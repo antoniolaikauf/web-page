@@ -79,15 +79,15 @@ export default {
 
 <template>
   <div v-if="!text_visibile" class="my-3">
-    <h3>caricamento</h3>
-    <i class="fa-solid fa-spinner loading my-3"></i>
+    <h3 class="text-white">caricamento</h3>
+    <i class="fa-solid fa-spinner loading my-3 text-white"></i>
     <div
       class="barra-caricamento"
       :style="{ 'animation-duration': `${time_tot}ms` }"
     ></div>
   </div>
   <div>
-    <h3 id="text-container" class="text-start"></h3>
+    <h3 id="text-container" class="text-start text-white"></h3>
   </div>
   <p class="text-black fs-5 fw-bold my-3">
     ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in
@@ -100,36 +100,49 @@ export default {
 
   <div class="row">
     <div class="col-6">
-      <div class="text-descrizione fs-5 text-start"></div>
+      <div class="text-descrizione fs-5 text-start text-white"></div>
     </div>
 
-    <div class="col-6"><div class="text-skils fs-5 text-start"></div></div>
+    <div class="col-6">
+      <div class="text-skils fs-5 text-start text-white"></div>
+    </div>
 
     <div v-if="text_visibile">
       <ul v-for="(argomento, i) in argomenti">
-        <h5 class="my-3">
-          linguaggi che consosco fino ad ora <br />
-          ( ps. non li ho tutti allo stesso livello )
+        <li>
+          <h5 class="my-3 text-white fw-bold">
+            linguaggi che consosco fino ad ora <br />
+            ( ps. non li ho tutti allo stesso livello )
+          </h5>
           <div class="d-flex flex-wrap">
-            <li v-for="linguaggo in argomento.linguaggi" class="col-2">
-              {{ linguaggo }}
-            </li>
+            <div
+              v-for="linguaggo in argomento.linguaggi"
+              class="col-2 text-white"
+            >
+              <mark class="p-2">{{ linguaggo }}</mark>
+            </div>
           </div>
-        </h5>
-        <h5 class="my-3">
-          questi sono i framework che conosco
-          <li v-for="framework in argomento.framework">{{ framework }}</li>
-        </h5>
-        <h5 class="my-3">
-          questi sono i canali che consiglierei, alcuni parlano di tecnologia e
-          programmazione altri sul corpo umano e come funziona
+        </li>
+        <li>
+          <h5 class="my-3 text-white fw-bold">
+            questi sono i framework che conosco
+          </h5>
+          <div v-for="framework in argomento.framework" class="text-white my-2">
+            <mark > {{ framework }}</mark>
+          </div>
+        </li>
+        <li>
+          <h5 class="my-3 text-white fw-bold">
+            questi sono i canali che consiglierei, alcuni parlano di tecnologia
+            e programmazione altri sul corpo umano e come funziona
+          </h5>
           <div class="d-flex flex-wrap">
-            <li v-for="links in argomento.link" class="col-3">
+            <li v-for="links in argomento.link" class="col-3 text-white">
               <p>descrizione canale:{{ links.descrizione }}</p>
-              <a :href="links.URL"> premi per guardare </a>
+              <a :href="links.URL" target="_blank"> premi per guardare </a>
             </li>
           </div>
-        </h5>
+        </li>
       </ul>
     </div>
   </div>

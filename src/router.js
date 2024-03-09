@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 // importazione file per rotte 
-import AppAbout from "./pages/AppAbout.vue";
-import AppSkils from './pages/AppSkils.vue'
+import AppGioco from './pages/AppGioco.vue'
 import AppHome from "./pages/AppHome.vue";
  
 // creazione delle rotte e il loro 'percorso'
@@ -14,14 +13,9 @@ const router = createRouter({
       component: AppHome
     },
     {
-      path: "/about",
-      name: "about",
-      component: AppAbout
-    },
-    {
-      path: "/skils",
-      name: "skils",
-      component:AppSkils
+      path: "/gioco",
+      name: "gioco",
+      component:AppGioco
     },
   ],
 });

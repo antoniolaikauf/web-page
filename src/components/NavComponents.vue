@@ -33,13 +33,8 @@ export default {
             >
           </li>
           <li class="nav-item fs-4">
-            <a class="nav-link active" aria-current="page" href="#"
-              ><router-link :to="{ name: 'about' }"> about us </router-link></a
-            >
-          </li>
-          <li class="nav-item fs-4">
             <a class="nav-link active" aria-current="page" href="#">
-              <router-link :to="{ name: 'skils' }"> tags </router-link></a
+              <router-link :to="{ name: 'gioco' }"> gioco </router-link></a
             >
           </li>
           <li class="nav-item fs-4">

@@ -1,7 +1,7 @@
 <script>
 import { store } from "../store";
 export default {
-  name: "AppSkils",
+  name: "AppGioco",
   data() {
     return {
       text: "benvenuto , se sei qua presumo che tu voglia sfidarmi",
@@ -143,7 +143,7 @@ export default {
       >
         {{ gioco }}
       </div>
-      <div class="inizio_gioco fs-5"></div>
+      <div class="inizio_gioco fs-5 my-4"></div>
       <div v-if="nascondi_giochi">
         <div class="btn-group my-3" role="group" aria-label="Basic example">
           <button
@@ -155,8 +155,8 @@ export default {
             torna ai giochi
           </button>
         </div>
-        <div>
-          <h5 class="text-white">scegli sasso carta o forbice</h5>
+        <div class="mb-5 mt-2">
+          <h5 class="text-white">scrivi sasso carta o forbice</h5>
           <input type="text" v-model="scelta_utente" />
           <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-primary" @click="play">
@@ -165,7 +165,9 @@ export default {
           </div>
         </div>
       </div>
-      <div class="output fs-5"></div>
+      <div>
+        <span class="output fs-5 p-3"></span>
+      </div>
     </div>
   </div>
 </template>
