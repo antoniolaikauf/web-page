@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       // frasi per che verranno inserite tramite js
-      text: "salve sono cyberia l'intelligenza artificiale di antonio si trova nella sezione home",
+      text: "salve sono CYBERIA l'intelligenza artificiale di antonio si trova nella sezione home",
       text_descrizione:
         "ok ora può decidere dove andare se nella pagina about dove sapra piu sulla storia di antonio",
       text_skils:
@@ -80,14 +80,14 @@ export default {
 <template>
   <div v-if="!text_visibile" class="my-3">
     <h3>caricamento</h3>
-    <i class="fa-solid fa-spinner loading"></i>
+    <i class="fa-solid fa-spinner loading my-3"></i>
     <div
       class="barra-caricamento"
       :style="{ 'animation-duration': `${time_tot}ms` }"
     ></div>
   </div>
   <div>
-    <h3 id="text-container"></h3>
+    <h3 id="text-container" class="text-start"></h3>
   </div>
   <p class="text-black fs-5 fw-bold my-3">
     ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in
@@ -99,9 +99,11 @@ export default {
   </p>
 
   <div class="row">
-    <div class="col-6"><div class="text-descrizione fs-5"></div></div>
+    <div class="col-6">
+      <div class="text-descrizione fs-5 text-start"></div>
+    </div>
 
-    <div class="col-6"><div class="text-skils fs-5"></div></div>
+    <div class="col-6"><div class="text-skils fs-5 text-start"></div></div>
 
     <div v-if="text_visibile">
       <ul v-for="(argomento, i) in argomenti">
@@ -119,8 +121,8 @@ export default {
           <li v-for="framework in argomento.framework">{{ framework }}</li>
         </h5>
         <h5 class="my-3">
-          questi sono i canali che consiglierei, alcuni parlano di tecnologia e programmazione
-          altri sul corpo umano e come funziona
+          questi sono i canali che consiglierei, alcuni parlano di tecnologia e
+          programmazione altri sul corpo umano e come funziona
           <div class="d-flex flex-wrap">
             <li v-for="links in argomento.link" class="col-3">
               <p>descrizione canale:{{ links.descrizione }}</p>

@@ -46,6 +46,7 @@ export default {
             <a
               class="nav-link active"
               aria-current="page"
+              target="_blank"
               href="https://github.com/antoniolaikauf"
               ><i class="fa-brands fa-github"></i>
             </a>
@@ -54,6 +55,7 @@ export default {
             <a
               class="nav-link active"
               aria-current="page"
+              target="_blank"
               href="https://www.linkedin.com/in/antonio-laikauf-8239892b8/"
               ><i class="fa-brands fa-linkedin"></i>
             </a>
