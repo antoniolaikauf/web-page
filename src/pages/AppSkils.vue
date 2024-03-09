@@ -14,10 +14,10 @@ export default {
       // array con dentro le risposte date all'utente da parte del programma
       risposta: [
         // la prima non cambiarla
-        "ok hai scelto sasso carta forbice",
-        "bravo hai scelto un gioco ma siccome sono io che gestisco questa pagina e ho voglia di giocare a sasso carta e forbice giochiamo a questo",
-        "è inuti che ci riprovi decido io qua",
-        "quello che dico è legge",
+        " hai scelto sasso carta forbice",
+        " bravo hai scelto un gioco ma siccome sono io che gestisco questa pagina e ho voglia di giocare a sasso carta e forbice giochiamo a questo",
+        " è inuti che ci riprovi decido io qua",
+        " quello che dico è legge",
       ],
       // variabile per comparsa e scomparsa  tag
       nascondi_giochi: false,
@@ -29,6 +29,10 @@ export default {
       conteggio: 0,
       // indice che serve per pescare le risposte dentro all'array di risposte
       indice_array_risposta: 1,
+      // variabile per comparsa del bottone torna a tutti i giochi
+      comparsa_tag: false,
+      // scelta computer di quante volte vuole giocare
+      decisione_computer: Math.floor(Math.random() * (10 - 3) + 3),
     };
   },
   methods: {
@@ -37,10 +41,14 @@ export default {
       // variabile dove verrà inserita la frase per l'utente
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
       this.nascondi_giochi = true;
+
       if (index === 0) {
         // fa vedere la frase base
         // PS se si cambia il posizionamento di "sasso carta forbice con CYBERIA", nell'arry giochi bisogna cambiare l'indice di this.risposta[0]
         store.transformElement(this.risposta[0], text_inizio_gioco);
+        setTimeout(() => {
+          this.comparsa_tag = true;
+        }, this.risposta[index].length * 100);
       } else {
         // reset dell'indice
         if (this.indice_array_risposta === this.risposta.length) {
@@ -52,6 +60,9 @@ export default {
           text_inizio_gioco
         );
         // incremento del indice array cosi da risposte diverse
+        setTimeout(() => {
+          this.comparsa_tag = true;
+        }, this.risposta[this.indice_array_risposta].length * 100);
         this.indice_array_risposta++;
       }
       // svuotamento dello spazio dove c'è la risposta
@@ -61,32 +72,29 @@ export default {
     all_giochi() {
       // variabile per far vedere i giochi
       this.nascondi_giochi = false;
+      this.comparsa_tag = false;
 
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
       // azzerato variabile
       this.conteggio = 0;
       // svuotamento dello spazio dove c'è la risposta
       text_inizio_gioco.innerHTML = "";
-
-      // let ciao = 1;
-      // const text_inizio_gioco = document.querySelector(".inizio_gioco");
-      // store.transformElement(this.risposta[indice], text_inizio_gioco, ciao);
     },
     // funzione sasso carta forbice
     play() {
       // decisione conteggio sarebbe quante volte ha deciso di giocare il computer
       // e se è uguale a conteggio (che sarebbero quante volte ha premuto play l'utente) il comuter riporta automaticamente alla pagina play
-      let decisione_computer = Math.floor(Math.random() * (10 - 3) + 3);
       if (!this.scelte.includes(this.scelta_utente)) {
         // controllo del input dove utente iserisce il dato
         alert("devi scrivere sasso carta o forbice");
       }
       // controllo se conteggio è uguale a decisione computer
-      else if (this.conteggio === decisione_computer) {
+      else if (this.conteggio === this.decisione_computer) {
         this.nascondi_giochi = false;
         this.conteggio = 0;
         let output_play = (document.querySelector(".output").innerHTML =
           "mi sono stancata di giocare quindi smettiamo qua");
+        this.comparsa_tag = false;
       } else {
         this.conteggio++;
         // numero random del computer che pescherà una valore dentro ad array risposte
@@ -142,6 +150,7 @@ export default {
             type="button"
             class="btn btn-primary"
             @click="all_giochi(index)"
+            v-if="comparsa_tag"
           >
             torna ai giochi
           </button>
