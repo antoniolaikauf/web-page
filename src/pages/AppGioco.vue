@@ -136,7 +136,7 @@ export default {
   <div class="container">
     <div class="row">
       <div
-        class="col-4 text-white fs-5"
+        class="col-12 col-sm-4 text-white fs-5 my-3"
         v-if="!nascondi_giochi"
         v-for="(gioco, i) in giochi"
         @click="gioco_sasso_carta_forbice(i)"
@@ -166,7 +166,7 @@ export default {
         </div>
       </div>
       <div>
-        <span class="output fs-5 p-3"></span>
+        <span class="output fs-5"></span>
       </div>
     </div>
   </div>

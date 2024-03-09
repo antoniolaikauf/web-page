@@ -99,11 +99,11 @@ export default {
   </p>
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="text-descrizione fs-5 text-start text-white"></div>
     </div>
 
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="text-skils fs-5 text-start text-white"></div>
     </div>
 
@@ -117,7 +117,7 @@ export default {
           <div class="d-flex flex-wrap">
             <div
               v-for="linguaggo in argomento.linguaggi"
-              class="col-2 text-white"
+              class="col-12 col-md-4 my-4 col-lg-2 text-white"
             >
               <mark class="p-2">{{ linguaggo }}</mark>
             </div>
@@ -128,7 +128,7 @@ export default {
             questi sono i framework che conosco
           </h5>
           <div v-for="framework in argomento.framework" class="text-white my-2">
-            <mark > {{ framework }}</mark>
+            <mark> {{ framework }}</mark>
           </div>
         </li>
         <li>
@@ -137,7 +137,7 @@ export default {
             e programmazione altri sul corpo umano e come funziona
           </h5>
           <div class="d-flex flex-wrap">
-            <li v-for="links in argomento.link" class="col-3 text-white">
+            <li v-for="links in argomento.link" class="col-12 col-md-3 text-white">
               <p>descrizione canale:{{ links.descrizione }}</p>
               <a :href="links.URL" target="_blank"> premi per guardare </a>
             </li>
