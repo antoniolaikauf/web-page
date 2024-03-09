@@ -14,28 +14,38 @@ export default {
       risposta: [
         "ok hai scelto sasso carta forbice",
         "bravo hai scelto un gioco ma siccome sono io che gestisco questa pagina e ho voglia di giocare a sasso carta e forbice giochiamo a questo",
+        "è inuti che ci riprovi decido io qua",
+        "quello che dico è legge",
       ],
       nascondi_giochi: false,
       scelta_utente: "",
       scelte: ["sasso", "carta", "forbice"],
+      conteggio: 0,
+      indice_array_risposta: 1,
     };
   },
   methods: {
     gioco_sasso_carta_forbice(index) {
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
       this.nascondi_giochi = true;
-      // let tentativi_utente = 1;
-      if (index > 1) {
+      if (index === 0) {
         store.transformElement(this.risposta[0], text_inizio_gioco);
       } else {
-        store.transformElement(this.risposta[1], text_inizio_gioco);
+        if (this.indice_array_risposta === this.risposta.length) {
+          this.indice_array_risposta = 1;
+        }
+        store.transformElement(
+          this.risposta[this.indice_array_risposta],
+          text_inizio_gioco
+        );
+        this.indice_array_risposta++;
       }
       text_inizio_gioco.innerHTML = "";
     },
     all_giochi() {
       this.nascondi_giochi = false;
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
-
+      this.conteggio = 0;
       text_inizio_gioco.innerHTML = "";
 
       // let ciao = 1;
@@ -43,15 +53,35 @@ export default {
       // store.transformElement(this.risposta[indice], text_inizio_gioco, ciao);
     },
     play() {
+      let decisione_computer = Math.floor(Math.random() * (10 - 3) + 3);
       if (!this.scelte.includes(this.scelta_utente)) {
         alert("devi scrivere sasso carta o forbice");
+      } else if (this.conteggio === decisione_computer) {
+        this.nascondi_giochi = false;
+        this.conteggio = 0;
+        let output_play = (document.querySelector(".output").innerHTML =
+          "mi sono stancata di giocare quindi smettiamo qua");
       } else {
-        
+        this.conteggio++;
         let computer_scelta = Math.floor(Math.random() * this.scelte.length);
-        console.log(computer_scelta);
-        if (scelta_utente === 'sasso' && computer_scelta===0) {
-          let output_play= document.querySelector('.output').innerHTML='abbiamo pareggiato'
+        if (this.scelta_utente === this.scelte[computer_scelta]) {
+          let output_play = (document.querySelector(".output").innerHTML =
+            "abbiamo pareggiato");
+        } else if (
+          (this.scelta_utente === "sasso" &&
+            this.scelte[computer_scelta] == "forbice") ||
+          (this.scelta_utente === "carta" &&
+            this.scelte[computer_scelta] == "sasso") ||
+          (this.scelta_utente === "forbice" &&
+            this.scelte[computer_scelta] == "sasso")
+        ) {
+          let output_play = (document.querySelector(".output").innerHTML =
+            "ti è andata bene hai vinto");
+        } else {
+          let output_play = (document.querySelector(".output").innerHTML =
+            "ho vinto ");
         }
+        console.log(this.scelte[computer_scelta]);
       }
     },
   },
@@ -93,9 +123,9 @@ export default {
               gioca
             </button>
           </div>
-          <div class="output"></div>
         </div>
       </div>
+      <div class="output"></div>
     </div>
   </div>
 </template>
