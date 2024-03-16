@@ -7,14 +7,15 @@ export default {
     return {
       // frasi per che verranno inserite tramite js
       text: "salve sono CYBERIA l'intelligenza artificiale di antonio si trova nella sezione home",
-      text_descrizione:
-        "ok ora può decidere dove andare se nella pagina about dove sapra piu sulla storia di antonio",
+      text_descrizione: "ok ora può decidere se vuole sfidarmi a dei giochi",
       text_skils:
         "o puoi guardare sotto dove ci saranno i linguaggi di programmazione che antonio ha imparato e qualche link di riferimento che ha trovato molto utile nel suo percorso",
       // variabile per funzione timer
-      time_tot: 0,
+      time: 0,
       // variabile per array argomenti
       text_visibile: false,
+
+      text_caricamento: false,
 
       // array con dentro argomenti riguardanti il proprietario
       argomenti: [
@@ -44,46 +45,52 @@ export default {
     };
   },
   mounted() {
-    // variabili che prendono il contenitore dove ci comparirà del testo
-    const place_text = document.getElementById("text-container");
-    const place_text_descrizione = document.querySelector(".text-descrizione");
-    const place_text_skils = document.querySelector(".text-skils");
-    // funzione chiamata dallo store
-    store.transformElement(this.text, place_text);
-
-    timer(
-      100 * this.text.length,
-      this.text_descrizione,
-      place_text_descrizione
-    );
-
-    // variabile per comparsa del secondo testo
-    const time = (this.text.length + this.text_descrizione.length) * 100;
-    timer(time, this.text_skils, place_text_skils);
-
-    // funzione per tempo comparsa testo
-    function timer(frase_prima, frase, spazio) {
-      setTimeout(() => {
-        store.transformElement(frase, spazio);
-      }, frase_prima);
-    }
-    // variabile che conterra il tempo che ci mette per le scritte
-    this.time_tot = time + this.text_skils.length * 100;
-    // metodo per comparsa array argomenti
+    this.time = 5000;
     setTimeout(() => {
-      this.text_visibile = true;
-    }, this.time_tot);
+      this.time = 0;
+      this.text_caricamento = true;
+      // variabili che prendono il contenitore dove ci comparirà del testo
+      const place_text = document.getElementById("text-container");
+      const place_text_descrizione =
+        document.querySelector(".text-descrizione");
+      const place_text_skils = document.querySelector(".text-skils");
+      // funzione chiamata dallo store
+      store.transformElement(this.text, place_text);
+
+      timer(
+        100 * this.text.length,
+        this.text_descrizione,
+        place_text_descrizione
+      );
+
+      // // variabile per comparsa del secondo testo
+      const time = (this.text.length + this.text_descrizione.length) * 100;
+      timer(time, this.text_skils, place_text_skils);
+
+      // funzione per tempo comparsa testo
+      function timer(frase_prima, frase, spazio) {
+        setTimeout(() => {
+          store.transformElement(frase, spazio);
+        }, frase_prima);
+      }
+      // // variabile che conterra il tempo che ci mette per le scritte
+      this.time = time + this.text_skils.length * 100;
+      // metodo per comparsa array argomenti
+      setTimeout(() => {
+        this.text_visibile = true;
+      }, this.time);
+    }, this.time);
   },
 };
 </script>
 
 <template>
-  <div v-if="!text_visibile" class="my-3">
-    <h3 class="text-white">caricamento</h3>
+  <div v-if="!text_caricamento" class="my-3">
+    <h3 class="text-white text-caricamento">caricamento</h3>
     <i class="fa-solid fa-spinner loading my-3 text-white"></i>
     <div
       class="barra-caricamento"
-      :style="{ 'animation-duration': `${time_tot}ms` }"
+      :style="{ 'animation-duration': `${time}ms` }"
     ></div>
   </div>
   <div>
@@ -137,7 +144,10 @@ export default {
             e programmazione altri sul corpo umano e come funziona
           </h5>
           <div class="d-flex flex-wrap">
-            <li v-for="links in argomento.link" class="col-12 col-md-3 text-white">
+            <li
+              v-for="links in argomento.link"
+              class="col-12 col-md-3 text-white"
+            >
               <p>descrizione canale:{{ links.descrizione }}</p>
               <a :href="links.URL" target="_blank"> premi per guardare </a>
             </li>
@@ -150,6 +160,8 @@ export default {
 
 <style lang="scss">
 @import "./../style/general.scss";
+
+@import "./../style/partials/variable";
 
 .barra-caricamento {
   background: white;
@@ -182,5 +194,11 @@ export default {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#text-container,
+.text-descrizione,
+.text-skils, .text-caricamento {
+  font-family: $font_cyberia;
 }
 </style>

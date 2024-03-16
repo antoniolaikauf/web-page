@@ -174,9 +174,11 @@ export default {
 
 <style lang="scss">
 @import "./../style/general.scss";
+@import "./../style/partials/variable";
 
 .inizio_gioco,
 .output {
+  font-family: $font_cyberia;
   background: radial-gradient(white, transparent);
   border-radius: 15px;
 }
