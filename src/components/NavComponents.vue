@@ -30,12 +30,12 @@ export default {
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active fs-4 text-font" aria-current="page" href="#"
-                ><router-link :to="{ name: 'home' }"> home </router-link></a
+                ><router-link :to="{ name: 'home' }"> Home </router-link></a
               >
             </li>
             <li class="nav-item fs-4">
               <a class="nav-link active text-font" aria-current="page" href="#">
-                <router-link :to="{ name: 'gioco' }"> giochi </router-link></a
+                <router-link :to="{ name: 'gioco' }"> Giochi </router-link></a
               >
             </li>
             <li class="nav-item fs-4">

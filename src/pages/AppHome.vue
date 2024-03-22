@@ -9,7 +9,7 @@ export default {
       text: "salve sono CYBERIA l'intelligenza artificiale di antonio si trova nella sezione home",
       text_descrizione: "ok ora può decidere se vuole sfidarmi a dei giochi",
       text_skils:
-        "o puoi guardare sotto dove ci saranno i linguaggi di programmazione che antonio ha imparato e qualche link di riferimento che ha trovato molto utile nel suo percorso",
+        "o puoi guardare sotto dove ci saranno alcuni link che antonio ha trovato molto utile ",
       // variabile per funzione timer
       time: 0,
       // variabile per array argomenti
@@ -96,13 +96,15 @@ export default {
   <div>
     <h3 id="text-container" class="text-start text-white"></h3>
   </div>
-  <p class="text-black fs-5 fw-bold my-3">
-    ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in
+  <p
+    class="text-white fs-5 fw-bold my-3"
+    :class="text_caricamento ? 'animazione' : 'd-none'"
+  >
+    Ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in
     provincia di bergamo . <br />
     ho iniziato a programmare nel 2023 ( speravo di scoprire questo campo molto
     prima, ma come si dice meglio tardi che mai) ora cyberia ti farà vedere le
-    poche cose che si potra fare su questa pagina praticamente quasi nulla
-    essendo che è una pagina dedicata a me
+    poche cose che si potra fare su questa pagina praticamente nulla
   </p>
 
   <div class="row">
@@ -116,7 +118,7 @@ export default {
 
     <div v-if="text_visibile">
       <ul v-for="(argomento, i) in argomenti">
-        <li>
+        <!-- <li>
           <h5 class="my-3 text-white fw-bold">
             linguaggi che consosco fino ad ora <br />
             ( ps. non li ho tutti allo stesso livello )
@@ -126,7 +128,7 @@ export default {
               v-for="linguaggo in argomento.linguaggi"
               class="col-12 col-md-4 my-4 col-lg-2 text-white"
             >
-              <mark class="p-2">{{ linguaggo }}</mark>
+              <div class="p-2">{{ linguaggo }}</div>
             </div>
           </div>
         </li>
@@ -135,9 +137,9 @@ export default {
             questi sono i framework che conosco
           </h5>
           <div v-for="framework in argomento.framework" class="text-white my-2">
-            <mark> {{ framework }}</mark>
+            <div>{{ framework }}</div>
           </div>
-        </li>
+        </li> -->
         <li>
           <h5 class="my-3 text-white fw-bold">
             questi sono i canali che consiglierei, alcuni parlano di tecnologia
@@ -148,8 +150,11 @@ export default {
               v-for="links in argomento.link"
               class="col-12 col-md-3 text-white"
             >
-              <p>descrizione canale:{{ links.descrizione }}</p>
-              <a :href="links.URL" target="_blank"> premi per guardare </a>
+              <a :href="links.URL" target="_blank">
+                <h5 class="text-black">
+                  {{ links.descrizione }}
+                </h5>
+              </a>
             </li>
           </div>
         </li>
@@ -198,7 +203,26 @@ export default {
 
 #text-container,
 .text-descrizione,
-.text-skils, .text-caricamento {
+.text-skils,
+.text-caricamento {
   font-family: $font_cyberia;
+}
+
+.animazione {
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  display: block;
+  animation-name: descrizionePersona;
+  animation-duration: 2s;
+}
+
+@keyframes descrizionePersona {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>

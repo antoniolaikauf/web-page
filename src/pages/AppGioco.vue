@@ -4,20 +4,20 @@ export default {
   name: "AppGioco",
   data() {
     return {
-      text: "benvenuto , se sei qua presumo che tu voglia sfidarmi",
+      text: "Benvenuto, se sei qua presumo che tu voglia sfidarmi",
       giochi: [
         // questo indice lasciare sullo 0 se si vuole cambiare cambiare anche la funzione gioco_sasso_carta_forbice
-        "sasso carta forbice con CYBERIA",
-        "indovina il numero che sta pensando CYBERIA in meno di 5 tentativi",
-        "pari o dispari contro CYBERIA",
+        "Sasso Carta Forbice con CYBERIA",
+        "Indovina il numero che sta pensando CYBERIA in meno di 5 tentativi",
+        "Pari o dispari contro CYBERIA",
       ],
       // array con dentro le risposte date all'utente da parte del programma
       risposta: [
         // la prima non cambiarla
-        " hai scelto sasso carta forbice",
-        " bravo hai scelto un gioco ma siccome sono io che gestisco questa pagina e ho voglia di giocare a sasso carta e forbice giochiamo a questo",
+        " Hai scelto sasso carta forbice",
+        " Bravo hai scelto un gioco ma siccome sono io che gestisco questa pagina e ho voglia di giocare a sasso carta e forbice giochiamo a questo",
         " è inuti che ci riprovi decido io qua",
-        " quello che dico è legge",
+        " Quello che dico è legge",
       ],
       // variabile per comparsa e scomparsa  tag
       nascondi_giochi: false,
@@ -140,10 +140,11 @@ export default {
         v-if="!nascondi_giochi"
         v-for="(gioco, i) in giochi"
         @click="gioco_sasso_carta_forbice(i)"
+        style="cursor: pointer"
       >
         {{ gioco }}
       </div>
-      <div class="inizio_gioco fs-5 my-4"></div>
+      <div class="inizio_gioco fs-5 my-4 text-start"></div>
       <div v-if="nascondi_giochi">
         <div class="btn-group my-3" role="group" aria-label="Basic example">
           <button
@@ -166,7 +167,7 @@ export default {
         </div>
       </div>
       <div>
-        <span class="output fs-5"></span>
+        <span class="output fs-5 text-start"></span>
       </div>
     </div>
   </div>
@@ -178,8 +179,11 @@ export default {
 
 .inizio_gioco,
 .output {
+  font-weight: bold;
   font-family: $font_cyberia;
-  background: radial-gradient(white, transparent);
+  background-color: rgba(209, 208, 208, 0.235);
+  backdrop-filter: blur(10px);
+  // background: radial-gradient(white, transparent);
   border-radius: 15px;
 }
 </style>
