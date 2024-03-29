@@ -6,10 +6,10 @@ export default {
   data() {
     return {
       // frasi per che verranno inserite tramite js
-      text: "salve sono CYBERIA l'intelligenza artificiale di antonio si trova nella sezione home",
+      text: "salve sono CYBERIA benvenuto nella pagina web di antonio",
       text_descrizione: "ok ora può decidere se vuole sfidarmi a dei giochi",
       text_skils:
-        "o puoi guardare sotto dove ci saranno alcuni link che antonio ha trovato molto utile ",
+        "o puoi guardare sotto dove ci saranno alcuni link che antonio ha trovato molto utili",
       // variabile per funzione timer
       time: 0,
       // variabile per array argomenti
@@ -20,26 +20,34 @@ export default {
       // array con dentro argomenti riguardanti il proprietario
       argomenti: [
         {
-          linguaggi: ["HTML", "CSS", "JS", "PYTHON", "PHP", "MYSQL"],
-          framework: ["laravel", "vue"],
-          link: [
-            {
-              URL: "https://www.youtube.com/@lexfridman",
-              descrizione: "canale di Lex Fridman ",
-            },
-            {
-              URL: "https://www.youtube.com/@hubermanlab",
-              descrizione: "canale di Andrew Huberman ",
-            },
-            {
-              URL: "https://www.youtube.com/@AndrejKarpathy",
-              descrizione: "canale di AndrejKarpathy ",
-            },
-            {
-              URL: "https://www.youtube.com/@freecodecamp",
-              descrizione: "canale di freecodecamp ",
-            },
-          ],
+          title: "Lex Fridman",
+          URL: "https://www.youtube.com/@lexfridman",
+          descrizione:
+            "Unisce conversazioni profonde e riflessioni sull'intelligenza artificiale, filosofia, e la condizione umana. Lex Fridman attrae menti brillanti da tutto il mondo in dialoghi che sfidano, educano e ispirano, offrendo nuove prospettive su tecnologia e umanità.",
+        },
+        {
+          title: "Andrew Huberman",
+          URL: "https://www.youtube.com/@hubermanlab",
+          descrizione:
+            "Immergiti nelle profondità del cervello umano con Andrew Huberman. I suoi video, un ponte tra scienza e vita quotidiana, offrono intuizioni preziose su sonno, stress e prestazioni cognitive, rendendo la neuroscienza accessibile a tutti.",
+        },
+        {
+          title: "Andrej Karpathy",
+          URL: "https://www.youtube.com/@AndrejKarpathy",
+          descrizione:
+            "Esplora i confini dell'intelligenza artificiale con Andrej Karpathy. Le sue spiegazioni chiarificatrici su IA e machine learning sono indispensabili per chiunque voglia capire o lavorare con le tecnologie che stanno definendo il futuro.",
+        },
+        {
+          title: "freeCodeCamp",
+          URL: "https://www.youtube.com/@freecodecamp",
+          descrizione:
+            "Il tuo trampolino di lancio nel mondo della programmazione. freeCodeCamp guida principianti e professionisti attraverso tutorial di sviluppo web e programmazione, rendendo l'apprendimento delle competenze tecniche accessibile e totalmente gratuito.",
+        },
+        {
+          title: "George Hotz",
+          URL: "https://www.youtube.com/@geohotarchive",
+          descrizione:
+            "Un viaggio nel cuore dell'innovazione tecnologica con George Hotz, aka geohot. Le sue live session di programmazione e riflessioni sull'IA e sulla sicurezza informatica ti danno uno sguardo diretto nella mente di un genio hacker.",
         },
       ],
     };
@@ -78,6 +86,25 @@ export default {
       // metodo per comparsa array argomenti
       setTimeout(() => {
         this.text_visibile = true;
+        // script carousel swiper
+        setTimeout(() => {
+          var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            },
+            pagination: {
+              el: ".swiper-pagination",
+            },
+          });
+        }, 10);
       }, this.time);
     }, this.time);
   },
@@ -97,7 +124,7 @@ export default {
     <h3 id="text-container" class="text-start text-white"></h3>
   </div>
   <p
-    class="text-white fs-5 fw-bold my-3"
+    class="text-white fs-5 fw-bold my-3 text-base"
     :class="text_caricamento ? 'animazione' : 'd-none'"
   >
     Ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in
@@ -117,48 +144,25 @@ export default {
     </div>
 
     <div v-if="text_visibile">
-      <ul v-for="(argomento, i) in argomenti">
-        <!-- <li>
-          <h5 class="my-3 text-white fw-bold">
-            linguaggi che consosco fino ad ora <br />
-            ( ps. non li ho tutti allo stesso livello )
-          </h5>
-          <div class="d-flex flex-wrap">
-            <div
-              v-for="linguaggo in argomento.linguaggi"
-              class="col-12 col-md-4 my-4 col-lg-2 text-white"
-            >
-              <div class="p-2">{{ linguaggo }}</div>
-            </div>
+      <h5 class="my-3 text-white fw-bold">
+        Ecco alcuni canali che ho ritenuto molto interessanti
+      </h5>
+      <!-- Swiper -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide p-3" v-for="(argomento, i) in argomenti">
+            <a :href="argomento.URL" target="_blank">
+              <h5>
+                {{ argomento.title }}
+              </h5>
+              <p class="text-white">
+                {{ argomento.descrizione }}
+              </p>
+            </a>
           </div>
-        </li>
-        <li>
-          <h5 class="my-3 text-white fw-bold">
-            questi sono i framework che conosco
-          </h5>
-          <div v-for="framework in argomento.framework" class="text-white my-2">
-            <div>{{ framework }}</div>
-          </div>
-        </li> -->
-        <li>
-          <h5 class="my-3 text-white fw-bold">
-            questi sono i canali che consiglierei, alcuni parlano di tecnologia
-            e programmazione altri sul corpo umano e come funziona
-          </h5>
-          <div class="d-flex flex-wrap">
-            <li
-              v-for="links in argomento.link"
-              class="col-12 col-md-3 text-white"
-            >
-              <a :href="links.URL" target="_blank">
-                <h5 class="text-black">
-                  {{ links.descrizione }}
-                </h5>
-              </a>
-            </li>
-          </div>
-        </li>
-      </ul>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -212,6 +216,7 @@ export default {
   border-radius: 20px;
   padding: 20px;
   backdrop-filter: blur(10px);
+  background-color: rgba(128, 0, 128, 0.314);
   display: block;
   animation-name: descrizionePersona;
   animation-duration: 2s;
@@ -224,5 +229,38 @@ export default {
   to {
     opacity: 1;
   }
+}
+
+// css carousel
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  animation-name: descrizionePersona;
+  animation-duration: 2s;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.397);
+  border-radius: 10px;
 }
 </style>
