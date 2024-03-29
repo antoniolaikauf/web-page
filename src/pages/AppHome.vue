@@ -6,9 +6,9 @@ export default {
   data() {
     return {
       // frasi per che verranno inserite tramite js
-      text: "salve sono CYBERIA benvenuto nella pagina web di antonio",
+      text: "salve sono CYBERIA benvenuto nella pagina web di Antonio",
       text_descrizione:
-        "Ora tocca a te scegliere: vuoi cimentarti in una sfida ludica oppure immergerti nelle scoperte digitali di Antonio?",
+        "Ora tocca a te scegliere: vuoi misurarti in una sfida contro di me o preferisci navigare nel vasto mare del digitale? Ecco alcune destinazioni per iniziare il tuo viaggio",
       // variabile per funzione timer
       time: 0,
       // variabile per array argomenti

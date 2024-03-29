@@ -14,7 +14,7 @@ export default {
       // array con dentro le risposte date all'utente da parte del programma
       risposta: [
         // la prima non cambiarla
-        " Hai scelto sasso carta forbice",
+        "giochiamo!!",
         "Hai scelto un gioco ma siccome sono io che gestisco questa pagina giochiamo a sasso carta forbice",
         " è inuti che ci riprovi decido io qua",
         " Quello che dico è legge",
@@ -78,11 +78,14 @@ export default {
 
     all_giochi() {
       // variabile per far vedere i giochi
+      let output_play = (document.querySelector(".output").innerHTML = "");
+      // let  = (document.querySelector(".output").innerHTML = "");
       this.nascondi_giochi = false;
       this.comparsa_tag = false;
-      const text_inizio_gioco = document.querySelector(".inizio_gioco");
-      // svuotamento dello spazio dove c'è la risposta
-      text_inizio_gioco.innerHTML = "";
+      // // svuotamento dello spazio dove c'è la risposta
+      const text_inizio_gioco = (document.querySelector(
+        ".inizio_gioco"
+      ).innerHTML = "");
       // azzerato variabile
       this.conteggio = 0;
     },
@@ -96,6 +99,9 @@ export default {
       }
       // controllo se conteggio è uguale a decisione computer
       else if (this.conteggio === this.decisione_computer) {
+        const text_inizio_gioco = (document.querySelector(
+          ".inizio_gioco"
+        ).innerHTML = "");
         this.nascondi_giochi = false;
         this.conteggio = 0;
         if (this.score_computer > this.score_user) {
@@ -130,12 +136,16 @@ export default {
             this.scelte[computer_scelta] == "sasso")
         ) {
           this.score_user++;
-          let output_play = (document.querySelector(".output").innerHTML = ` ho scelto ${this.scelte[computer_scelta]} ti è andata bene hai vinto`);
+          let output_play = (document.querySelector(
+            ".output"
+          ).innerHTML = ` ho scelto ${this.scelte[computer_scelta]} ti è andata bene hai vinto`);
         }
         // se si perde
         else {
           this.score_computer++;
-          let output_play = (document.querySelector(".output").innerHTML = ` ho scelto ${this.scelte[computer_scelta]} sorry , ma ho vinto e godo`);
+          let output_play = (document.querySelector(
+            ".output"
+          ).innerHTML = ` ho scelto ${this.scelte[computer_scelta]} sorry , ma ho vinto e godo`);
         }
       }
     },
@@ -219,9 +229,13 @@ export default {
 
 .inizio_gioco,
 .output,
-.gioco {
+.gioco,
+.text-start {
   font-weight: bold;
   font-family: $font_cyberia;
+}
+
+.gioco {
   background-color: $background_text;
   backdrop-filter: blur(10px);
   // background: radial-gradient(white, transparent);
