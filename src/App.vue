@@ -26,7 +26,9 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@import "./style/general.scss";
+@use "./style/partials/mixins" as *;
+@use "./style/partials/variable" as *;
+@use "./style/general.scss" as *;
 
 #bg-project {
   background-image: url(../public/img/sfondo.png);
@@ -36,6 +38,6 @@ export default {
 }
 // nasconde la scroll bar
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 </style>

@@ -107,14 +107,14 @@ export default {
 <template>
   <div v-if="!text_caricamento" class="my-3">
     <h3 class="text-white text-caricamento">caricamento</h3>
-    <i class="fa-solid fa-spinner loading my-3 text-white"></i>
+    <i class="fa-solid fa-spinner loading my-3"></i>
     <div
       class="barra-caricamento"
       :style="{ 'animation-duration': `${time}ms` }"
     ></div>
   </div>
   <div>
-    <h3 id="text-container" class="text-start text-white"></h3>
+    <h3 id="text-container" class="text-start"></h3>
   </div>
   <p
     class="text-white fs-5 fw-bold my-3 text-base"
@@ -129,10 +129,10 @@ export default {
 
   <div class="row">
     <div class="col-12">
-      <div class="text-descrizione fs-5 text-start text-white"></div>
+      <div class="text-descrizione fs-5 text-start"></div>
     </div>
     <div v-if="text_visibile">
-      <h5 class="my-3 text-white fw-bold">
+      <h5 class="my-3 fw-bold">
         Ecco alcuni canali che ho ritenuto molto interessanti
       </h5>
       <!-- Swiper -->
@@ -143,7 +143,7 @@ export default {
               <h5>
                 {{ argomento.title }}
               </h5>
-              <p class="text-white">
+              <p>
                 {{ argomento.descrizione }}
               </p>
             </a>
@@ -155,10 +155,10 @@ export default {
   </div>
 </template>
 
-<style lang="scss">
-@import "./../style/general.scss";
-
-@import "./../style/partials/variable";
+<style lang="scss" scoped>
+@use "./../style/partials/mixins" as *;
+@use "./../style/general.scss" as *;
+@use "./../style/partials/variable" as *;
 
 .barra-caricamento {
   background: white;
@@ -248,7 +248,7 @@ body {
   background-size: cover;
   width: 300px;
   height: 300px;
-  background-color: rgba(0, 0, 0, 0.397);
+  background-color: $background_text;
   border-radius: 10px;
 }
 </style>

@@ -15,7 +15,7 @@ export default {
       risposta: [
         // la prima non cambiarla
         " Hai scelto sasso carta forbice",
-        " Bravo hai scelto un gioco ma siccome sono io che gestisco questa pagina e ho voglia di giocare a sasso carta e forbice giochiamo a questo",
+        "Hai scelto un gioco ma siccome sono io che gestisco questa pagina giochiamo a sasso carta forbice",
         " è inuti che ci riprovi decido io qua",
         " Quello che dico è legge",
       ],
@@ -33,6 +33,10 @@ export default {
       comparsa_tag: false,
       // scelta computer di quante volte vuole giocare
       decisione_computer: Math.floor(Math.random() * (10 - 3) + 3),
+      // conteggio per utente
+      score_user: 0,
+      // conteggio computer
+      score_computer: 0,
     };
   },
   methods: {
@@ -41,7 +45,10 @@ export default {
       // variabile dove verrà inserita la frase per l'utente
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
       this.nascondi_giochi = true;
-
+      // azzeramento dello score
+      this.score_computer = 0;
+      this.score_user = 0;
+      this.scelta_utente = "";
       if (index === 0) {
         // fa vedere la frase base
         // PS se si cambia il posizionamento di "sasso carta forbice con CYBERIA", nell'arry giochi bisogna cambiare l'indice di this.risposta[0]
@@ -73,12 +80,11 @@ export default {
       // variabile per far vedere i giochi
       this.nascondi_giochi = false;
       this.comparsa_tag = false;
-
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
-      // azzerato variabile
-      this.conteggio = 0;
       // svuotamento dello spazio dove c'è la risposta
       text_inizio_gioco.innerHTML = "";
+      // azzerato variabile
+      this.conteggio = 0;
     },
     // funzione sasso carta forbice
     play() {
@@ -92,8 +98,17 @@ export default {
       else if (this.conteggio === this.decisione_computer) {
         this.nascondi_giochi = false;
         this.conteggio = 0;
-        let output_play = (document.querySelector(".output").innerHTML =
-          "mi sono stancata di giocare quindi smettiamo qua");
+        if (this.score_computer > this.score_user) {
+          let output_play = (document.querySelector(".output").innerHTML =
+            "Ah, la dolce vittoria! Spero tu abbia preso appunti. A presto, campione... in seconda posizione!" +
+            " CYBERIA " +
+            this.score_computer +
+            " umano " +
+            this.score_user);
+        } else {
+          let output_play = (document.querySelector(".output").innerHTML =
+            "mi sono stancata di giocare quindi smettiamo qua");
+        }
         this.comparsa_tag = false;
       } else {
         this.conteggio++;
@@ -101,8 +116,9 @@ export default {
         let computer_scelta = Math.floor(Math.random() * this.scelte.length);
         // se si pareggia
         if (this.scelta_utente === this.scelte[computer_scelta]) {
-          let output_play = (document.querySelector(".output").innerHTML =
-            "abbiamo pareggiato");
+          let output_play = (document.querySelector(
+            ".output"
+          ).innerHTML = ` ho scelto ${this.scelte[computer_scelta]} abbiamo pareggiato`);
         }
         // se si vince
         else if (
@@ -113,13 +129,13 @@ export default {
           (this.scelta_utente === "forbice" &&
             this.scelte[computer_scelta] == "sasso")
         ) {
-          let output_play = (document.querySelector(".output").innerHTML =
-            "ti è andata bene hai vinto");
+          this.score_user++;
+          let output_play = (document.querySelector(".output").innerHTML = ` ho scelto ${this.scelte[computer_scelta]} ti è andata bene hai vinto`);
         }
         // se si perde
         else {
-          let output_play = (document.querySelector(".output").innerHTML =
-            " sorry , ma ho vinto ");
+          this.score_computer++;
+          let output_play = (document.querySelector(".output").innerHTML = ` ho scelto ${this.scelte[computer_scelta]} sorry , ma ho vinto e godo`);
         }
       }
     },
@@ -132,56 +148,81 @@ export default {
 </script>
 
 <template>
-  <h3 id="text-container" class="text-start text-white"></h3>
-  <div class="container">
-    <div class="row">
-      <div
-        class="col-12 col-sm-4 text-white fs-5 my-3"
-        v-if="!nascondi_giochi"
-        v-for="(gioco, i) in giochi"
-        @click="gioco_sasso_carta_forbice(i)"
-        style="cursor: pointer"
-      >
-        {{ gioco }}
-      </div>
-      <div class="inizio_gioco fs-5 my-4 text-start"></div>
-      <div v-if="nascondi_giochi">
-        <div class="btn-group my-3" role="group" aria-label="Basic example">
-          <button
-            type="button"
-            class="btn btn-primary"
-            @click="all_giochi(index)"
-            v-if="comparsa_tag"
-          >
-            torna ai giochi
-          </button>
+  <section>
+    <h3 id="text-container" class="text-start text-white"></h3>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-12 col-sm-4 text-white fs-5 my-3"
+          v-if="!nascondi_giochi"
+          v-for="(gioco, i) in giochi"
+          @click="gioco_sasso_carta_forbice(i)"
+          style="cursor: pointer"
+        >
+          {{ gioco }}
         </div>
-        <div class="mb-5 mt-2">
-          <h5 class="text-white">scrivi sasso carta o forbice</h5>
-          <input type="text" v-model="scelta_utente" />
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" @click="play">
-              gioca
+        <div class="inizio_gioco fs-5 my-4 text-start"></div>
+        <div v-if="nascondi_giochi">
+          <div class="btn-group my-3" role="group" aria-label="Basic example">
+            <button
+              type="button"
+              class="btn-page"
+              @click="all_giochi(index)"
+              v-if="comparsa_tag"
+            >
+              torna ai giochi
             </button>
           </div>
+          <div class="mb-5 mt-2">
+            <h5 class="text-white">scrivi sasso carta o forbice</h5>
+            <div
+              class="d-flex justify-content-center py-2 gioco align-items-center"
+            >
+              <div>
+                <b> score CYBERIA</b>
+                {{ score_computer }}
+              </div>
+              <div
+                class="btn-group px-4"
+                role="group"
+                aria-label="Basic example"
+              >
+                <button type="button" class="btn-page" @click="play">
+                  gioca
+                </button>
+              </div>
+              <div>
+                score utente
+                {{ score_user }}
+              </div>
+            </div>
+            <input
+              type="text"
+              class="my-3 rounded border-0 p-2 text-black"
+              v-model="scelta_utente"
+              placeholder="scrivi il tuo valore "
+            />
+          </div>
+        </div>
+        <div>
+          <span class="output fs-5 text-start"></span>
         </div>
       </div>
-      <div>
-        <span class="output fs-5 text-start"></span>
-      </div>
     </div>
-  </div>
+  </section>
 </template>
 
-<style lang="scss">
-@import "./../style/general.scss";
-@import "./../style/partials/variable";
+<style lang="scss" scoped>
+@use "./../style/partials/mixins" as *;
+@use "./../style/general.scss" as *;
+@use "./../style/partials/variable" as *;
 
 .inizio_gioco,
-.output {
+.output,
+.gioco {
   font-weight: bold;
   font-family: $font_cyberia;
-  background-color: rgba(209, 208, 208, 0.235);
+  background-color: $background_text;
   backdrop-filter: blur(10px);
   // background: radial-gradient(white, transparent);
   border-radius: 15px;

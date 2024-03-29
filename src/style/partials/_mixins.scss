@@ -1,0 +1,15 @@
+.btn-page {
+    padding: 5px 15px;
+    border-radius: 7px;
+    border: none;
+    background-color: rgba(128, 0, 128, 0.314);
+    border: 1px solid rgba(0, 0, 0, 0.397) ;
+    color: white;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.397);
+        border: 1px solid rgba(128, 0, 128, 0.314);
+        color: white;
+        transform: scale(1.1);
+    }
+}

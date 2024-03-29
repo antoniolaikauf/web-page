@@ -1,5 +1,11 @@
 @use '../../node_modules/bootstrap/scss/bootstrap.scss';
 
+*{
+    color: white;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
 li{
     list-style: none;
 }
