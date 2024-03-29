@@ -7,9 +7,8 @@ export default {
     return {
       // frasi per che verranno inserite tramite js
       text: "salve sono CYBERIA benvenuto nella pagina web di antonio",
-      text_descrizione: "ok ora può decidere se vuole sfidarmi a dei giochi",
-      text_skils:
-        "o puoi guardare sotto dove ci saranno alcuni link che antonio ha trovato molto utili",
+      text_descrizione:
+        "Ora tocca a te scegliere: vuoi cimentarti in una sfida ludica oppure immergerti nelle scoperte digitali di Antonio?",
       // variabile per funzione timer
       time: 0,
       // variabile per array argomenti
@@ -61,7 +60,6 @@ export default {
       const place_text = document.getElementById("text-container");
       const place_text_descrizione =
         document.querySelector(".text-descrizione");
-      const place_text_skils = document.querySelector(".text-skils");
       // funzione chiamata dallo store
       store.transformElement(this.text, place_text);
 
@@ -70,19 +68,14 @@ export default {
         this.text_descrizione,
         place_text_descrizione
       );
-
-      // // variabile per comparsa del secondo testo
-      const time = (this.text.length + this.text_descrizione.length) * 100;
-      timer(time, this.text_skils, place_text_skils);
-
       // funzione per tempo comparsa testo
       function timer(frase_prima, frase, spazio) {
         setTimeout(() => {
           store.transformElement(frase, spazio);
         }, frase_prima);
       }
-      // // variabile che conterra il tempo che ci mette per le scritte
-      this.time = time + this.text_skils.length * 100;
+      // variabile che conterra il tempo che ci mette per le scritte
+      this.time = (this.text.length + this.text_descrizione.length) * 100;
       // metodo per comparsa array argomenti
       setTimeout(() => {
         this.text_visibile = true;
@@ -135,14 +128,9 @@ export default {
   </p>
 
   <div class="row">
-    <div class="col-12 col-md-6">
+    <div class="col-12">
       <div class="text-descrizione fs-5 text-start text-white"></div>
     </div>
-
-    <div class="col-12 col-md-6">
-      <div class="text-skils fs-5 text-start text-white"></div>
-    </div>
-
     <div v-if="text_visibile">
       <h5 class="my-3 text-white fw-bold">
         Ecco alcuni canali che ho ritenuto molto interessanti
