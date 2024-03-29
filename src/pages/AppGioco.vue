@@ -37,6 +37,8 @@ export default {
       score_user: 0,
       // conteggio computer
       score_computer: 0,
+      // output risultato
+      output: "",
     };
   },
   methods: {
@@ -78,7 +80,7 @@ export default {
 
     all_giochi() {
       // variabile per far vedere i giochi
-      let output_play = (document.querySelector(".output").innerHTML = "");
+      this.output = "";
       // let  = (document.querySelector(".output").innerHTML = "");
       this.nascondi_giochi = false;
       this.comparsa_tag = false;
@@ -105,15 +107,14 @@ export default {
         this.nascondi_giochi = false;
         this.conteggio = 0;
         if (this.score_computer > this.score_user) {
-          let output_play = (document.querySelector(".output").innerHTML =
+          this.output =
             "Ah, la dolce vittoria! Spero tu abbia preso appunti. A presto, campione... in seconda posizione!" +
             " CYBERIA " +
             this.score_computer +
             " umano " +
-            this.score_user);
+            this.score_user;
         } else {
-          let output_play = (document.querySelector(".output").innerHTML =
-            "mi sono stancata di giocare quindi smettiamo qua");
+          this.output = "mi sono stancata di giocare quindi smettiamo qua";
         }
         this.comparsa_tag = false;
       } else {
@@ -122,9 +123,7 @@ export default {
         let computer_scelta = Math.floor(Math.random() * this.scelte.length);
         // se si pareggia
         if (this.scelta_utente === this.scelte[computer_scelta]) {
-          let output_play = (document.querySelector(
-            ".output"
-          ).innerHTML = ` ho scelto ${this.scelte[computer_scelta]} abbiamo pareggiato`);
+          this.output = ` ho scelto ${this.scelte[computer_scelta]} abbiamo pareggiato`;
         }
         // se si vince
         else if (
@@ -136,16 +135,12 @@ export default {
             this.scelte[computer_scelta] == "sasso")
         ) {
           this.score_user++;
-          let output_play = (document.querySelector(
-            ".output"
-          ).innerHTML = ` ho scelto ${this.scelte[computer_scelta]} ti è andata bene hai vinto`);
+          this.output = ` ho scelto ${this.scelte[computer_scelta]} ti è andata bene hai vinto`;
         }
         // se si perde
         else {
           this.score_computer++;
-          let output_play = (document.querySelector(
-            ".output"
-          ).innerHTML = ` ho scelto ${this.scelte[computer_scelta]} sorry , ma ho vinto e godo`);
+          this.output = ` ho scelto ${this.scelte[computer_scelta]} sorry , ma ho vinto e godo`;
         }
       }
     },
@@ -215,7 +210,9 @@ export default {
           </div>
         </div>
         <div>
-          <span class="output fs-5 text-start"></span>
+          <span class="output fs-5 text-start">
+            {{ output }}
+          </span>
         </div>
       </div>
     </div>
