@@ -4,7 +4,6 @@ export default {
   name: "AppGioco",
   data() {
     return {
-      text: "Benvenuto, se sei qua presumo che tu voglia sfidarmi",
       giochi: [
         // questo indice lasciare sullo 0 se si vuole cambiare cambiare anche la funzione gioco_sasso_carta_forbice
         "Sasso Carta Forbice con CYBERIA",
@@ -147,16 +146,11 @@ export default {
       }
     },
   },
-  mounted() {
-    const place_text = document.getElementById("text-container");
-    store.transformElement(this.text, place_text);
-  },
 };
 </script>
 
 <template>
   <section>
-    <h3 id="text-container" class="text-start text-white"></h3>
     <div class="container">
       <div class="row">
         <div
