@@ -44,6 +44,7 @@ export default {
   methods: {
     // fuzione per scelta risposte e per seleionare il gioco
     gioco_sasso_carta_forbice(index) {
+      this.output = "";
       // variabile dove verrà inserita la frase per l'utente
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
       this.nascondi_giochi = true;
@@ -93,6 +94,7 @@ export default {
     },
     // funzione sasso carta forbice
     play() {
+      this.scelta_utente = this.scelta_utente.toLowerCase();
       // decisione conteggio sarebbe quante volte ha deciso di giocare il computer
       // e se è uguale a conteggio (che sarebbero quante volte ha premuto play l'utente) il comuter riporta automaticamente alla pagina play
       if (!this.scelte.includes(this.scelta_utente)) {
