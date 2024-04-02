@@ -1,4 +1,5 @@
 <script>
+import { callWithAsyncErrorHandling } from "vue";
 import { store } from "../store";
 export default {
   name: "AppGioco",
@@ -38,6 +39,70 @@ export default {
       score_computer: 0,
       // output risultato
       output: "",
+      // gioco tris
+      gioco_tris: [
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 1,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 2,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 3,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 4,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 5,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 6,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 7,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 8,
+        },
+        {
+          bg_user: false,
+          bg_computer: false,
+          number: 9,
+        },
+      ],
+      // counter per bloccare il ciclo nel gioco se raggiunge 5
+      counter_block: "",
+      // possibili combinazione di vittoria
+      array_winners: [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ],
+      // array dove si mette i square selezionati
+      array_check_user: [],
+      array_check_computer: [],
     };
   },
   methods: {
@@ -145,12 +210,118 @@ export default {
         }
       }
     },
+    indexsquare(index) {
+      // controllo se caselle finiscono
+      this.counter_block++;
+      // cambio variabile in true per utente
+      this.gioco_tris[index].bg_user = true;
+      // messo cella in array
+      this.array_check_user.push(index);
+      // controllo se ritorna una combinazione corretta
+      // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
+      if (
+        this.controller_tris(this.array_winners, this.array_check_user) === true
+      ) {
+        this.reset_tris(
+          this.gioco_tris,
+          this.array_check_user,
+          this.array_check_computer
+        );
+        alert("hai vinto");
+        this.counter_block = "";
+      } else if (this.counter_block === 5) {
+        // se caselle finiscono
+        this.reset_tris(
+          this.gioco_tris,
+          this.array_check_user,
+          this.array_check_computer
+        );
+        alert("parita");
+        this.counter_block = "";
+      } else {
+        while (true) {
+          // crea un numero random
+          let computer_scelta_tris = Math.floor(
+            Math.random() * this.gioco_tris.length
+          );
+          // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
+          if (
+            this.gioco_tris[computer_scelta_tris].bg_user !== true &&
+            this.gioco_tris[computer_scelta_tris].bg_computer !== true
+          ) {
+            // metti scelte computer in array
+            this.array_check_computer.push(computer_scelta_tris);
+            // controllo se ci sono delle corrispondenze
+            if (
+              this.controller_tris(
+                this.array_winners,
+                this.array_check_computer
+              ) === true
+            ) {
+              // metodo per pulire il gioco
+              alert("ha vinto CYBERIA");
+              this.reset_tris(
+                this.gioco_tris,
+                this.array_check_user,
+                this.array_check_computer
+              );
+
+              this.counter_block = "";
+            } else {
+              setTimeout(() => {
+                this.gioco_tris[computer_scelta_tris].bg_computer = true;
+              }, 1000);
+            }
+            // fine ciclo
+            break;
+          }
+        }
+      }
+    },
+    controller_tris(array_win, array_player) {
+      // controlla se uno degli array in array_winner contiene tutti gli elementi di arraycheck
+      // non fare contrario , tutti gli elementi in array_check_user devono essere in in arraywinter[i] se no ritorna false perchè
+      //  es la combinazione 0, 1, 2, 5 non è presente in nessun array[i]
+      return array_win.some((combinations) =>
+        combinations.every((element) => array_player.includes(element))
+      );
+    },
+    reset_tris(reset_gioco, reset_player, reset_computer) {
+      // reset di tutto il gioco
+      reset_player.length = 0;
+      reset_computer.length = 0;
+      reset_gioco.forEach(
+        (element) => ((element.bg_computer = false), (element.bg_user = false))
+      );
+    },
   },
 };
 </script>
 
 <template>
   <section>
+    <div>
+      <h5>gioca del tris</h5>
+      <!-- gioco tris la condizione se bg_user vero aggiunge classe se falso controlla se bg_computer è vero aggiunge classe se no niente  -->
+      <div class="container-tris">
+        <div
+          v-for="(number, i) in gioco_tris"
+          :key="i"
+          class="square d-flex justify-content-center align-items-center"
+          @click="indexsquare(i)"
+          :class="
+            number.bg_user
+              ? 'backgroud_tris_user'
+              : number.bg_computer
+              ? 'backgroud_tris_computer'
+              : ''
+          "
+        >
+          <div v-if="number.bg_user">User</div>
+          <div v-if="number.bg_computer">CYBERIA</div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div class="row">
         <div
@@ -233,5 +404,34 @@ export default {
   backdrop-filter: blur(10px);
   // background: radial-gradient(white, transparent);
   border-radius: 15px;
+}
+.container-tris {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  .square {
+    width: calc(100% / 3);
+    height: 200px;
+    backdrop-filter: blur(10px);
+    border: 1px solid black;
+  }
+}
+
+.backgroud_tris_user {
+  background-color: green;
+  opacity: 0.7;
+}
+
+.backgroud_tris_computer {
+  background-color: blue;
+  font-family: $font_cyberia;
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 870px) {
+  .container-tris {
+    width: 100%;
+  }
 }
 </style>
