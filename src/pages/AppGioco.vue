@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     // fuzione per scelta risposte e per seleionare il gioco
-    gioco_sasso_carta_forbice(index) {
+    Game(index) {
       this.output = "";
       // variabile dove verrà inserita la frase per l'utente
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
@@ -110,6 +110,7 @@ export default {
         this.score_computer = 0;
         this.score_user = 0;
         this.scelta_utente = "";
+        // queste all'interno della funzione sono le variabili e messe cosi perche variabili boolena farà una copia non prenderà le variabili nei data
         this.scelta_gioco(
           "gioco_SCF_nascosto",
           "nascondi_gioco_tris",
@@ -300,16 +301,27 @@ export default {
   <div class="container">
     <div class="row">
       <div
-        class="col-12 col-sm-4 text-white fs-5 my-3"
+        class="col-12 col-sm-6 text-white fs-5 my-3 justify-content-center d-flex"
         v-if="!gioco_SCF_nascosto && !nascondi_gioco_tris"
         v-for="(gioco, i) in giochi"
-        @click="gioco_sasso_carta_forbice(i)"
-        style="cursor: pointer"
       >
-        {{ gioco }}
+        <div
+          class="card bg-transparent"
+          style="width: 18rem; min-height: 300px"
+        >
+          <img
+            src="../../public/img/Progetto senza titolo (2).png"
+            class="card-img-top"
+            :alt="i"
+          />
+          <div class="card-body">
+            <a href="#" class="btn-page" @click="Game(i)">play</a>
+            <h5 class="card-title mt-3">{{ gioco }}</h5>
+          </div>
+        </div>
       </div>
       <div class="inizio_gioco fs-5 my-4 text-start"></div>
-      <div v-if="nascondi_gioco_tris">
+      <div v-if="nascondi_gioco_tris" class="col-12">
         <h5>gioca del tris</h5>
         <div
           class="btn-group my-3"
@@ -317,7 +329,7 @@ export default {
           aria-label="Basic example"
           v-if="comparsa_tag"
         >
-          <button type="button" class="btn-page" @click="all_giochi(index)">
+          <button type="button" class="btn-page" @click="all_giochi()">
             torna ai giochi
           </button>
         </div>
@@ -330,9 +342,9 @@ export default {
             @click="indexsquare(i)"
             :class="
               number.bg_user
-                ? 'backgroud_tris_user'
+                ? 'backgroud-tris-user-js'
                 : number.bg_computer
-                ? 'backgroud_tris_computer'
+                ? 'backgroud-tris-computer-js'
                 : ''
             "
           >
@@ -341,14 +353,14 @@ export default {
           </div>
         </div>
       </div>
-      <div v-if="gioco_SCF_nascosto">
+      <div v-if="gioco_SCF_nascosto" class="col-12">
         <div
           class="btn-group my-3"
           role="group"
           aria-label="Basic example"
           v-if="comparsa_tag"
         >
-          <button type="button" class="btn-page" @click="all_giochi(index)">
+          <button type="button" class="btn-page" @click="all_giochi()">
             torna ai giochi
           </button>
         </div>
@@ -384,6 +396,7 @@ export default {
           {{ output }}
         </span>
       </div>
+      <h4>quando mi verrà voglia metterò altri giochi</h4>
     </div>
   </div>
 </template>
@@ -420,15 +433,21 @@ export default {
   }
 }
 
-.backgroud_tris_user {
+.backgroud-tris-user-js {
   background-color: green;
   opacity: 0.7;
 }
 
-.backgroud_tris_computer {
+.backgroud-tris-computer-js {
   background-color: blue;
   font-family: $font_cyberia;
   opacity: 0.7;
+}
+
+.card-body {
+  background-color: $background_text;
+  // backdrop-filter: blur(10px);
+  color: white;
 }
 
 @media screen and (max-width: 870px) {
