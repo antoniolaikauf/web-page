@@ -1,32 +1,29 @@
 <script>
-import { callWithAsyncErrorHandling } from "vue";
 import { store } from "../store";
 export default {
   name: "AppGioco",
   data() {
     return {
-      giochi: [
+      game_for_user: [
         // questo indice lasciare sullo 0 se si vuole cambiare cambiare anche la funzione gioco_sasso_carta_forbice
         "Sasso Carta Forbice con CYBERIA",
         "Tris con CYBERIA",
       ],
       // variabile conrisposta
-      Risposta: "giochiamo!!",
+      answer: "giochiamo!!",
       // variabile per comparsa e scomparsa  tag
-      gioco_SCF_nascosto: false,
-      nascondi_gioco_tris: false,
+      variable_game_SCF: false,
+      variable_game_tris: false,
       // variabile per gioco
-      scelta_utente: "",
+      choise_user: "",
       // scelte del computer per gioco
-      scelte: ["sasso", "carta", "forbice"],
+      choises: ["sasso", "carta", "forbice"],
       // variabile che serve per il gioco cosi che il programma smetta automaticamete
-      conteggio: 0,
-      // indice che serve per pescare le risposte dentro all'array di risposte
-      indice_array_risposta: 1,
+      count: 0,
       // variabile per comparsa del bottone torna a tutti i giochi
-      comparsa_tag: false,
+      button_appearance: false,
       // scelta computer di quante volte vuole giocare
-      decisione_computer: Math.floor(Math.random() * (10 - 3) + 3),
+      choise_computer: Math.floor(Math.random() * (10 - 3) + 3),
       // conteggio per utente
       score_user: 0,
       // conteggio computer
@@ -34,7 +31,7 @@ export default {
       // output risultato
       output: "",
       // gioco tris
-      gioco_tris: [
+      game_tris: [
         {
           bg_user: false,
           bg_computer: false,
@@ -105,28 +102,28 @@ export default {
       this.output = "";
       // variabile dove verrà inserita la frase per l'utente
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
-      if (this.giochi[index] === "Sasso Carta Forbice con CYBERIA") {
+      if (this.game_for_user[index] === "Sasso Carta Forbice con CYBERIA") {
         // azzeramento dello score
         this.score_computer = 0;
         this.score_user = 0;
-        this.scelta_utente = "";
+        this.choise_user = "";
         // queste all'interno della funzione sono le variabili e messe cosi perche variabili boolena farà una copia non prenderà le variabili nei data
         this.scelta_gioco(
-          "gioco_SCF_nascosto",
-          "nascondi_gioco_tris",
-          this.Risposta,
+          "variable_game_SCF",
+          "variable_game_tris",
+          this.answer,
           text_inizio_gioco,
-          "comparsa_tag"
+          "button_appearance"
         );
         // svuotamento dello spazio dove c'è la risposta
         text_inizio_gioco.innerHTML = "";
-      } else if (this.giochi[index] === "Tris con CYBERIA") {
+      } else if (this.game_for_user[index] === "Tris con CYBERIA") {
         this.scelta_gioco(
-          "nascondi_gioco_tris",
-          "gioco_SCF_nascosto",
-          this.Risposta,
+          "variable_game_tris",
+          "variable_game_SCF",
+          this.answer,
           text_inizio_gioco,
-          "comparsa_tag"
+          "button_appearance"
         );
       }
     },
@@ -135,32 +132,32 @@ export default {
       // variabile per far vedere i giochi
       this.output = "";
       // let  = (document.querySelector(".output").innerHTML = "");
-      this.gioco_SCF_nascosto = false;
-      this.nascondi_gioco_tris = false;
-      this.comparsa_tag = false;
+      this.variable_game_SCF = false;
+      this.variable_game_tris = false;
+      this.button_appearance = false;
       // // svuotamento dello spazio dove c'è la risposta
       const text_inizio_gioco = (document.querySelector(
         ".inizio_gioco"
       ).innerHTML = "");
       // azzerato variabile
-      this.conteggio = 0;
+      this.count = 0;
     },
     // funzione sasso carta forbice
     play_SCF() {
-      this.scelta_utente = this.scelta_utente.toLowerCase();
+      this.choise_user = this.choise_user.toLowerCase();
       // decisione conteggio sarebbe quante volte ha deciso di giocare il computer
       // e se è uguale a conteggio (che sarebbero quante volte ha premuto play l'utente) il comuter riporta automaticamente alla pagina play
-      if (!this.scelte.includes(this.scelta_utente)) {
+      if (!this.choises.includes(this.choise_user)) {
         // controllo del input dove utente iserisce il dato
         alert("devi scrivere sasso carta o forbice");
       }
       // controllo se conteggio è uguale a decisione computer
-      else if (this.conteggio === this.decisione_computer) {
+      else if (this.count === this.choise_computer) {
         const text_inizio_gioco = (document.querySelector(
           ".inizio_gioco"
         ).innerHTML = "");
-        this.gioco_SCF_nascosto = false;
-        this.conteggio = 0;
+        this.variable_game_SCF = false;
+        this.count = 0;
         if (this.score_computer > this.score_user) {
           this.output =
             "Ah, la dolce vittoria! Spero tu abbia preso appunti. A presto, campione... in seconda posizione!" +
@@ -171,31 +168,31 @@ export default {
         } else {
           this.output = "mi sono stancata di giocare quindi smettiamo qua";
         }
-        this.comparsa_tag = false;
+        this.button_appearance = false;
       } else {
-        this.conteggio++;
+        this.count++;
         // numero random del computer che pescherà una valore dentro ad array risposte
-        let computer_scelta = Math.floor(Math.random() * this.scelte.length);
+        let computer_scelta = Math.floor(Math.random() * this.choises.length);
         // se si pareggia
-        if (this.scelta_utente === this.scelte[computer_scelta]) {
-          this.output = ` ho scelto ${this.scelte[computer_scelta]} abbiamo pareggiato`;
+        if (this.choise_user === this.choises[computer_scelta]) {
+          this.output = ` ho scelto ${this.choises[computer_scelta]} abbiamo pareggiato`;
         }
         // se si vince
         else if (
-          (this.scelta_utente === "sasso" &&
-            this.scelte[computer_scelta] == "forbice") ||
-          (this.scelta_utente === "carta" &&
-            this.scelte[computer_scelta] == "sasso") ||
-          (this.scelta_utente === "forbice" &&
-            this.scelte[computer_scelta] == "sasso")
+          (this.choise_user === "sasso" &&
+            this.choises[computer_scelta] == "forbice") ||
+          (this.choise_user === "carta" &&
+            this.choises[computer_scelta] == "sasso") ||
+          (this.choise_user === "forbice" &&
+            this.choises[computer_scelta] == "sasso")
         ) {
           this.score_user++;
-          this.output = ` ho scelto ${this.scelte[computer_scelta]} ti è andata bene hai vinto`;
+          this.output = ` ho scelto ${this.choises[computer_scelta]} ti è andata bene hai vinto`;
         }
         // se si perde
         else {
           this.score_computer++;
-          this.output = ` ho scelto ${this.scelte[computer_scelta]} sorry , ma ho vinto e godo`;
+          this.output = ` ho scelto ${this.choises[computer_scelta]} sorry , ma ho vinto e godo`;
         }
       }
     },
@@ -203,7 +200,7 @@ export default {
       // controllo se caselle finiscono
       this.counter_block++;
       // cambio variabile in true per utente
-      this.gioco_tris[index].bg_user = true;
+      this.game_tris[index].bg_user = true;
       // messo cella in array
       this.array_check_user.push(index);
       // controllo se ritorna una combinazione corretta
@@ -212,7 +209,7 @@ export default {
         this.controller_tris(this.array_winners, this.array_check_user) === true
       ) {
         this.reset_tris(
-          this.gioco_tris,
+          this.game_tris,
           this.array_check_user,
           this.array_check_computer
         );
@@ -221,22 +218,22 @@ export default {
       } else if (this.counter_block === 5) {
         // se caselle finiscono
         this.reset_tris(
-          this.gioco_tris,
+          this.game_tris,
           this.array_check_user,
           this.array_check_computer
         );
-        alert("parita");
+        alert("abbiamo pareggiato");
         this.counter_block = "";
       } else {
         while (true) {
           // crea un numero random
           let computer_scelta_tris = Math.floor(
-            Math.random() * this.gioco_tris.length
+            Math.random() * this.game_tris.length
           );
           // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
           if (
-            this.gioco_tris[computer_scelta_tris].bg_user !== true &&
-            this.gioco_tris[computer_scelta_tris].bg_computer !== true
+            this.game_tris[computer_scelta_tris].bg_user !== true &&
+            this.game_tris[computer_scelta_tris].bg_computer !== true
           ) {
             // metti scelte computer in array
             this.array_check_computer.push(computer_scelta_tris);
@@ -250,7 +247,7 @@ export default {
               // metodo per pulire il gioco
               alert("ha vinto CYBERIA");
               this.reset_tris(
-                this.gioco_tris,
+                this.game_tris,
                 this.array_check_user,
                 this.array_check_computer
               );
@@ -258,7 +255,7 @@ export default {
               this.counter_block = "";
             } else {
               setTimeout(() => {
-                this.gioco_tris[computer_scelta_tris].bg_computer = true;
+                this.game_tris[computer_scelta_tris].bg_computer = true;
               }, 1000);
             }
             // fine ciclo
@@ -302,8 +299,8 @@ export default {
     <div class="row">
       <div
         class="col-12 col-sm-6 text-white fs-5 my-3 justify-content-center d-flex"
-        v-if="!gioco_SCF_nascosto && !nascondi_gioco_tris"
-        v-for="(gioco, i) in giochi"
+        v-if="!variable_game_SCF && !variable_game_tris"
+        v-for="(gioco, i) in game_for_user"
       >
         <div
           class="card bg-transparent"
@@ -321,13 +318,13 @@ export default {
         </div>
       </div>
       <div class="inizio_gioco fs-5 my-4 text-start"></div>
-      <div v-if="nascondi_gioco_tris" class="col-12">
+      <div v-if="variable_game_tris" class="col-12">
         <h5>gioca del tris</h5>
         <div
           class="btn-group my-3"
           role="group"
           aria-label="Basic example"
-          v-if="comparsa_tag"
+          v-if="button_appearance"
         >
           <button type="button" class="btn-page" @click="all_giochi()">
             torna ai giochi
@@ -336,7 +333,7 @@ export default {
         <!-- gioco tris la condizione se bg_user vero aggiunge classe se falso controlla se bg_computer è vero aggiunge classe se no niente  -->
         <div class="container-tris">
           <div
-            v-for="(number, i) in gioco_tris"
+            v-for="(number, i) in game_tris"
             :key="i"
             class="square d-flex justify-content-center align-items-center"
             @click="indexsquare(i)"
@@ -353,12 +350,12 @@ export default {
           </div>
         </div>
       </div>
-      <div v-if="gioco_SCF_nascosto" class="col-12">
+      <div v-if="variable_game_SCF" class="col-12">
         <div
           class="btn-group my-3"
           role="group"
           aria-label="Basic example"
-          v-if="comparsa_tag"
+          v-if="button_appearance"
         >
           <button type="button" class="btn-page" @click="all_giochi()">
             torna ai giochi
@@ -386,7 +383,7 @@ export default {
           <input
             type="text"
             class="my-3 rounded border-0 p-2 text-black"
-            v-model="scelta_utente"
+            v-model="choise_user"
             placeholder="scrivi il tuo valore "
           />
         </div>
@@ -396,7 +393,7 @@ export default {
           {{ output }}
         </span>
       </div>
-      <h4>quando mi verrà voglia metterò altri giochi</h4>
+      <h4 class="mt-5">quando mi verrà voglia metterò altri giochi</h4>
     </div>
   </div>
 </template>
