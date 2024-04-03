@@ -8,19 +8,13 @@ export default {
       giochi: [
         // questo indice lasciare sullo 0 se si vuole cambiare cambiare anche la funzione gioco_sasso_carta_forbice
         "Sasso Carta Forbice con CYBERIA",
-        "Indovina il numero che sta pensando CYBERIA in meno di 5 tentativi",
-        "Pari o dispari contro CYBERIA",
+        "Tris con CYBERIA",
       ],
-      // array con dentro le risposte date all'utente da parte del programma
-      risposta: [
-        // la prima non cambiarla
-        "giochiamo!!",
-        "Hai scelto un gioco ma siccome sono io che gestisco questa pagina giochiamo a sasso carta forbice",
-        " è inuti che ci riprovi decido io qua",
-        " Quello che dico è legge",
-      ],
+      // variabile conrisposta
+      Risposta: "giochiamo!!",
       // variabile per comparsa e scomparsa  tag
-      nascondi_giochi: false,
+      gioco_SCF_nascosto: false,
+      nascondi_gioco_tris: false,
       // variabile per gioco
       scelta_utente: "",
       // scelte del computer per gioco
@@ -111,43 +105,37 @@ export default {
       this.output = "";
       // variabile dove verrà inserita la frase per l'utente
       const text_inizio_gioco = document.querySelector(".inizio_gioco");
-      this.nascondi_giochi = true;
-      // azzeramento dello score
-      this.score_computer = 0;
-      this.score_user = 0;
-      this.scelta_utente = "";
-      if (index === 0) {
-        // fa vedere la frase base
-        // PS se si cambia il posizionamento di "sasso carta forbice con CYBERIA", nell'arry giochi bisogna cambiare l'indice di this.risposta[0]
-        store.transformElement(this.risposta[0], text_inizio_gioco);
-        setTimeout(() => {
-          this.comparsa_tag = true;
-        }, this.risposta[index].length * 100);
-      } else {
-        // reset dell'indice
-        if (this.indice_array_risposta === this.risposta.length) {
-          this.indice_array_risposta = 1;
-        }
-        // funzione che si trova nel file store
-        store.transformElement(
-          this.risposta[this.indice_array_risposta],
-          text_inizio_gioco
+      if (this.giochi[index] === "Sasso Carta Forbice con CYBERIA") {
+        // azzeramento dello score
+        this.score_computer = 0;
+        this.score_user = 0;
+        this.scelta_utente = "";
+        this.scelta_gioco(
+          "gioco_SCF_nascosto",
+          "nascondi_gioco_tris",
+          this.Risposta,
+          text_inizio_gioco,
+          "comparsa_tag"
         );
-        // incremento del indice array cosi da risposte diverse
-        setTimeout(() => {
-          this.comparsa_tag = true;
-        }, this.risposta[this.indice_array_risposta].length * 100);
-        this.indice_array_risposta++;
+        // svuotamento dello spazio dove c'è la risposta
+        text_inizio_gioco.innerHTML = "";
+      } else if (this.giochi[index] === "Tris con CYBERIA") {
+        this.scelta_gioco(
+          "nascondi_gioco_tris",
+          "gioco_SCF_nascosto",
+          this.Risposta,
+          text_inizio_gioco,
+          "comparsa_tag"
+        );
       }
-      // svuotamento dello spazio dove c'è la risposta
-      text_inizio_gioco.innerHTML = "";
     },
 
     all_giochi() {
       // variabile per far vedere i giochi
       this.output = "";
       // let  = (document.querySelector(".output").innerHTML = "");
-      this.nascondi_giochi = false;
+      this.gioco_SCF_nascosto = false;
+      this.nascondi_gioco_tris = false;
       this.comparsa_tag = false;
       // // svuotamento dello spazio dove c'è la risposta
       const text_inizio_gioco = (document.querySelector(
@@ -157,7 +145,7 @@ export default {
       this.conteggio = 0;
     },
     // funzione sasso carta forbice
-    play() {
+    play_SCF() {
       this.scelta_utente = this.scelta_utente.toLowerCase();
       // decisione conteggio sarebbe quante volte ha deciso di giocare il computer
       // e se è uguale a conteggio (che sarebbero quante volte ha premuto play l'utente) il comuter riporta automaticamente alla pagina play
@@ -170,7 +158,7 @@ export default {
         const text_inizio_gioco = (document.querySelector(
           ".inizio_gioco"
         ).innerHTML = "");
-        this.nascondi_giochi = false;
+        this.gioco_SCF_nascosto = false;
         this.conteggio = 0;
         if (this.score_computer > this.score_user) {
           this.output =
@@ -294,96 +282,110 @@ export default {
         (element) => ((element.bg_computer = false), (element.bg_user = false))
       );
     },
+    scelta_gioco(game_SCF, game_tris, computer_message, text_start, button) {
+      this[game_SCF] = true;
+      this[game_tris] = false;
+      // fa vedere la frase base
+      // PS se si cambia il posizionamento di "sasso carta forbice con CYBERIA", nell'arry giochi bisogna cambiare l'indice di this.risposta[0]
+      store.transformElement(computer_message, text_start);
+      setTimeout(() => {
+        this[button] = true;
+      }, computer_message.length * 100);
+    },
   },
 };
 </script>
 
 <template>
-  <section>
-    <div>
-      <h5>gioca del tris</h5>
-      <!-- gioco tris la condizione se bg_user vero aggiunge classe se falso controlla se bg_computer è vero aggiunge classe se no niente  -->
-      <div class="container-tris">
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-12 col-sm-4 text-white fs-5 my-3"
+        v-if="!gioco_SCF_nascosto && !nascondi_gioco_tris"
+        v-for="(gioco, i) in giochi"
+        @click="gioco_sasso_carta_forbice(i)"
+        style="cursor: pointer"
+      >
+        {{ gioco }}
+      </div>
+      <div class="inizio_gioco fs-5 my-4 text-start"></div>
+      <div v-if="nascondi_gioco_tris">
+        <h5>gioca del tris</h5>
         <div
-          v-for="(number, i) in gioco_tris"
-          :key="i"
-          class="square d-flex justify-content-center align-items-center"
-          @click="indexsquare(i)"
-          :class="
-            number.bg_user
-              ? 'backgroud_tris_user'
-              : number.bg_computer
-              ? 'backgroud_tris_computer'
-              : ''
-          "
+          class="btn-group my-3"
+          role="group"
+          aria-label="Basic example"
+          v-if="comparsa_tag"
         >
-          <div v-if="number.bg_user">User</div>
-          <div v-if="number.bg_computer">CYBERIA</div>
+          <button type="button" class="btn-page" @click="all_giochi(index)">
+            torna ai giochi
+          </button>
+        </div>
+        <!-- gioco tris la condizione se bg_user vero aggiunge classe se falso controlla se bg_computer è vero aggiunge classe se no niente  -->
+        <div class="container-tris">
+          <div
+            v-for="(number, i) in gioco_tris"
+            :key="i"
+            class="square d-flex justify-content-center align-items-center"
+            @click="indexsquare(i)"
+            :class="
+              number.bg_user
+                ? 'backgroud_tris_user'
+                : number.bg_computer
+                ? 'backgroud_tris_computer'
+                : ''
+            "
+          >
+            <div v-if="number.bg_user">User</div>
+            <div v-if="number.bg_computer">CYBERIA</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="row">
+      <div v-if="gioco_SCF_nascosto">
         <div
-          class="col-12 col-sm-4 text-white fs-5 my-3"
-          v-if="!nascondi_giochi"
-          v-for="(gioco, i) in giochi"
-          @click="gioco_sasso_carta_forbice(i)"
-          style="cursor: pointer"
+          class="btn-group my-3"
+          role="group"
+          aria-label="Basic example"
+          v-if="comparsa_tag"
         >
-          {{ gioco }}
+          <button type="button" class="btn-page" @click="all_giochi(index)">
+            torna ai giochi
+          </button>
         </div>
-        <div class="inizio_gioco fs-5 my-4 text-start"></div>
-        <div v-if="nascondi_giochi">
-          <div class="btn-group my-3" role="group" aria-label="Basic example">
-            <button
-              type="button"
-              class="btn-page"
-              @click="all_giochi(index)"
-              v-if="comparsa_tag"
-            >
-              torna ai giochi
-            </button>
-          </div>
-          <div class="mb-5 mt-2">
-            <h5 class="text-white">scrivi sasso carta o forbice</h5>
-            <div
-              class="d-flex justify-content-center py-2 gioco align-items-center"
-            >
-              <div>
-                <b> score CYBERIA</b>
-                {{ score_computer }}
-              </div>
-              <div
-                class="btn-group px-4"
-                role="group"
-                aria-label="Basic example"
-              >
-                <button type="button" class="btn-page" @click="play">
-                  gioca
-                </button>
-              </div>
-              <div>
-                score utente
-                {{ score_user }}
-              </div>
+        <div class="mb-5 mt-2">
+          <h5 class="text-white">scrivi sasso carta o forbice</h5>
+          <div
+            class="d-flex justify-content-center py-2 gioco align-items-center"
+          >
+            <div>
+              <b> score CYBERIA</b>
+              {{ score_computer }}
             </div>
-            <input
-              type="text"
-              class="my-3 rounded border-0 p-2 text-black"
-              v-model="scelta_utente"
-              placeholder="scrivi il tuo valore "
-            />
+            <div class="btn-group px-4" role="group" aria-label="Basic example">
+              <button type="button" class="btn-page" @click="play_SCF">
+                gioca
+              </button>
+            </div>
+            <div>
+              score utente
+              {{ score_user }}
+            </div>
           </div>
-        </div>
-        <div>
-          <span class="output fs-5 text-start">
-            {{ output }}
-          </span>
+          <input
+            type="text"
+            class="my-3 rounded border-0 p-2 text-black"
+            v-model="scelta_utente"
+            placeholder="scrivi il tuo valore "
+          />
         </div>
       </div>
+      <div>
+        <span class="output fs-5 text-start">
+          {{ output }}
+        </span>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
