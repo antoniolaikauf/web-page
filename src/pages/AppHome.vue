@@ -13,39 +13,39 @@ export default {
       time: 0,
       // variabile per array argomenti
       text_visibile: false,
-
+      // ariabile per caricamento pagina
       text_caricamento: false,
 
       // array con dentro argomenti riguardanti il proprietario
-      argomenti: [
+      suggestions: [
         {
           title: "Lex Fridman",
           URL: "https://www.youtube.com/@lexfridman",
-          descrizione:
+          description:
             "Unisce conversazioni profonde e riflessioni sull'intelligenza artificiale, filosofia, e la condizione umana. Lex Fridman attrae menti brillanti da tutto il mondo in dialoghi che sfidano, educano e ispirano, offrendo nuove prospettive su tecnologia e umanità.",
         },
         {
           title: "Andrew Huberman",
           URL: "https://www.youtube.com/@hubermanlab",
-          descrizione:
+          description:
             "Immergiti nelle profondità del cervello umano con Andrew Huberman. I suoi video, un ponte tra scienza e vita quotidiana, offrono intuizioni preziose su sonno, stress e prestazioni cognitive, rendendo la neuroscienza accessibile a tutti.",
         },
         {
           title: "Andrej Karpathy",
           URL: "https://www.youtube.com/@AndrejKarpathy",
-          descrizione:
+          description:
             "Esplora i confini dell'intelligenza artificiale con Andrej Karpathy. Le sue spiegazioni chiarificatrici su IA e machine learning sono indispensabili per chiunque voglia capire o lavorare con le tecnologie che stanno definendo il futuro.",
         },
         {
           title: "freeCodeCamp",
           URL: "https://www.youtube.com/@freecodecamp",
-          descrizione:
+          description:
             "Il tuo trampolino di lancio nel mondo della programmazione. freeCodeCamp guida principianti e professionisti attraverso tutorial di sviluppo web e programmazione, rendendo l'apprendimento delle competenze tecniche accessibile e totalmente gratuito.",
         },
         {
           title: "George Hotz",
           URL: "https://www.youtube.com/@geohotarchive",
-          descrizione:
+          description:
             "Un viaggio nel cuore dell'innovazione tecnologica con George Hotz, aka geohot. Le sue live session di programmazione e riflessioni sull'IA e sulla sicurezza informatica ti danno uno sguardo diretto nella mente di un genio hacker.",
         },
       ],
@@ -58,7 +58,7 @@ export default {
       this.text_caricamento = true;
       // variabili che prendono il contenitore dove ci comparirà del testo
       const place_text = document.getElementById("text-container");
-      const place_text_descrizione =
+      const place_text_descrizione_page =
         document.querySelector(".text-descrizione");
       // funzione chiamata dallo store
       store.transformElement(this.text, place_text);
@@ -66,13 +66,13 @@ export default {
       timer(
         100 * this.text.length,
         this.text_descrizione,
-        place_text_descrizione
+        place_text_descrizione_page
       );
       // funzione per tempo comparsa testo
-      function timer(frase_prima, frase, spazio) {
+      function timer(previous_sentence, sentence, space) {
         setTimeout(() => {
-          store.transformElement(frase, spazio);
-        }, frase_prima);
+          store.transformElement(sentence, space);
+        }, previous_sentence);
       }
       // variabile che conterra il tempo che ci mette per le scritte
       this.time = (this.text.length + this.text_descrizione.length) * 100;
@@ -123,7 +123,7 @@ export default {
     Ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in
     provincia di bergamo . <br />
     ho iniziato a programmare nel 2023 ( speravo di scoprire questo campo molto
-    prima, ma come si dice meglio tardi che mai) ora cyberia ti farà vedere le
+    prima, ma come si dice meglio tardi che mai) ora CYBERIA ti farà vedere le
     poche cose che si potra fare su questa pagina praticamente nulla
   </p>
 
@@ -138,13 +138,16 @@ export default {
       <!-- Swiper -->
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide p-3" v-for="(argomento, i) in argomenti">
-            <a :href="argomento.URL" target="_blank">
+          <div
+            class="swiper-slide p-3"
+            v-for="(recommendation, i) in suggestions"
+          >
+            <a :href="recommendation.URL" target="_blank">
               <h5>
-                {{ argomento.title }}
+                {{ recommendation.title }}
               </h5>
               <p>
-                {{ argomento.descrizione }}
+                {{ recommendation.description }}
               </p>
             </a>
           </div>
