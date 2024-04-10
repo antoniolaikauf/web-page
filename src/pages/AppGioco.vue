@@ -108,23 +108,11 @@ export default {
         this.score_user = 0;
         this.choise_user = "";
         // queste all'interno della funzione sono le variabili e messe cosi perche variabili boolena farà una copia non prenderà le variabili nei data
-        this.scelta_gioco(
-          "variable_game_SCF",
-          "variable_game_tris",
-          this.answer,
-          text_inizio_gioco,
-          "button_appearance"
-        );
+        this.scelta_gioco("variable_game_SCF", "variable_game_tris", this.answer, text_inizio_gioco, "button_appearance");
         // svuotamento dello spazio dove c'è la risposta
         text_inizio_gioco.innerHTML = "";
       } else if (this.game_for_user[index] === "Tris con CYBERIA") {
-        this.scelta_gioco(
-          "variable_game_tris",
-          "variable_game_SCF",
-          this.answer,
-          text_inizio_gioco,
-          "button_appearance"
-        );
+        this.scelta_gioco("variable_game_tris", "variable_game_SCF", this.answer, text_inizio_gioco, "button_appearance");
       }
     },
 
@@ -136,9 +124,7 @@ export default {
       this.variable_game_tris = false;
       this.button_appearance = false;
       // // svuotamento dello spazio dove c'è la risposta
-      const text_inizio_gioco = (document.querySelector(
-        ".inizio_gioco"
-      ).innerHTML = "");
+      const text_inizio_gioco = (document.querySelector(".inizio_gioco").innerHTML = "");
       // azzerato variabile
       this.count = 0;
     },
@@ -153,9 +139,7 @@ export default {
       }
       // controllo se conteggio è uguale a decisione computer
       else if (this.count === this.choise_computer) {
-        const text_inizio_gioco = (document.querySelector(
-          ".inizio_gioco"
-        ).innerHTML = "");
+        const text_inizio_gioco = (document.querySelector(".inizio_gioco").innerHTML = "");
         this.variable_game_SCF = false;
         this.count = 0;
         if (this.score_computer > this.score_user) {
@@ -179,12 +163,9 @@ export default {
         }
         // se si vince
         else if (
-          (this.choise_user === "sasso" &&
-            this.choises[computer_scelta] == "forbice") ||
-          (this.choise_user === "carta" &&
-            this.choises[computer_scelta] == "sasso") ||
-          (this.choise_user === "forbice" &&
-            this.choises[computer_scelta] == "sasso")
+          (this.choise_user === "sasso" && this.choises[computer_scelta] == "forbice") ||
+          (this.choise_user === "carta" && this.choises[computer_scelta] == "sasso") ||
+          (this.choise_user === "forbice" && this.choises[computer_scelta] == "sasso")
         ) {
           this.score_user++;
           this.output = ` ho scelto ${this.choises[computer_scelta]} ti è andata bene hai vinto`;
@@ -205,52 +186,28 @@ export default {
       this.array_check_user.push(index);
       // controllo se ritorna una combinazione corretta
       // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
-      if (
-        this.controller_tris(this.array_winners, this.array_check_user) === true
-      ) {
-        this.reset_tris(
-          this.game_tris,
-          this.array_check_user,
-          this.array_check_computer
-        );
+      if (this.controller_tris(this.array_winners, this.array_check_user) === true) {
+        this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer);
         alert("hai vinto");
         this.counter_block = "";
       } else if (this.counter_block === 5) {
         // se caselle finiscono
-        this.reset_tris(
-          this.game_tris,
-          this.array_check_user,
-          this.array_check_computer
-        );
+        this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer);
         alert("abbiamo pareggiato");
         this.counter_block = "";
       } else {
         while (true) {
           // crea un numero random
-          let computer_scelta_tris = Math.floor(
-            Math.random() * this.game_tris.length
-          );
+          let computer_scelta_tris = Math.floor(Math.random() * this.game_tris.length);
           // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
-          if (
-            this.game_tris[computer_scelta_tris].bg_user !== true &&
-            this.game_tris[computer_scelta_tris].bg_computer !== true
-          ) {
+          if (this.game_tris[computer_scelta_tris].bg_user !== true && this.game_tris[computer_scelta_tris].bg_computer !== true) {
             // metti scelte computer in array
             this.array_check_computer.push(computer_scelta_tris);
             // controllo se ci sono delle corrispondenze
-            if (
-              this.controller_tris(
-                this.array_winners,
-                this.array_check_computer
-              ) === true
-            ) {
+            if (this.controller_tris(this.array_winners, this.array_check_computer) === true) {
               // metodo per pulire il gioco
               alert("ha vinto CYBERIA");
-              this.reset_tris(
-                this.game_tris,
-                this.array_check_user,
-                this.array_check_computer
-              );
+              this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer);
 
               this.counter_block = "";
             } else {
@@ -268,17 +225,13 @@ export default {
       // controlla se uno degli array in array_winner contiene tutti gli elementi di arraycheck
       // non fare contrario , tutti gli elementi in array_check_user devono essere in in arraywinter[i] se no ritorna false perchè
       //  es la combinazione 0, 1, 2, 5 non è presente in nessun array[i]
-      return array_win.some((combinations) =>
-        combinations.every((element) => array_player.includes(element))
-      );
+      return array_win.some((combinations) => combinations.every((element) => array_player.includes(element)));
     },
     reset_tris(reset_gioco, reset_player, reset_computer) {
       // reset di tutto il gioco
       reset_player.length = 0;
       reset_computer.length = 0;
-      reset_gioco.forEach(
-        (element) => ((element.bg_computer = false), (element.bg_user = false))
-      );
+      reset_gioco.forEach((element) => ((element.bg_computer = false), (element.bg_user = false)));
     },
     scelta_gioco(game_SCF, game_tris, computer_message, text_start, button) {
       this[game_SCF] = true;
@@ -302,15 +255,8 @@ export default {
         v-if="!variable_game_SCF && !variable_game_tris"
         v-for="(gioco, i) in game_for_user"
       >
-        <div
-          class="card bg-transparent"
-          style="width: 18rem; min-height: 300px"
-        >
-          <img
-            src="../../public/img/Progetto senza titolo (2).png"
-            class="card-img-top"
-            :alt="i"
-          />
+        <div class="card bg-transparent" style="width: 18rem; min-height: 300px">
+          <img src="../../public/img/Progetto senza titolo (2).png" class="card-img-top" :alt="i" />
           <div class="card-body">
             <a href="#" class="btn-page" @click="Game(i)">play</a>
             <h5 class="card-title mt-3">{{ gioco }}</h5>
@@ -320,15 +266,8 @@ export default {
       <div class="inizio_gioco fs-5 my-4 text-start"></div>
       <div v-if="variable_game_tris" class="col-12">
         <h5>gioca del tris</h5>
-        <div
-          class="btn-group my-3"
-          role="group"
-          aria-label="Basic example"
-          v-if="button_appearance"
-        >
-          <button type="button" class="btn-page" @click="all_giochi()">
-            torna ai giochi
-          </button>
+        <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
+          <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
         </div>
         <!-- gioco tris la condizione se bg_user vero aggiunge classe se falso controlla se bg_computer è vero aggiunge classe se no niente  -->
         <div class="container-tris">
@@ -337,13 +276,7 @@ export default {
             :key="i"
             class="square d-flex justify-content-center align-items-center"
             @click="indexsquare(i)"
-            :class="
-              number.bg_user
-                ? 'backgroud-tris-user-js'
-                : number.bg_computer
-                ? 'backgroud-tris-computer-js'
-                : ''
-            "
+            :class="number.bg_user ? 'backgroud-tris-user-js' : number.bg_computer ? 'backgroud-tris-computer-js' : ''"
           >
             <div v-if="number.bg_user">User</div>
             <div v-if="number.bg_computer">CYBERIA</div>
@@ -351,41 +284,25 @@ export default {
         </div>
       </div>
       <div v-if="variable_game_SCF" class="col-12">
-        <div
-          class="btn-group my-3"
-          role="group"
-          aria-label="Basic example"
-          v-if="button_appearance"
-        >
-          <button type="button" class="btn-page" @click="all_giochi()">
-            torna ai giochi
-          </button>
+        <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
+          <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
         </div>
         <div class="mb-5 mt-2">
           <h5 class="text-white">scrivi sasso carta o forbice</h5>
-          <div
-            class="d-flex justify-content-center py-2 gioco align-items-center"
-          >
+          <div class="d-flex justify-content-center py-2 gioco align-items-center">
             <div>
               <b> score CYBERIA</b>
               {{ score_computer }}
             </div>
             <div class="btn-group px-4" role="group" aria-label="Basic example">
-              <button type="button" class="btn-page" @click="play_SCF">
-                gioca
-              </button>
+              <button type="button" class="btn-page" @click="play_SCF">gioca</button>
             </div>
             <div>
               score utente
               {{ score_user }}
             </div>
           </div>
-          <input
-            type="text"
-            class="my-3 rounded border-0 p-2 text-black"
-            v-model="choise_user"
-            placeholder="scrivi il tuo valore "
-          />
+          <input type="text" class="my-3 rounded border-0 p-2 text-black" v-model="choise_user" placeholder="scrivi il tuo valore " />
         </div>
       </div>
       <div>

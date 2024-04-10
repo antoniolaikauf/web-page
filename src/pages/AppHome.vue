@@ -58,16 +58,11 @@ export default {
       this.text_caricamento = true;
       // variabili che prendono il contenitore dove ci comparirà del testo
       const place_text = document.getElementById("text-container");
-      const place_text_descrizione_page =
-        document.querySelector(".text-descrizione");
+      const place_text_descrizione_page = document.querySelector(".text-descrizione");
       // funzione chiamata dallo store
       store.transformElement(this.text, place_text);
 
-      timer(
-        100 * this.text.length,
-        this.text_descrizione,
-        place_text_descrizione_page
-      );
+      timer(100 * this.text.length, this.text_descrizione, place_text_descrizione_page);
       // funzione per tempo comparsa testo
       function timer(previous_sentence, sentence, space) {
         setTimeout(() => {
@@ -108,23 +103,15 @@ export default {
   <div v-if="!text_caricamento" class="my-3">
     <h3 class="text-white text-caricamento">caricamento</h3>
     <i class="fa-solid fa-spinner loading my-3"></i>
-    <div
-      class="barra-caricamento"
-      :style="{ 'animation-duration': `${time}ms` }"
-    ></div>
+    <div class="barra-caricamento" :style="{ 'animation-duration': `${time}ms` }"></div>
   </div>
   <div>
     <h3 id="text-container" class="text-start"></h3>
   </div>
-  <p
-    class="text-white fs-5 fw-bold my-3 text-base"
-    :class="text_caricamento ? 'animazione' : 'd-none'"
-  >
-    Ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in
-    provincia di bergamo . <br />
-    ho iniziato a programmare nel 2023 ( speravo di scoprire questo campo molto
-    prima, ma come si dice meglio tardi che mai) ora CYBERIA ti farà vedere le
-    poche cose che si potra fare su questa pagina praticamente nulla
+  <p class="text-white fs-5 fw-bold my-3 text-base" :class="text_caricamento ? 'animazione' : 'd-none'">
+    Ciao sono antonio, sono un ragazzo di 23 anni nato a san pellegrino terme in provincia di bergamo . <br />
+    ho iniziato a programmare nel 2023 ( speravo di scoprire questo campo molto prima, ma come si dice meglio tardi che mai) ora CYBERIA ti farà
+    vedere le poche cose che si potra fare su questa pagina praticamente nulla
   </p>
 
   <div class="row">
@@ -132,16 +119,11 @@ export default {
       <div class="text-descrizione fs-5 text-start"></div>
     </div>
     <div v-if="text_visibile">
-      <h5 class="my-3 fw-bold">
-        Ecco alcuni canali che ho ritenuto molto interessanti
-      </h5>
+      <h5 class="my-3 fw-bold">Ecco alcuni canali che ho ritenuto molto interessanti</h5>
       <!-- Swiper -->
       <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-          <div
-            class="swiper-slide p-3"
-            v-for="(recommendation, i) in suggestions"
-          >
+          <div class="swiper-slide p-3" v-for="(recommendation, i) in suggestions">
             <a :href="recommendation.URL" target="_blank">
               <h5>
                 {{ recommendation.title }}
@@ -228,14 +210,6 @@ body {
   position: relative;
   height: 100%;
 }
-
-// body {
-//   background: #eee;
-//   font-size: 14px;
-//   color: #000;
-//   margin: 0;
-//   padding: 0;
-// }
 
 .swiper {
   width: 100%;
