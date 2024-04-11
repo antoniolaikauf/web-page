@@ -5,8 +5,8 @@ export default {
 </script>
 
 <template>
-  <h2>Errore</h2>
-  se vuoi ritornare alla home c'è il bottone
+  <h2>Errore 404</h2>
+  <h1>Torna indietro se no CYBERIA si arrabbia !!</h1>
 </template>
 
 <style scoped lang="scss"></style>
