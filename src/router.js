@@ -20,7 +20,7 @@ const router = createRouter({
       component:AppGioco
     },
     {
-      path: '*',
+      path: '/*',
       name: 'not-found',
       component: notFound,
     },
