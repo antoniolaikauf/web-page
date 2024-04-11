@@ -20,6 +20,7 @@ const router = createRouter({
       component:AppGioco
     },
     {
+      // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
       path: "/:pathMatch(.*)*",
       name: 'Notfound',
       component: NotFound
