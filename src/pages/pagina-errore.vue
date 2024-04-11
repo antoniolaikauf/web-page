@@ -1,5 +1,7 @@
 <script>
-export default {};
+export default {
+    name:'error_page'
+};
 </script>
 
 <template>errore</template>
