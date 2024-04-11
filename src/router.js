@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 // importazione file per rotte 
 import AppGioco from './pages/AppGioco.vue';
 import AppHome from "./pages/AppHome.vue";
-import error  from "./pages/errorpage.vue"
+import NotFound from "./pages/NotFound.vue";
 
  
 // creazione delle rotte e il loro 'percorso'
@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.)',
       name: 'notfound',
-      component: error
+      component: NotFound
     },
   ],
 });

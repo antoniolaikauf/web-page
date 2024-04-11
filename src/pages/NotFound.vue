@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "error",
+  name: "NotFound",
 };
 </script>
 
