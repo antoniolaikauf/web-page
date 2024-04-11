@@ -20,7 +20,7 @@ const router = createRouter({
       component:AppGioco
     },
     {
-      path: "/error-page",
+      path: "*",
       name: "pagina-errore",
       component:error_page
     },
