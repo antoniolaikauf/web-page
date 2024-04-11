@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import AppGioco from './pages/AppGioco.vue';
 import AppHome from "./pages/AppHome.vue";
 import error_page from "./pages/pagina-errore.vue";
+
  
 // creazione delle rotte e il loro 'percorso'
 const router = createRouter({
