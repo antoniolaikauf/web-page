@@ -222,7 +222,7 @@ export default {
       }
     },
     controller_tris(array_win, array_player) {
-      // controlla se uno degli array in array_winner contiene tutti gli elementi di arraycheck
+      // controlla se uno degli array in array_winner contiene tutti gli elementi di arraycheck          
       // non fare contrario , tutti gli elementi in array_check_user devono essere in in arraywinter[i] se no ritorna false perchè
       //  es la combinazione 0, 1, 2, 5 non è presente in nessun array[i]
       return array_win.some((combinations) => combinations.every((element) => array_player.includes(element)));
