@@ -18,12 +18,7 @@ const router = createRouter({
       path: "/gioco",
       name: "gioco",
       component:AppGioco
-    },
-    {
-      path: "*",
-      name: "pagina-errore",
-      component:error_page
-    },
+    }
   ],
 });
 export { router };
