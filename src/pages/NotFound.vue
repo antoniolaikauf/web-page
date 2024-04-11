@@ -4,6 +4,9 @@ export default {
 };
 </script>
 
-<template><h2>erroreeeeeeeeeeeeeeeeeeeeeeeeeeeeee</h2></template>
+<template>
+  <h2>Errore</h2>
+  se vuoi ritornare alla home c'è il bottone
+</template>
 
 <style scoped lang="scss"></style>
