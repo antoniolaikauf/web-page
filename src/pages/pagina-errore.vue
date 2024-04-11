@@ -4,7 +4,7 @@ export default {
 };
 </script>
 
-<template>errore</template>
+<template>errore nella ricerca pagina </template>
 
 <style scoped lang="scss">
 @use "./style/partials/mixins" as *;
