@@ -15,7 +15,8 @@ export default {
       text_visibile: false,
       // ariabile per caricamento pagina
       text_caricamento: false,
-
+      // timer usato per settimeout
+      timeComparsa: 80,
       // array con dentro argomenti riguardanti il proprietario
       suggestions: [
         {
@@ -62,7 +63,7 @@ export default {
       // funzione chiamata dallo store
       store.transformElement(this.text, place_text);
 
-      timer(100 * this.text.length, this.text_descrizione, place_text_descrizione_page);
+      timer(this.timeComparsa * this.text.length, this.text_descrizione, place_text_descrizione_page);
       // funzione per tempo comparsa testo
       function timer(previous_sentence, sentence, space) {
         setTimeout(() => {
@@ -70,11 +71,11 @@ export default {
         }, previous_sentence);
       }
       // variabile che conterra il tempo che ci mette per le scritte
-      this.time = (this.text.length + this.text_descrizione.length) * 100;
+      this.time = (this.text.length + this.text_descrizione.length) * this.timeComparsa;
       // metodo per comparsa array argomenti
       setTimeout(() => {
         this.text_visibile = true;
-        // script carousel swiper
+        // script carousel swiper ritardato per dare classi a carosello
         setTimeout(() => {
           var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
