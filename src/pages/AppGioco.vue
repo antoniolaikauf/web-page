@@ -1,4 +1,5 @@
 <script>
+import { Alert } from "bootstrap";
 import { store } from "../store";
 export default {
   name: "AppGioco",
@@ -96,8 +97,10 @@ export default {
       // array dove si mette i square selezionati
       array_check_user: [],
       array_check_computer: [],
+      // variabili per gioco indovio
       number_CYBERIA:0,
       number_user:"",
+      output_indovino:'',
     };
   },
   methods: {
@@ -118,6 +121,8 @@ export default {
       } else if (this.game_for_user[index] === "Tris con CYBERIA") {
         this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
       } else if (this.game_for_user[index] === "Prova ad indovinare il numero con CYBERIA"){
+        this.number_CYBERIA= Math.floor(Math.random()*50) + 1
+        console.log(this.number_CYBERIA);
         this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco, "button_appearance");
       }
     },
@@ -254,21 +259,20 @@ export default {
       this.number_user =parseInt(Math.ceil(this.number_user));
 
       console.log(this.number_user);
-      if (isNaN(this.number_user) || this.number_user <= 0 || this.number_user > 50) {
-        alert('Il numero che hai inserito non è corretto');
-        this.number_user = '';
-      }  
-      else if(this.number_user === this.number_CYBERIA) alert('hai vinto')
-     
-
-      
+      if (isNaN(this.number_user) || this.number_user <= 0 || this.number_user > 50) alert('Il numero che hai inserito non è corretto');
+      else if(this.number_user === this.number_CYBERIA){
+        alert('hai vinto')
+        this.output_indovino=''
+        this.number_user=''
+        this.number_CYBERIA= Math.floor(Math.random()*50) + 1
+        console.log(this.number_CYBERIA);
+      }
+      else if (this.number_user< this.number_CYBERIA) this.output_indovino='HAI DIGITATO UN NUMERO TROPPO BASSO'
+      else if (this.number_user> this.number_CYBERIA) this.output_indovino='HAI DIGITATO UN NUMERO TROPPO ALTO'  
+      this.number_user = '';
     }
   },
-  mounted(){
-    this.number_CYBERIA= Math.floor(Math.random()*50) + 1
-    console.log(this.number_CYBERIA);
-    console.log(Number.isInteger(3.2));
-  }
+
 };
 </script>
 
@@ -338,6 +342,9 @@ export default {
           <h2>Scrivi un numero tra 1 e 50</h2>
           <div>
             <input type="text" class="text-black" v-model="number_user">
+          </div>
+          <div>
+            {{ output_indovino }}
           </div>
           <div class="btn-group my-3" role="group" aria-label="Basic example">
             <button type="button" class="btn-page" @click="indovino">Controlla</button>
