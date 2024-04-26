@@ -1,4 +1,5 @@
 <script>
+import { FALSE } from "sass";
 import { store } from "../store";
 export default {
   name: "AppGioco",
@@ -110,11 +111,13 @@ export default {
         this.score_user = 0;
         this.choise_user = "";
         // queste all'interno della funzione sono le variabili e messe cosi perche variabili boolena farà una copia non prenderà le variabili nei data
-        this.scelta_gioco("variable_game_SCF", "variable_game_tris", this.answer, text_inizio_gioco, "button_appearance");
+        this.scelta_gioco("variable_game_SCF", "variable_game_tris","vvariable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
         // svuotamento dello spazio dove c'è la risposta
         text_inizio_gioco.innerHTML = "";
       } else if (this.game_for_user[index] === "Tris con CYBERIA") {
-        this.scelta_gioco("variable_game_tris", "variable_game_SCF", this.answer, text_inizio_gioco, "button_appearance");
+        this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
+      } else if (this.game_for_user[index] === "Prova ad indovinare il numero con CYBERIA"){
+        this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco, "button_appearance");
       }
     },
 
@@ -124,6 +127,7 @@ export default {
       // let  = (document.querySelector(".output").innerHTML = "");
       this.variable_game_SCF = false;
       this.variable_game_tris = false;
+      this.variable_game_indovino=false;
       this.button_appearance = false;
       // // svuotamento dello spazio dove c'è la risposta
       const text_inizio_gioco = (document.querySelector(".inizio_gioco").innerHTML = "");
@@ -235,11 +239,12 @@ export default {
       reset_computer.length = 0;
       reset_gioco.forEach((element) => ((element.bg_computer = false), (element.bg_user = false)));
     },
-    scelta_gioco(game_SCF, game_tris, computer_message, text_start, button) {
+    scelta_gioco(game_SCF, game_tris, game_indovino, computer_message, text_start, button) {
       this[game_SCF] = true;
       this[game_tris] = false;
+      this[game_indovino] = false;
       // fa vedere la frase base
-      // PS se si cambia il posizionamento di "sasso carta forbice con CYBERIA", nell'arry giochi bisogna cambiare l'indice di this.risposta[0]
+      // PS se si cambia il posizionamento di "sasso carta forbice con CYBERIA", nell'arrey giochi bisogna cambiare l'indice di this.risposta[0]
       store.transformElement(computer_message, text_start);
       setTimeout(() => {
         this[button] = true;
@@ -305,6 +310,23 @@ export default {
             </div>
           </div>
           <input type="text" class="my-3 rounded border-0 p-2 text-black" v-model="choise_user" placeholder="scrivi il tuo valore " />
+        </div>
+      </div>
+      <div v-if="variable_game_indovino" class="col-12">
+        <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
+          <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
+        </div>
+        <div class="d-flex flex-wrap">
+          <div class="col-6 text-center">
+            <h3>
+              CYBERIA
+            </h3>
+          </div>
+          <div class="col-6 text-center">
+            <h3>
+              user
+            </h3>
+          </div>
         </div>
       </div>
       <div>
