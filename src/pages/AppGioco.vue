@@ -8,12 +8,14 @@ export default {
         // questo indice lasciare sullo 0 se si vuole cambiare cambiare anche la funzione gioco_sasso_carta_forbice
         "Sasso Carta Forbice con CYBERIA",
         "Tris con CYBERIA",
+        'Prova ad indovinare il numero con CYBERIA'
       ],
       // variabile conrisposta
       answer: "giochiamo!!",
       // variabile per comparsa e scomparsa  tag
       variable_game_SCF: false,
       variable_game_tris: false,
+      variable_game_indovino: false,
       // variabile per gioco
       choise_user: "",
       // scelte del computer per gioco
@@ -252,7 +254,7 @@ export default {
     <div class="row">
       <div
         class="col-12 col-sm-6 text-white fs-5 my-3 justify-content-center d-flex"
-        v-if="!variable_game_SCF && !variable_game_tris"
+        v-if="!variable_game_SCF && !variable_game_tris && !variable_game_indovino"
         v-for="(gioco, i) in game_for_user"
       >
         <div class="card bg-transparent" style="width: 18rem; min-height: 300px">
