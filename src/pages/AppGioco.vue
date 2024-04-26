@@ -251,16 +251,23 @@ export default {
       }, computer_message.length * 100);
     },
     indovino(){
-      this.number_user=parseInt(this.number_user)
-      if (!this.number_user){
-        alert('digita un numero')
-        this.number_user=''
+      this.number_user =parseInt(Math.ceil(this.number_user));
+
+      console.log(this.number_user);
+      if (isNaN(this.number_user) || this.number_user <= 0 || this.number_user > 50) {
+        alert('Il numero che hai inserito non è corretto');
+        this.number_user = '';
       }  
+      else if(this.number_user === this.number_CYBERIA) alert('hai vinto')
+     
+
       
     }
   },
   mounted(){
     this.number_CYBERIA= Math.floor(Math.random()*50) + 1
+    console.log(this.number_CYBERIA);
+    console.log(Number.isInteger(3.2));
   }
 };
 </script>
