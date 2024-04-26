@@ -9,7 +9,7 @@ export default {
         // questo indice lasciare sullo 0 se si vuole cambiare cambiare anche la funzione gioco_sasso_carta_forbice
         "Sasso Carta Forbice con CYBERIA",
         "Tris con CYBERIA",
-        'Prova ad indovinare il numero con CYBERIA'
+        'Indovina il numero con CYBERIA'
       ],
       // variabile conrisposta
       answer: "giochiamo!!",
@@ -120,19 +120,19 @@ export default {
         text_inizio_gioco.innerHTML = "";
       } else if (this.game_for_user[index] === "Tris con CYBERIA") {
         this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
-      } else if (this.game_for_user[index] === "Prova ad indovinare il numero con CYBERIA"){
+      } else if (this.game_for_user[index] === "Indovina il numero con CYBERIA"){
         this.number_CYBERIA= Math.floor(Math.random()*50) + 1
         console.log(this.number_CYBERIA);
         this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco, "button_appearance");
       }
     },
     all_giochi() {
-      // variabile per far vedere i giochi
+      // variabile per far vedere i giochi e resettare tutti i parametri
       this.output = "";
-      // let  = (document.querySelector(".output").innerHTML = "");
       this.variable_game_SCF = false;
       this.variable_game_tris = false;
       this.variable_game_indovino=false;
+      this.output_indovino=''
       this.button_appearance = false;
       // // svuotamento dello spazio dove c'è la risposta
       const text_inizio_gioco = (document.querySelector(".inizio_gioco").innerHTML = "");
@@ -256,10 +256,11 @@ export default {
       }, computer_message.length * 100);
     },
     indovino(){
+      // si trasforma l'input inserito dall'utente in un intero 
       this.number_user =parseInt(Math.ceil(this.number_user));
-
-      console.log(this.number_user);
+      // controlli per numero  
       if (isNaN(this.number_user) || this.number_user <= 0 || this.number_user > 50) alert('Il numero che hai inserito non è corretto');
+      // ha vinto utente 
       else if(this.number_user === this.number_CYBERIA){
         alert('hai vinto')
         this.output_indovino=''
@@ -267,8 +268,8 @@ export default {
         this.number_CYBERIA= Math.floor(Math.random()*50) + 1
         console.log(this.number_CYBERIA);
       }
-      else if (this.number_user< this.number_CYBERIA) this.output_indovino='HAI DIGITATO UN NUMERO TROPPO BASSO'
-      else if (this.number_user> this.number_CYBERIA) this.output_indovino='HAI DIGITATO UN NUMERO TROPPO ALTO'  
+      else if (this.number_user< this.number_CYBERIA) this.output_indovino='HAI DIGITATO UN NUMERO TROPPO BASSO' // numero troppo basso
+      else if (this.number_user> this.number_CYBERIA) this.output_indovino='HAI DIGITATO UN NUMERO TROPPO ALTO'  // numero troppo alto 
       this.number_user = '';
     }
   },
@@ -312,6 +313,7 @@ export default {
           </div>
         </div>
       </div>
+      <!-- gioco sasso carta forbice -->
       <div v-if="variable_game_SCF" class="col-12">
         <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
           <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
@@ -334,25 +336,29 @@ export default {
           <input type="text" class="my-3 rounded border-0 p-2 text-black" v-model="choise_user" placeholder="scrivi il tuo valore " />
         </div>
       </div>
+      <!-- gioco indovino -->
       <div v-if="variable_game_indovino" class="col-12">
         <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
           <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
         </div>
         <div>
-          <h2>Scrivi un numero tra 1 e 50</h2>
+          <h2>Indovina il numero che sto pensando</h2>
+          <div>
+            Digita il numero tra 1 e 50
+          </div>
           <div>
             <input type="text" class="text-black" v-model="number_user">
+            <div class="btn-group my-3 ms-3" role="group" aria-label="Basic example">
+                <button type="button" class="btn-page" @click="indovino">Controlla</button>
+             </div>
           </div>
           <div>
             {{ output_indovino }}
           </div>
-          <div class="btn-group my-3" role="group" aria-label="Basic example">
-            <button type="button" class="btn-page" @click="indovino">Controlla</button>
-          </div>
         </div>
       </div>
       <div>
-        <h3 class="output fs-5 text-start">
+        <h3 class="output fs-5 text-center">
           {{ output }}
         </h3>
       </div>
@@ -377,7 +383,6 @@ export default {
 .gioco {
   background-color: $background_text;
   backdrop-filter: blur(10px);
-  // background: radial-gradient(white, transparent);
   border-radius: 15px;
 }
 .container-tris {
@@ -406,7 +411,6 @@ export default {
 
 .card-body {
   background-color: $background_text;
-  // backdrop-filter: blur(10px);
   color: white;
 }
 
