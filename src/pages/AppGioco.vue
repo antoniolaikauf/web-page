@@ -23,8 +23,6 @@ export default {
       choises: ["sasso", "carta", "forbice"],
       // variabile che serve per il gioco cosi che il programma smetta automaticamete
       count: 0,
-      // variabile per comparsa del bottone torna a tutti i giochi
-      button_appearance: false,
       // scelta computer di quante volte vuole giocare
       choise_computer: Math.floor(Math.random() * (10 - 3) + 3),
       // conteggio per utente
@@ -115,14 +113,14 @@ export default {
         this.score_user = 0;
         this.choise_user = "";
         // queste all'interno della funzione sono le variabili e messe cosi perche variabili boolena farà una copia non prenderà le variabili nei data
-        this.scelta_gioco("variable_game_SCF", "variable_game_tris","vvariable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
+        this.scelta_gioco("variable_game_SCF", "variable_game_tris","vvariable_game_indovino", this.answer, text_inizio_gioco);
         // svuotamento dello spazio dove c'è la risposta
         text_inizio_gioco.innerHTML = "";
-      } else if (this.game_for_user[index] === "Tris con CYBERIA") this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
+      } else if (this.game_for_user[index] === "Tris con CYBERIA") this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco);
         else if (this.game_for_user[index] === "Indovina il numero con CYBERIA"){
         this.number_CYBERIA= Math.floor(Math.random()*50) + 1
         console.log(this.number_CYBERIA);
-        this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco, "button_appearance");
+        this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco);
       }
     },
     all_giochi() {
@@ -242,16 +240,13 @@ export default {
       reset_computer.length = 0;
       reset_gioco.forEach((element) => ((element.bg_computer = false), (element.bg_user = false)));
     },
-    scelta_gioco(game_SCF, game_tris, game_indovino, computer_message, text_start, button) {
+    scelta_gioco(game_SCF, game_tris, game_indovino, computer_message, text_start) {
       this[game_SCF] = true;
       this[game_tris] = false;
       this[game_indovino] = false;
       // fa vedere la frase base
       // PS se si cambia il posizionamento di "sasso carta forbice con CYBERIA", nell'arrey giochi bisogna cambiare l'indice di this.risposta[0]
       store.transformElement(computer_message, text_start);
-      setTimeout(() => {
-        this[button] = true;
-      }, computer_message.length * 100);
     },
     indovino(){
       // si trasforma l'input inserito dall'utente in un intero 
