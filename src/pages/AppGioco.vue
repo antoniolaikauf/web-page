@@ -119,7 +119,6 @@ export default {
       } else if (this.game_for_user[index] === "Tris con CYBERIA") this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco);
         else if (this.game_for_user[index] === "Indovina il numero con CYBERIA"){
         this.number_CYBERIA= Math.floor(Math.random()*50) + 1
-        console.log(this.number_CYBERIA);
         this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco);
       }
     },
@@ -140,15 +139,13 @@ export default {
       this.choise_user = this.choise_user.toLowerCase();
       // decisione conteggio sarebbe quante volte ha deciso di giocare il computer
       // e se è uguale a conteggio (che sarebbero quante volte ha premuto play l'utente) il comuter riporta automaticamente alla pagina play
-      if (!this.choises.includes(this.choise_user)) {
-        // controllo del input dove utente iserisce il dato
-        alert("devi scrivere sasso carta o forbice");
-      }
+      if (!this.choises.includes(this.choise_user)) alert("devi scrivere sasso carta o forbice");  // controllo del input dove utente iserisce il dato
       // controllo se conteggio è uguale a decisione computer
       else if (this.count === this.choise_computer) {
         const text_inizio_gioco = (document.querySelector(".inizio_gioco").innerHTML = "");
         this.variable_game_SCF = false;
         this.count = 0;
+        // se ha vinto CYBERIA 
         if (this.score_computer > this.score_user) {
           this.output =
             "Ah, la dolce vittoria! Spero tu abbia preso appunti. A presto, campione... in seconda posizione!" +
@@ -156,18 +153,13 @@ export default {
             this.score_computer +
             " umano " +
             this.score_user;
-        } else {
-          this.output = "Mi sono stancata di giocare quindi smettiamo qua";
-        }
-        this.button_appearance = false;
+        } else this.output = "Mi sono stancata di giocare quindi smettiamo qua"; // se ha vinto user
       } else {
         this.count++;
         // numero random del computer che pescherà una valore dentro ad array risposte
         let computer_scelta = Math.floor(Math.random() * this.choises.length);
         // se si pareggia
-        if (this.choise_user === this.choises[computer_scelta]) {
-          this.output = ` ho scelto ${this.choises[computer_scelta]} abbiamo pareggiato`;
-        }
+        if (this.choise_user === this.choises[computer_scelta]) this.output = ` ho scelto ${this.choises[computer_scelta]} abbiamo pareggiato`;
         // se si vince
         else if (
           (this.choise_user === "sasso" && this.choises[computer_scelta] == "forbice") ||
@@ -187,45 +179,47 @@ export default {
     indexsquare(index) {
       // controllo se caselle finiscono
       this.counter_block++;
-      // cambio variabile in true per utente
-      this.game_tris[index].bg_user = true;
-      // messo cella in array
-      this.array_check_user.push(index);
-      // controllo se ritorna una combinazione corretta
-      // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
-      if (this.controller_tris(this.array_winners, this.array_check_user) === true) {
-        this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer);
-        alert("hai vinto");
-        this.counter_block = "";
-      } else if (this.counter_block === 5) {
-        // se caselle finiscono
-        this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer);
-        alert("abbiamo pareggiato");
-        this.counter_block = "";
-      } else {
-        while (true) {
+      if(this.array_check_computer.includes(index)){
+        this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer,'counter_block')
+        alert('hai sbagliato quella casella è già occupata')
+      }
+      else { 
+        // cambio variabile in true per utente
+        this.game_tris[index].bg_user = true;
+        // messo cella in array
+        this.array_check_user.push(index);
+        // controllo se ritorna una combinazione corretta
+        // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
+         if (this.controller_tris(this.array_winners, this.array_check_user) === true) {
+            this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer,'counter_block');
+            alert("hai vinto");
+         } else if (this.counter_block === 5) {
+           // se caselle finiscono
+           this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer,'counter_block');
+           alert("abbiamo pareggiato");
+         } else {
+          while (true) {
           // crea un numero random
           let computer_scelta_tris = Math.floor(Math.random() * this.game_tris.length);
           // controlla le variabili se quelle di user sono gia attive e se ci sono gia alcune del computer attive
-          if (this.game_tris[computer_scelta_tris].bg_user !== true && this.game_tris[computer_scelta_tris].bg_computer !== true) {
+          if (!this.game_tris[computer_scelta_tris].bg_user && !this.game_tris[computer_scelta_tris].bg_computer) {
             // metti scelte computer in array
             this.array_check_computer.push(computer_scelta_tris);
             // controllo se ci sono delle corrispondenze
             if (this.controller_tris(this.array_winners, this.array_check_computer) === true) {
               // metodo per pulire il gioco
               alert("ha vinto CYBERIA");
-              this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer);
-
-              this.counter_block = "";
+              this.reset_tris(this.game_tris, this.array_check_user, this.array_check_computer,'counter_block');
             } else {
               setTimeout(() => {
                 this.game_tris[computer_scelta_tris].bg_computer = true;
-              }, 1000);
+              }, 100);
             }
             // fine ciclo
             break;
           }
         }
+         }
       }
     },
     controller_tris(array_win, array_player) {
@@ -234,10 +228,12 @@ export default {
       //  es la combinazione 0, 1, 2, 5 non è presente in nessun array[i]
       return array_win.some((combinations) => combinations.every((element) => array_player.includes(element)));
     },
-    reset_tris(reset_gioco, reset_player, reset_computer) {
+    reset_tris(reset_gioco, reset_player, reset_computer ,meter) {
       // reset di tutto il gioco
       reset_player.length = 0;
       reset_computer.length = 0;
+      this[meter]='';
+      // reset dei colori 
       reset_gioco.forEach((element) => ((element.bg_computer = false), (element.bg_user = false)));
     },
     scelta_gioco(game_SCF, game_tris, game_indovino, computer_message, text_start) {
