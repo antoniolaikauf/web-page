@@ -118,9 +118,8 @@ export default {
         this.scelta_gioco("variable_game_SCF", "variable_game_tris","vvariable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
         // svuotamento dello spazio dove c'è la risposta
         text_inizio_gioco.innerHTML = "";
-      } else if (this.game_for_user[index] === "Tris con CYBERIA") {
-        this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
-      } else if (this.game_for_user[index] === "Indovina il numero con CYBERIA"){
+      } else if (this.game_for_user[index] === "Tris con CYBERIA") this.scelta_gioco("variable_game_tris", "variable_game_SCF","variable_game_indovino", this.answer, text_inizio_gioco, "button_appearance");
+        else if (this.game_for_user[index] === "Indovina il numero con CYBERIA"){
         this.number_CYBERIA= Math.floor(Math.random()*50) + 1
         console.log(this.number_CYBERIA);
         this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco, "button_appearance");
@@ -133,7 +132,6 @@ export default {
       this.variable_game_tris = false;
       this.variable_game_indovino=false;
       this.output_indovino=''
-      this.button_appearance = false;
       // // svuotamento dello spazio dove c'è la risposta
       const text_inizio_gioco = (document.querySelector(".inizio_gioco").innerHTML = "");
       // azzerato variabile
@@ -296,7 +294,7 @@ export default {
       <div class="inizio_gioco fs-5 my-4 text-start"></div>
       <div v-if="variable_game_tris" class="col-12">
         <h5>gioca del tris</h5>
-        <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
+        <div class="btn-group my-3" role="group" aria-label="Basic example">
           <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
         </div>
         <!-- gioco tris la condizione se bg_user vero aggiunge classe se falso controlla se bg_computer è vero aggiunge classe se no niente  -->
@@ -315,7 +313,7 @@ export default {
       </div>
       <!-- gioco sasso carta forbice -->
       <div v-if="variable_game_SCF" class="col-12">
-        <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
+        <div class="btn-group my-3" role="group" aria-label="Basic example">
           <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
         </div>
         <div class="mb-5 mt-2">
@@ -338,7 +336,7 @@ export default {
       </div>
       <!-- gioco indovino -->
       <div v-if="variable_game_indovino" class="col-12">
-        <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
+        <div class="btn-group my-3" role="group" aria-label="Basic example">
           <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
         </div>
         <div>
