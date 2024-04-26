@@ -1,5 +1,4 @@
 <script>
-import { FALSE } from "sass";
 import { store } from "../store";
 export default {
   name: "AppGioco",
@@ -97,6 +96,8 @@ export default {
       // array dove si mette i square selezionati
       array_check_user: [],
       array_check_computer: [],
+      number_CYBERIA:0,
+      number_user:"",
     };
   },
   methods: {
@@ -120,7 +121,6 @@ export default {
         this.scelta_gioco("variable_game_indovino", "variable_game_SCF","variable_game_tris" , this.answer, text_inizio_gioco, "button_appearance");
       }
     },
-
     all_giochi() {
       // variabile per far vedere i giochi
       this.output = "";
@@ -156,7 +156,7 @@ export default {
             " umano " +
             this.score_user;
         } else {
-          this.output = "mi sono stancata di giocare quindi smettiamo qua";
+          this.output = "Mi sono stancata di giocare quindi smettiamo qua";
         }
         this.button_appearance = false;
       } else {
@@ -250,7 +250,18 @@ export default {
         this[button] = true;
       }, computer_message.length * 100);
     },
+    indovino(){
+      this.number_user=parseInt(this.number_user)
+      if (!this.number_user){
+        alert('digita un numero')
+        this.number_user=''
+      }  
+      
+    }
   },
+  mounted(){
+    this.number_CYBERIA= Math.floor(Math.random()*50) + 1
+  }
 };
 </script>
 
@@ -316,23 +327,20 @@ export default {
         <div class="btn-group my-3" role="group" aria-label="Basic example" v-if="button_appearance">
           <button type="button" class="btn-page" @click="all_giochi()">torna ai giochi</button>
         </div>
-        <div class="d-flex flex-wrap">
-          <div class="col-6 text-center">
-            <h3>
-              CYBERIA
-            </h3>
+        <div>
+          <h2>Scrivi un numero tra 1 e 50</h2>
+          <div>
+            <input type="text" class="text-black" v-model="number_user">
           </div>
-          <div class="col-6 text-center">
-            <h3>
-              user
-            </h3>
+          <div class="btn-group my-3" role="group" aria-label="Basic example">
+            <button type="button" class="btn-page" @click="indovino">Controlla</button>
           </div>
         </div>
       </div>
       <div>
-        <span class="output fs-5 text-start">
+        <h3 class="output fs-5 text-start">
           {{ output }}
-        </span>
+        </h3>
       </div>
       <h4 class="mt-5">Quando mi verrà voglia metterò altri giochi</h4>
     </div>
