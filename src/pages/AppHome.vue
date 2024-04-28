@@ -182,7 +182,8 @@ export default {
 #text-container,
 .text-descrizione,
 .text-skils,
-.text-caricamento {
+.text-caricamento,
+.swiper p {
   font-family: $font_cyberia;
 }
 

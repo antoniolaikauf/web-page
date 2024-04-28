@@ -5,8 +5,13 @@ export default {
 </script>
 
 <template>
-  <h2>Errore 404</h2>
   <h1>Torna indietro se no CYBERIA si arrabbia !!</h1>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@use "./../style/general.scss" as *;
+@use "./../style/partials/variable" as *;
+ h1{
+  font-family: $font_cyberia;
+ }
+</style>
