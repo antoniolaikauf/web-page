@@ -320,7 +320,13 @@ export default {
               {{ score_user }}
             </div>
           </div>
-          <input type="text" class="my-3 rounded border-0 p-2 text-black" v-model="choise_user" placeholder="scrivi il tuo valore " />
+          <input
+            type="text"
+            class="my-3 rounded border-0 p-2 text-black"
+            v-model="choise_user"
+            placeholder="scrivi il tuo valore "
+            @keyup.enter="play_SCF"
+          />
         </div>
       </div>
       <!-- gioco indovino -->
@@ -332,9 +338,11 @@ export default {
           <h2>Indovina il numero che sto pensando</h2>
           <div>Digita il numero tra 1 e 50</div>
           <div>
-            <input type="text" class="text-black" v-model="number_user" />
             <div class="btn-group my-3 ms-3" role="group" aria-label="Basic example">
               <button type="button" class="btn-page" @click="indovino">Controlla</button>
+            </div>
+            <div>
+              <input type="text" class="text-black" v-model="number_user" />
             </div>
           </div>
           <div>
