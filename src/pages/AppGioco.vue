@@ -336,7 +336,7 @@ export default {
         </div>
         <div>
           <h2>Indovina il numero che sto pensando</h2>
-          <div>Digita il numero tra 1 e 50</div>
+          <div>Digita un numero tra 1 e 50</div>
           <div>
             <div class="btn-group my-3 ms-3" role="group" aria-label="Basic example">
               <button type="button" class="btn-page" @click="indovino">Controlla</button>
