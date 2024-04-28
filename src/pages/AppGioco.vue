@@ -342,7 +342,7 @@ export default {
               <button type="button" class="btn-page" @click="indovino">Controlla</button>
             </div>
             <div>
-              <input type="text" class="text-black" v-model="number_user" />
+              <input type="text" class="text-black" v-model="number_user" @keyup.enter="indovino"/>
             </div>
           </div>
           <div>
