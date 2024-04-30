@@ -1,5 +1,4 @@
 <script>
-import { Alert } from "bootstrap";
 import { store } from "../store";
 export default {
   name: "AppGioco",
