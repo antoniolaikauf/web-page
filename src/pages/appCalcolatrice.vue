@@ -4,26 +4,24 @@ export default {
 
   data() {
     return {
-      pulsanti: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "+", "-", "x", "/", "="],
+      pulsanti: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "+", "-", "*", "/", "="],
       risultato: " ",
       console: "",
-      Number_1: "",
-      Number_2: "",
-      position: "",
+      number: "",
     };
   },
   methods: {
     number_selected(Nindex) {
       this.console += this.pulsanti[Nindex]; // concatena tutta la stringa
-
-      // Trova la posizione del primo operatore matematico
-      for (let i = 10; i < this.pulsanti.length; i++) {
-        if (this.console.includes(this.pulsanti[i])) {
-          this.position = this.console.indexOf(this.pulsanti[i]);
-          break; // Esci dal ciclo una volta trovato l'operatore
-        }
+      //   if (this.console === "") alert("inserisci un numero");
+      if ("=" === this.pulsanti[Nindex] && this.pulsanti.length >= 2) this.calculation(this.number);
+      var regex = /[\+\-\*\/]|(\d+)/g; // prima parte corrisponde a tutti gli operatori la seconda parte corrisponde ai numeri
+      this.number = this.console.match(regex); //  ritorna un array che con delle corrispondenze con l'espressione inserita dentro il metodo match
+    },
+    calculation(ArrayNumebers) {
+      for (let i = 0; i < ArrayNumebers.length; i++) {
+        console.log(ArrayNumebers[i]);
       }
-      console.log(this.position);
     },
   },
 };
