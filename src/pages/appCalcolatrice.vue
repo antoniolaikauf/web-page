@@ -5,12 +5,25 @@ export default {
   data() {
     return {
       pulsanti: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "+", "-", "x", "/", "="],
-      risultato: "fffffffff",
+      risultato: " ",
+      console: "",
+      Number_1: "",
+      Number_2: "",
+      position: "",
     };
   },
   methods: {
     number_selected(Nindex) {
-      console.log(Nindex);
+      this.console += this.pulsanti[Nindex]; // concatena tutta la stringa
+
+      // Trova la posizione del primo operatore matematico
+      for (let i = 10; i < this.pulsanti.length; i++) {
+        if (this.console.includes(this.pulsanti[i])) {
+          this.position = this.console.indexOf(this.pulsanti[i]);
+          break; // Esci dal ciclo una volta trovato l'operatore
+        }
+      }
+      console.log(this.position);
     },
   },
 };
