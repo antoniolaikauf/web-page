@@ -1,4 +1,4 @@
-Ecco la mia apagina web (ancora da finire), la parte front-end è sviluppata grazie al fraimwork vue, ho aggiunto alcuni giochi abbastanza banali, una piccola descrizione di me e se qualcuno avesse bisogno di una calcolatrice la può trovare, mi manca da fare il backend in modo tale che si possa iscriversi e magare chattare in privato con me  
+Ecco la mia pagina web (ancora da finire), la parte front-end è sviluppata grazie al fraimwork vue, i componenti di questo sito sono una pagina in cui ci sono dei giochi abbastanza banali, una pagina in cui mi presento e se qualcuno avesse bisogno di una calcolatrice la può trovare nella pagina calculator, mi manca da fare il backend in modo tale che si possa iscriversi e magare chattare in privato con me  
 
 # Vue 3 + Vite
 
