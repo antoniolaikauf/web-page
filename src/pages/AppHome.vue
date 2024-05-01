@@ -53,7 +53,7 @@ export default {
     };
   },
   mounted() {
-    this.time = 4000;
+    this.time = 3000;
     setTimeout(() => {
       this.time = 0;
       this.text_caricamento = true;
