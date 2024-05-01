@@ -9,6 +9,8 @@ export default {
       number: "",
       result: "",
       complex_operators: ["log", "radice", "esp", "sin", "cos"],
+      number1: "",
+      number2: "",
     };
   },
   methods: {
@@ -28,7 +30,11 @@ export default {
       this.console = "";
     },
     calculation_complex(Oindex) {
-
+      while (true) {
+        this.number1 = parseInt(prompt(`Inserisci primo valore per ${Oindex}`));
+        this.number2 = parseInt(prompt(`Inserisci secondo valore per ${Oindex}`));
+        if (!isNaN(this.number1) || !isNaN(this.number2)) break;
+      }
     },
   },
 };
@@ -55,7 +61,8 @@ export default {
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
-  .number,.calculation-complex {
+  .number,
+  .calculation-complex {
     background-color: black;
     margin: 10px;
     width: calc((100% / 5) - 20px);
