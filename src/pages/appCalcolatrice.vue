@@ -4,7 +4,7 @@ export default {
 
   data() {
     return {
-      pulsanti: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "+", "-", "*", "/", "="],
+      pulsanti: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "+", "-", "*", "/", "=","log", "radice", "esp",'sin','cos'],
       console: "",
       number: "",
       result: "",
@@ -56,11 +56,6 @@ export default {
     background-color: black;
     margin: 10px;
     width: calc((100% / 5) - 20px);
-  }
-  .operator {
-    margin: 10px;
-    width: calc((100% / 4) - 20px);
-    background-color: black;
   }
 }
 </style>

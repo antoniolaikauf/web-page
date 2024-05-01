@@ -354,7 +354,6 @@ export default {
           {{ output }}
         </h3>
       </div>
-      <h4 class="mt-5">Quando mi verrà voglia metterò altri giochi</h4>
     </div>
   </div>
 </template>
