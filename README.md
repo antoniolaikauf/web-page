@@ -1,4 +1,4 @@
-pagina web con solo front-end per ora , manca ancora il back-end e da migliorare il js essendo che sono abbastanza sicuro che si possa implementare essendo che alcune cose le ho messe nello store.js e altre no 
+Ecco la mia apagina web (ancora da finire), la parte front-end è sviluppata grazie al fraimwork vue, ho aggiunto alcuni giochi abbastanza banali, una piccola descrizione di me e se qualcuno avesse bisogno di una calcolatrice la può trovare, mi manca da fare il backend in modo tale che si possa iscriversi e magare chattare in privato con me  
 
 # Vue 3 + Vite
 
