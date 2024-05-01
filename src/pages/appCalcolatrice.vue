@@ -8,7 +8,7 @@ export default {
       console: "",
       number: "",
       result: "",
-      complex_operators: ["log", "radice", "esp", "sin", "cos"],
+      complex_operators: ["Log", "Radice", "Pow", "Sin", "Cos"],
       number1: "",
       number2: "",
     };
@@ -30,11 +30,21 @@ export default {
       this.console = "";
     },
     calculation_complex(Oindex) {
+      this.deleteResult();
       while (true) {
-        this.number1 = parseInt(prompt(`Inserisci primo valore per ${Oindex}`));
-        this.number2 = parseInt(prompt(`Inserisci secondo valore per ${Oindex}`));
+        if (this.complex_operators[Oindex] === "Sin" || this.complex_operators[Oindex] === "Cos" || this.complex_operators[Oindex] === "Radice")
+          this.number1 = parseInt(prompt(`Inserisci primo valore per ${this.complex_operators[Oindex]}`));
+        else {
+          this.number1 = parseInt(prompt(`Inserisci primo valore per ${this.complex_operators[Oindex]}`));
+          this.number2 = parseInt(prompt(`Inserisci secondo valore per ${this.complex_operators[Oindex]}`));
+        }
         if (!isNaN(this.number1) || !isNaN(this.number2)) break;
       }
+      if (this.complex_operators[Oindex] === "Log") this.result = Math.log(this.number1) / Math.log(this.number2);
+      if (this.complex_operators[Oindex] === "Radice") this.result = Math.sqrt(this.number1);
+      if (this.complex_operators[Oindex] === "Pow") this.result = Math.pow(this.number1, this.number2);
+      if (this.complex_operators[Oindex] === "Sin") this.result = Math.sin(this.number1*Math.PI/180); 
+      if (this.complex_operators[Oindex] === "Cos") this.result = Math.cos(this.number1 * Math.PI/180); 
     },
   },
 };
