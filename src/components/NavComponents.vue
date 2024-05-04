@@ -8,9 +8,7 @@ export default {
   <section>
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-4">
       <div class="container-fluid">
-        <a class="navbar-brand container-img" href="#">
-          <img src="../../public/img/cyberia.png" alt="#" class="logo-img"
-        /></a>
+        <a class="navbar-brand container-img" href="#"> <img src="../../public/img/cyberia.png" alt="#" class="logo-img" /></a>
         <button
           class="navbar-toggler button"
           id="drop-bottone"
@@ -23,14 +21,14 @@ export default {
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbarSupportedContent"
-        >
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
+              <a class="nav-link active fs-4 text-font" aria-current="page" href="#"><router-link :to="{ name: 'home' }"> Home </router-link></a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active fs-4 text-font" aria-current="page" href="#"
-                ><router-link :to="{ name: 'home' }"> Home </router-link></a
+                ><router-link :to="{ name: 'Cryptography' }"> Hardgame </router-link></a
               >
             </li>
             <li class="nav-item">
@@ -39,25 +37,15 @@ export default {
               >
             </li>
             <li class="nav-item fs-4">
-              <a class="nav-link active text-font" aria-current="page" href="#">
-                <router-link :to="{ name: 'gioco' }"> Games </router-link></a
-              >
+              <a class="nav-link active text-font" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>
             </li>
             <li class="nav-item fs-4">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                target="_blank"
-                href="https://github.com/antoniolaikauf"
+              <a class="nav-link active" aria-current="page" target="_blank" href="https://github.com/antoniolaikauf"
                 ><i class="fa-brands fa-github"></i>
               </a>
             </li>
             <li class="nav-item fs-4">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                target="_blank"
-                href="https://www.linkedin.com/in/antonio-laikauf-8239892b8/"
+              <a class="nav-link active" aria-current="page" target="_blank" href="https://www.linkedin.com/in/antonio-laikauf-8239892b8/"
                 ><i class="fa-brands fa-linkedin"></i>
               </a>
             </li>
