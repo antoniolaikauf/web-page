@@ -74,19 +74,19 @@ export default {
       lang_from_translate: "",
       text: "",
       output: "",
-      output_wrong: true,
+      output_wrong: true, // variabile per errore chiamata
       text_output_Cyberia:'Inserisci il testo che vuoi e proverò a tradurlo'
     };
   },
   methods: {
     async translate_text() {
-      this.output_wrong=true
-      const encodedParams = new URLSearchParams();
-      encodedParams.set("q", this.text);
-      encodedParams.set("target", this.lang_to_translate);
-      encodedParams.set("source", this.lang_from_translate);
-      const token = "5010931314msh2de8e5ec3ecb6b0p126562jsnd5b5390a14cb";
-      const options = {
+      this.output_wrong = true
+      const encodedParams = new URLSearchParams(); // The URLSearchParams() crea e ritorna new URLSearchParams object. questo oggetto sarebbe composto da parametri che vengono utilizzati nella query
+      encodedParams.set("q", this.text); // testo da tradurre
+      encodedParams.set("target", this.lang_to_translate); // lingua in cui tradurre
+      encodedParams.set("source", this.lang_from_translate); // lingua del testo
+      const token = "5010931314msh2de8e5ec3ecb6b0p126562jsnd5b5390a14cb"; // token api
+      const options = { // parametri per chiamata
         method: "POST",
         url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
         headers: {
@@ -99,7 +99,7 @@ export default {
       };
 
       try {
-        const response = await axios.request(options);
+        const response = await axios.post(options); // chiamata api
         console.log(response.data);
         this.output = response.data.data.translations[0].translatedText;
       } catch (error) {
