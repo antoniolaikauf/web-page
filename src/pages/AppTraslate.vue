@@ -1,4 +1,5 @@
 <script>
+import { store } from "../store";
 import axios from "axios";
 export default {
   name: "Traslate",
@@ -73,10 +74,13 @@ export default {
       lang_from_translate: "",
       text: "",
       output: "",
+      output_wrong: true,
+      text_output_Cyberia:'Inserisci il testo che vuoi e proverò a tradurlo'
     };
   },
   methods: {
     async translate_text() {
+      this.output_wrong=true
       const encodedParams = new URLSearchParams();
       encodedParams.set("q", this.text);
       encodedParams.set("target", this.lang_to_translate);
@@ -100,36 +104,46 @@ export default {
         this.output = response.data.data.translations[0].translatedText;
       } catch (error) {
         console.log(error);
+        this.output_wrong=false
       }
     },
   },
+  mounted() {
+    const text_Cyberia=document.querySelector('.output_Cyberia')
+    store.transformElement(this.text_output_Cyberia,text_Cyberia)
+  }
 };
 </script>
 <template>
   <section>
+    <div class="output_Cyberia text-start">
+      <!-- testo output CYBERIA -->
+    </div>
     <div class="container">
       <div class="row">
-        <div class="col-6 p-4">
+        <div class="col-12 col-sm-6 p-4">
           <select class="form-select" aria-label="Default select example" v-model="lang_from_translate">
             <option class="text-dark" disabled value="">Select Source Language</option>
             <option class="text-dark" :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
-        <div class="col-6 p-4">
+        <div class="col-12 col-sm-6 p-4">
           <select class="form-select" aria-label="Default select example" v-model="lang_to_translate">
             <option class="text-dark" disabled value="">Select Target Language</option>
             <option class="text-dark" :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
-        <div>
-          <input v-model="text" type="text" class="text-dark" placeholder="Inserire testo da tradurre" />
+
+        <div class="my-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Iserisci testo</label>
+          <textarea v-model="text"  class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
         </div>
       </div>
     </div>
-    <div @click="translate_text">traduci</div>
+    <button @click="translate_text" class="btn-page">traduci</button>
     <div>
-      <h3>Testo tradotto</h3>
-      <p>{{ output }}</p>
+      <p v-if="output_wrong"><h3>Testo tradotto</h3> {{ output }}</p>
+      <p v-else><h3>Ops!! hai sbagliato a digitare il testo o a selezionare le lingue</h3></p>
     </div>
   </section>
 </template>
@@ -137,4 +151,7 @@ export default {
 @use "./../style/general.scss" as *;
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
+*{
+ font-family: $font_cyberia
+}
 </style>
