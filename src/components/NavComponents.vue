@@ -56,9 +56,10 @@ export default {
   </section>
 </template>
 
-<style lang="scss">
-@import "./../style/general.scss";
-@import "./../style/partials/_variable.scss";
+<style lang="scss" scoped>
+@use "./../style/partials/mixins" as *;
+@use "./../style/general.scss" as *;
+@use "./../style/partials/variable" as *;
 .container-img {
   width: 100px;
   height: 100px;

@@ -15,12 +15,8 @@ export default {
     <header>
       <NavBar />
     </header>
-    <main class="container">
-      <div class="row">
-        <section class="text-center">
-          <Main />
-        </section>
-      </div>
+    <main>
+      <Main />
     </main>
   </div>
 </template>

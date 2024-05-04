@@ -225,7 +225,6 @@ body {
   background-position: center;
   background-size: cover;
   width: 300px;
-  height: 300px;
   background-color: $background_text;
   border-radius: 10px;
 }

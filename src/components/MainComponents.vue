@@ -5,7 +5,13 @@ export default {
 </script>
 
 <template>
-  <router-view> </router-view>
+  <div class="container">
+    <div class="row">
+      <section class="text-center">
+        <router-view> </router-view>
+      </section>
+    </div>
+  </div>
 </template>
 
 <style lang="scss">
