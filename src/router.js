@@ -4,7 +4,7 @@ import AppGioco from './pages/AppGioco.vue';
 import AppHome from "./pages/AppHome.vue";
 import NotFound from "./pages/NotFound.vue";
 import calculator from "./pages/appCalcolatrice.vue";
-import Cryptography from "./pages/AppCryptography.vue";
+import Traslate from "./pages/AppTraslate.vue";
 
  
 // creazione delle rotte e il loro 'percorso'
@@ -27,9 +27,9 @@ const router = createRouter({
       component:calculator
     },
     {
-      path: "/Cryptography",
-      name: "Cryptography",
-      component:Cryptography
+      path: "/Traslate",
+      name: "Traslate",
+      component:Traslate
     },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.

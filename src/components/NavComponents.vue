@@ -28,7 +28,7 @@ export default {
             </li>
             <li class="nav-item">
               <a class="nav-link active fs-4 text-font" aria-current="page" href="#"
-                ><router-link :to="{ name: 'Cryptography' }"> Hardgame </router-link></a
+                ><router-link :to="{ name: 'Traslate' }"> Traslate </router-link></a
               >
             </li>
             <li class="nav-item">

@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "cryptographyGame",
+  name: "Traslate",
   data() {
     return {
       languages: [
