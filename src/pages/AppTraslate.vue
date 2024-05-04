@@ -81,6 +81,7 @@ export default {
   methods: {
     async translate_text() {
       this.output_wrong = true
+      if (this.text=== '') alert('inserisci il testo da tradurre') 
       const encodedParams = new URLSearchParams(); // The URLSearchParams() crea e ritorna new URLSearchParams object. questo oggetto sarebbe composto da parametri che vengono utilizzati nella query
       encodedParams.set("q", this.text); // testo da tradurre
       encodedParams.set("target", this.lang_to_translate); // lingua in cui tradurre
