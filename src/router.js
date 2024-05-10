@@ -15,7 +15,7 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: AppHome,
-      meta:{backgroundImage:'url(public/img/background.jpg)'}
+      meta:{backgroundImage:'url(/public/img/background.jpg)'}
     },
     {
       path: "/gioco",
