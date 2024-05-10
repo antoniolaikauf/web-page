@@ -10,7 +10,7 @@ export default {
       <h1>Torna indietro se no CYBERIA si arrabbia !!</h1>
     </div>
     <div>
-      <img src="/public/img/face1.jpg" alt="" class="face" />
+      <img src="/img/face1.jpg" alt="" class="face" />
     </div>
   </section>
 </template>
