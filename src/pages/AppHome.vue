@@ -191,7 +191,7 @@ export default {
   border-radius: 20px;
   padding: 20px;
   backdrop-filter: blur(10px);
-  background-color: rgba(128, 0, 128, 0.314);
+  background-color: $background_black;
   display: block;
   animation-name: descrizionePersona;
   animation-duration: 2s;
@@ -225,7 +225,7 @@ body {
   background-position: center;
   background-size: cover;
   width: 300px;
-  background-color: $background_text;
+  background-color: $background_black;
   border-radius: 10px;
 }
 </style>

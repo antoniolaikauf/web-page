@@ -153,13 +153,6 @@ export default {
 @use "./../style/general.scss" as *;
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
-
-// section{
-//   background-image: url('../../public/img/chip.jpg');
-//   background-size: cover;
-//   height: 100vh;
-//   // overflow-y: scroll;
-// }
 *{
  font-family: $font_cyberia
 }

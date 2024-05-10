@@ -372,7 +372,7 @@ export default {
 }
 
 .card-body {
-  background-color: $background_text;
+  background-color: $background_black;
   color: white;
 }
 .inizio_gioco,
@@ -383,7 +383,7 @@ export default {
 }
 
 .gioco {
-  background-color: $background_text;
+  background-color: $background_black;
   backdrop-filter: blur(10px);
   border-radius: 15px;
 }
