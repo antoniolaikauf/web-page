@@ -364,12 +364,16 @@ export default {
 @use "./../style/general.scss" as *;
 @use "./../style/partials/variable" as *;
 
+* {
+  font-family: $font_cyberia;
+}
 .container-giochi > img {
   width: 40%;
 }
 
-* {
-  font-family: $font_cyberia;
+.card-body {
+  background-color: $background_text;
+  color: white;
 }
 .inizio_gioco,
 .output,
@@ -383,6 +387,7 @@ export default {
   backdrop-filter: blur(10px);
   border-radius: 15px;
 }
+
 .container-tris {
   width: 50%;
   margin: auto;
@@ -394,23 +399,18 @@ export default {
     backdrop-filter: blur(10px);
     border: 1px solid black;
   }
+  .backgroud-tris-user-js {
+    background-color: green;
+    opacity: 0.7;
+  }
+
+  .backgroud-tris-computer-js {
+    background-color: blue;
+    opacity: 0.7;
+  }
 }
 
-.backgroud-tris-user-js {
-  background-color: green;
-  opacity: 0.7;
-}
-
-.backgroud-tris-computer-js {
-  background-color: blue;
-  opacity: 0.7;
-}
-
-.card-body {
-  background-color: $background_text;
-  color: white;
-}
-
+// media per singoli componenti con query specifiche
 @media screen and (max-width: 870px) {
   .container-tris {
     width: 100%;
