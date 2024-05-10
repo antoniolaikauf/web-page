@@ -28,8 +28,6 @@ export default {
 
 
 #bg-project {
-  // background-image: url(../public/img/sfondo.png);
-  background-size: cover;
   height: 100vh;
   overflow-y: scroll;
 }

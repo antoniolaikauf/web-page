@@ -43,9 +43,13 @@ const router = createRouter({
 
 router.beforeResolve((to, from, next) => {
   if (to.name === 'Traslate' && to.meta.backgroundImage) {
-    document.body.style.backgroundImage=to.meta.backgroundImage
+    document.body.style.backgroundImage = to.meta.backgroundImage
+    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundPosition='center'
   } else {
-    document.body.style.backgroundImage='url(../public/img/sfondo.png)'
+    document.body.style.backgroundImage = 'url(../public/img/12.jpg)'
+    document.body.style.backgroundSize='cover'
+    document.body.style.backgroundPosition='center'
   }
   next()
 })
