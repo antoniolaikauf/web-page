@@ -100,7 +100,7 @@ export default {
       };
 
       try {
-        const response = await axios.post(options); // chiamata api
+        const response = await axios.request(options); // chiamata api
         console.log(response.data);
         this.output = response.data.data.translations[0].translatedText;
       } catch (error) {
