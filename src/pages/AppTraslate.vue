@@ -81,8 +81,9 @@ export default {
   methods: {
     async translate_text() {
       this.output_wrong = true
-      if (this.text=== '') alert('inserisci il testo da tradurre') 
-      const encodedParams = new URLSearchParams(); // The URLSearchParams() crea e ritorna new URLSearchParams object. questo oggetto sarebbe composto da parametri che vengono utilizzati nella query
+      if (this.text=== '' || this.lang_from_translate === '' || this.lang_to_translate === '') alert('inserisci il testo da tradurre') 
+      else {
+        const encodedParams = new URLSearchParams(); // The URLSearchParams() crea e ritorna new URLSearchParams object. questo oggetto sarebbe composto da parametri che vengono utilizzati nella query
       encodedParams.set("q", this.text); // testo da tradurre
       encodedParams.set("target", this.lang_to_translate); // lingua in cui tradurre
       encodedParams.set("source", this.lang_from_translate); // lingua del testo
@@ -106,7 +107,7 @@ export default {
       } catch (error) {
         console.log(error);
         this.output_wrong=false
-      }
+      }}
     },
   },
   mounted() {
@@ -117,6 +118,7 @@ export default {
 </script>
 <template>
   <section>
+  <!-- <img src="../../public/img/backgroud.jpg" alt="" style="width: 50%;"> -->
     <div class="container">
       <div class="row">
         <div class="output_Cyberia text-start fs-5">
@@ -151,6 +153,13 @@ export default {
 @use "./../style/general.scss" as *;
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
+
+// section{
+//   background-image: url('../../public/img/chip.jpg');
+//   background-size: cover;
+//   height: 100vh;
+//   // overflow-y: scroll;
+// }
 *{
  font-family: $font_cyberia
 }

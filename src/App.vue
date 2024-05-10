@@ -26,8 +26,9 @@ export default {
 @use "./style/partials/variable" as *;
 @use "./style/general.scss" as *;
 
+
 #bg-project {
-  background-image: url(../public/img/sfondo.png);
+  // background-image: url(../public/img/sfondo.png);
   background-size: cover;
   height: 100vh;
   overflow-y: scroll;

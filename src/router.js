@@ -29,7 +29,8 @@ const router = createRouter({
     {
       path: "/Traslate",
       name: "Traslate",
-      component:Traslate
+      component: Traslate,
+      meta:{backgroundImage:'url(../public/img/chip.jpg)'}
     },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
@@ -39,4 +40,13 @@ const router = createRouter({
     },
   ],
 });
+
+router.beforeResolve((to, from, next) => {
+  if (to.name === 'Traslate' && to.meta.backgroundImage) {
+    document.body.style.backgroundImage=to.meta.backgroundImage
+  } else {
+    document.body.style.backgroundImage='url(../public/img/sfondo.png)'
+  }
+  next()
+})
 export { router };
