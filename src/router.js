@@ -14,17 +14,20 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: AppHome
+      component: AppHome,
+      meta:{backgroundImage:'url(../public/img/background.jpg)'}
     },
     {
       path: "/gioco",
       name: "gioco",
-      component:AppGioco
+      component:AppGioco,
+      meta:{backgroundImage:'url(../public/img/sfondo.png)'}
     },
     {
       path: "/calcolatrice",
       name: "calcolatrice",
-      component:calculator
+      component: calculator,
+      meta:{backgroundImage:'url(../public/img/hand.png)'}
     },
     {
       path: "/Traslate",
@@ -36,21 +39,23 @@ const router = createRouter({
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
       path: "/:pathMatch(.*)*",
       name: 'Notfound',
-      component: NotFound
+      component: NotFound,
+      meta:{backgroundImage:'url(../public/img/background.jpg)'}
     },
   ],
 });
 
 router.beforeResolve((to, from, next) => {
-  if (to.name === 'Traslate' && to.meta.backgroundImage) {
-    document.body.style.backgroundImage = to.meta.backgroundImage
+  if (to.name === 'Traslate' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
+  else if (to.name === 'home' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
+  else if (to.name === 'gioco' || to.name==='Notfound' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
+  else Img(to.meta.backgroundImage)
+  next()
+
+  function Img(backImg) {
+    document.body.style.backgroundImage = backImg
     document.body.style.backgroundSize = 'cover'
     document.body.style.backgroundPosition='center'
-  } else {
-    document.body.style.backgroundImage = 'url(../public/img/hand.png)'
-    document.body.style.backgroundSize='cover'
-    document.body.style.backgroundPosition='center'
   }
-  next()
 })
 export { router };
