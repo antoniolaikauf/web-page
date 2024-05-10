@@ -266,16 +266,17 @@ export default {
 <template>
   <div class="container">
     <div class="row">
-      <div
-        class="col-12 col-sm-6 text-white fs-5 my-3 justify-content-center d-flex"
-        v-if="!variable_game_SCF && !variable_game_tris && !variable_game_indovino"
-        v-for="(gioco, i) in game_for_user"
-      >
-        <div class="card bg-transparent" style="width: 18rem; min-height: 300px">
-          <img src="../../public/img/Progetto senza titolo (2).png" class="card-img-top" :alt="i" />
-          <div class="card-body">
-            <a href="#" class="btn-page" @click="Game(i)">play</a>
-            <h5 class="card-title mt-3">{{ gioco }}</h5>
+      <div class="d-flex container-giochi" v-if="!variable_game_SCF && !variable_game_tris && !variable_game_indovino">
+        <img src="../../public/img/robot.png" alt="" />
+        <div class="d-flex flex-wrap">
+          <div class="col-12 col-lg-6 text-white fs-5 my-3 justify-content-center d-flex" v-for="(gioco, i) in game_for_user">
+            <div class="card bg-transparent" style="width: 18rem; min-height: 300px">
+              <img src="../../public/img/Progetto senza titolo (2).png" class="card-img-top" :alt="i" />
+              <div class="card-body">
+                <a href="#" class="btn-page" @click="Game(i)">play</a>
+                <h5 class="card-title mt-3">{{ gioco }}</h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -341,7 +342,7 @@ export default {
               <button type="button" class="btn-page" @click="indovino">Controlla</button>
             </div>
             <div>
-              <input type="text" class="text-black" v-model="number_user" @keyup.enter="indovino"/>
+              <input type="text" class="text-black" v-model="number_user" @keyup.enter="indovino" />
             </div>
           </div>
           <div>
@@ -362,6 +363,10 @@ export default {
 @use "./../style/partials/mixins" as *;
 @use "./../style/general.scss" as *;
 @use "./../style/partials/variable" as *;
+
+.container-giochi > img {
+  width: 40%;
+}
 
 * {
   font-family: $font_cyberia;
@@ -409,6 +414,12 @@ export default {
 @media screen and (max-width: 870px) {
   .container-tris {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container-giochi > img {
+    display: none;
   }
 }
 </style>
