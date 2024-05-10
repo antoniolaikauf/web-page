@@ -15,7 +15,7 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: AppHome,
-      meta:{backgroundImage:'url(../public/img/background.jpg)'}
+      meta:{backgroundImage:'url(public/img/background.jpg)'}
     },
     {
       path: "/gioco",
@@ -46,6 +46,7 @@ const router = createRouter({
 });
 
 router.beforeResolve((to, from, next) => {
+  // to fa riferimento alla rotta che si va
   if (to.name === 'Traslate' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
   else if (to.name === 'home' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
   else if (to.name === 'gioco' || to.name==='Notfound' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
