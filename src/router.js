@@ -27,7 +27,7 @@ const router = createRouter({
       path: "/calcolatrice",
       name: "calcolatrice",
       component: calculator,
-      meta:{backgroundImage:'url(../public/img/hand.png)'}
+      meta:{backgroundImage:'url(/hand.png)'}
     },
     {
       path: "/Traslate",
