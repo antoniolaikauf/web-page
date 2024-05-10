@@ -21,26 +21,26 @@ const router = createRouter({
       path: "/gioco",
       name: "gioco",
       component:AppGioco,
-      meta:{backgroundImage:'url(../public/img/sfondo.png)'}
+      meta:{backgroundImage:'url(/img/sfondo.png)'}
     },
     {
       path: "/calcolatrice",
       name: "calcolatrice",
       component: calculator,
-      meta:{backgroundImage:'url(../public/img/hand.png)'}
+      meta:{backgroundImage:'url(/img/hand.png)'}
     },
     {
       path: "/Traslate",
       name: "Traslate",
       component: Traslate,
-      meta:{backgroundImage:'url(../public/img/chip.png)'}
+      meta:{backgroundImage:'url(/img/chip.png)'}
     },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
       path: "/:pathMatch(.*)*",
       name: 'Notfound',
       component: NotFound,
-      meta:{backgroundImage:'url(../public/img/background.jpg)'}
+      meta:{backgroundImage:'url(/img/background.jpg)'}
     },
   ],
 });
