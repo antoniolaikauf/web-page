@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <section class="text-center">
         <router-view> </router-view>
