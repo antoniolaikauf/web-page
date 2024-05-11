@@ -24,29 +24,27 @@ export default {
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active fs-4 text-font" aria-current="page" href="#"><router-link :to="{ name: 'home' }"> Home </router-link></a>
+              <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'home' }"> Home </router-link></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active fs-4 text-font" aria-current="page" href="#"
+              <a class="nav-link active fs-4" aria-current="page" href="#"
                 ><router-link :to="{ name: 'Traslate' }"> Traslate </router-link></a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active fs-4 text-font" aria-current="page" href="#"
+              <a class="nav-link active fs-4" aria-current="page" href="#"
                 ><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a
               >
             </li>
-            <li class="nav-item fs-4">
-              <a class="nav-link active text-font" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>
+            <li class="nav-item ">
+              <a class="nav-link active fs-4" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>
             </li>
-            <li class="nav-item fs-4">
-              <a class="nav-link active" aria-current="page" target="_blank" href="https://github.com/antoniolaikauf"
-                ><i class="fa-brands fa-github"></i>
-              </a>
+            <li class="nav-item ">
+              <a class="nav-link active fs-4 text-white" aria-current="page" target="_blank" href="https://github.com/antoniolaikauf"> Github </a>
             </li>
-            <li class="nav-item fs-4">
-              <a class="nav-link active" aria-current="page" target="_blank" href="https://www.linkedin.com/in/antonio-laikauf-8239892b8/"
-                ><i class="fa-brands fa-linkedin"></i>
+            <li class="nav-item ">
+              <a class="nav-link active text-white fs-4" aria-current="page" target="_blank" href="https://www.linkedin.com/in/antonio-laikauf-8239892b8/"
+                >Linkedin
               </a>
             </li>
           </ul>

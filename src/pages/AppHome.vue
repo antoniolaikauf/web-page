@@ -103,7 +103,7 @@ export default {
 <template>
   <div v-if="!text_caricamento" class="my-3">
     <h3 class="text-white text-caricamento">caricamento</h3>
-    <i class="fa-solid fa-spinner loading my-3"></i>
+    <!-- <i class="fa-solid fa-spinner loading my-3"></i> -->
     <div class="barra-caricamento" :style="{ 'animation-duration': `${time}ms` }"></div>
   </div>
   <div>
@@ -162,22 +162,22 @@ export default {
   }
 }
 
-.loading {
-  animation-name: giro;
-  animation-duration: 4s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
+// .loading {
+//   animation-name: giro;
+//   animation-duration: 4s;
+//   animation-timing-function: linear;
+//   animation-iteration-count: infinite;
+// }
 
-@keyframes giro {
-  0% {
-    transform: rotate(0deg);
-  }
+// @keyframes giro {
+//   0% {
+//     transform: rotate(0deg);
+//   }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
 
 .animazione {
   border-radius: 20px;
