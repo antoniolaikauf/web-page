@@ -72,8 +72,4 @@ export default {
 #drop-bottone {
   background-color: ghostwhite;
 }
-
-.text-font {
-  font-family: $font_cyberia;
-}
 </style>

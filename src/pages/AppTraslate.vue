@@ -75,45 +75,47 @@ export default {
       text: "",
       output: "",
       output_wrong: true, // variabile per errore chiamata
-      text_output_Cyberia:'Inserisci il testo che vuoi e proverò a tradurlo'
+      text_output_Cyberia: "Inserisci il testo che vuoi e proverò a tradurlo",
     };
   },
   methods: {
     async translate_text() {
-      this.output_wrong = true
-      if (this.text=== '' || this.lang_from_translate === '' || this.lang_to_translate === '') alert('inserisci il testo da tradurre') 
+      this.output_wrong = true;
+      if (this.text === "" || this.lang_from_translate === "" || this.lang_to_translate === "") alert("inserisci il testo da tradurre");
       else {
         const encodedParams = new URLSearchParams(); // The URLSearchParams() crea e ritorna new URLSearchParams object. questo oggetto sarebbe composto da parametri che vengono utilizzati nella query
-      encodedParams.set("q", this.text); // testo da tradurre
-      encodedParams.set("target", this.lang_to_translate); // lingua in cui tradurre
-      encodedParams.set("source", this.lang_from_translate); // lingua del testo
-      const token = "5010931314msh2de8e5ec3ecb6b0p126562jsnd5b5390a14cb"; // token api
-      const options = { // parametri per chiamata
-        method: "POST",
-        url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-          "Accept-Encoding": "application/gzip",
-          "X-RapidAPI-Key": token,
-          "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
-        },
-        data: encodedParams,
-      };
+        encodedParams.set("q", this.text); // testo da tradurre
+        encodedParams.set("target", this.lang_to_translate); // lingua in cui tradurre
+        encodedParams.set("source", this.lang_from_translate); // lingua del testo
+        const token = "5010931314msh2de8e5ec3ecb6b0p126562jsnd5b5390a14cb"; // token api
+        const options = {
+          // parametri per chiamata
+          method: "POST",
+          url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
+          headers: {
+            "content-type": "application/x-www-form-urlencoded",
+            "Accept-Encoding": "application/gzip",
+            "X-RapidAPI-Key": token,
+            "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+          },
+          data: encodedParams,
+        };
 
-      try {
-        const response = await axios.request(options); // chiamata api
-        console.log(response.data);
-        this.output = response.data.data.translations[0].translatedText;
-      } catch (error) {
-        console.log(error);
-        this.output_wrong=false
-      }}
+        try {
+          const response = await axios.request(options); // chiamata api
+          console.log(response.data);
+          this.output = response.data.data.translations[0].translatedText;
+        } catch (error) {
+          console.log(error);
+          this.output_wrong = false;
+        }
+      }
     },
   },
   mounted() {
-    const text_Cyberia=document.querySelector('.output_Cyberia')
-    store.transformElement(this.text_output_Cyberia,text_Cyberia)
-  }
+    const text_Cyberia = document.querySelector(".output_Cyberia");
+    store.transformElement(this.text_output_Cyberia, text_Cyberia);
+  },
 };
 </script>
 <template>
@@ -123,29 +125,26 @@ export default {
         <div class="output_Cyberia text-start fs-5">
           <!-- testo output CYBERIA -->
         </div>
-        <div class="col-12 col-sm-6 select-language ">
+        <div class="col-12 col-sm-6 select-language">
           <select class="form-select" aria-label="Default select example" v-model="lang_from_translate">
-            <option  disabled value="">Select Source Language</option>
-            <option  :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
+            <option disabled value="">Select Source Language</option>
+            <option :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
         <div class="col-12 col-sm-6 select-language">
-          <select class="form-select" aria-label="Default select example" v-model="lang_to_translate" >
-            <option  disabled value="">Select Target Language</option>
-            <option  :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
+          <select class="form-select" aria-label="Default select example" v-model="lang_to_translate">
+            <option disabled value="">Select Target Language</option>
+            <option :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
-        
-        <div class="d-flex flex-wrap ">
-        <div class="col-12 col-sm-6 pe-3 answer" >
-          <textarea v-model="text"  class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Iserire testo"></textarea>
-        </div>
-        <div class="d-flex col-sm-6">
-          <div>
-            <p v-if="output_wrong"><h3></h3> {{ output }}</p>
-            <p v-else><h4>Ops!! hai sbagliato a digitare il testo o a selezionare le lingue </h4> Ps. CYBERIA non è perfetta e potrebbe non riuscire a tradurre il testo</p>
+        <div class="d-flex flex-wrap">
+          <div class="col-12 col-sm-6  text-to-traslate">
+            <textarea v-model="text" class="form-control rounded-0 rounded-start" id="exampleFormControlTextarea1" rows="5" placeholder="Iserire testo"></textarea>
           </div>
-        </div>
+          <div class="col-12 col-sm-6 answer rounded-end " tabindex="0">
+               <p v-if="output_wrong"><h3></h3> {{ output }}</p>
+               <p v-else><h4>Ops!! hai sbagliato a digitare il testo o a selezionare le lingue </h4> Ps. CYBERIA non è perfetta e potrebbe non riuscire a tradurre il testo</p>
+          </div>
         </div>
       </div>
       <button @click="translate_text" class="btn-page-traslate">Traduci</button>
@@ -156,33 +155,43 @@ export default {
 @use "./../style/general.scss" as *;
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
-.row>div{
+.row > div {
   margin: 10px 0px;
 }
-
-.select-language>select{
+// classi per tag select
+.select-language > select {
   border: none;
-  background-color:rgba(128, 0, 128, 0.815);
+  background-color: rgba(128, 0, 128, 0.815);
   color: white;
   overflow-y: auto;
 }
-.select-language>select:focus, .answer>textarea:focus {
-  box-shadow: 0 0 0 0.25rem $background_black;
-}
 
-.btn-page-traslate{
+.select-language > select:focus,
+.text-to-traslate > textarea:focus,
+.answer:focus {
+  box-shadow: 0 0 2px 0.25rem $background_black;
+}
+// classi per bottone
+.btn-page-traslate {
   padding: 5px 15px;
   border-radius: 7px;
   border: none;
-  background-color:rgba(128, 0, 128, 0.815) ;
-  border: 1px solid rgba(0, 0, 0, 0.397) ;
+  background-color: rgba(128, 0, 128, 0.815);
+  border: 1px solid rgba(0, 0, 0, 0.397);
   color: white;
 }
 
-.btn-page-traslate:hover{
+.btn-page-traslate:hover {
   background-color: rgba(0, 0, 0, 0.397);
   border: 1px solid rgba(128, 0, 128, 0.314);
   color: white;
   transform: scale(1.1);
+}
+
+.answer {
+  background-color: white;
+  p {
+    color: black;
+  }
 }
 </style>
