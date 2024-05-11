@@ -20,9 +20,6 @@ export default {
 @use "./../style/partials/variable" as *;
 
 section {
-  h1 {
-    font-family: $font_cyberia;
-  }
   div {
     width: 50%;
   }

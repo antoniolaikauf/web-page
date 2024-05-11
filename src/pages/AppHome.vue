@@ -179,14 +179,6 @@ export default {
   }
 }
 
-#text-container,
-.text-descrizione,
-.text-skils,
-.text-caricamento,
-.swiper p {
-  font-family: $font_cyberia;
-}
-
 .animazione {
   border-radius: 20px;
   padding: 20px;

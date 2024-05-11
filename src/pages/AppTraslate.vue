@@ -137,7 +137,7 @@ export default {
         </div>
         
         <div class="d-flex flex-wrap ">
-        <div class="col-12 col-sm-6 pe-3" >
+        <div class="col-12 col-sm-6 pe-3 answer" >
           <textarea v-model="text"  class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Iserire testo"></textarea>
         </div>
         <div class="d-flex col-sm-6">
@@ -148,7 +148,7 @@ export default {
         </div>
         </div>
       </div>
-      <button @click="translate_text" class="btn-page d-inline-block">Traduci</button>
+      <button @click="translate_text" class="btn-page-traslate">Traduci</button>
     </div>
   </section>
 </template>
@@ -156,9 +156,6 @@ export default {
 @use "./../style/general.scss" as *;
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
-*{
- font-family: $font_cyberia
-}
 .row>div{
   margin: 10px 0px;
 }
@@ -168,5 +165,24 @@ export default {
   background-color:rgba(128, 0, 128, 0.815);
   color: white;
   overflow-y: auto;
+}
+.select-language>select:focus, .answer>textarea:focus {
+  box-shadow: 0 0 0 0.25rem $background_black;
+}
+
+.btn-page-traslate{
+  padding: 5px 15px;
+  border-radius: 7px;
+  border: none;
+  background-color:rgba(128, 0, 128, 0.815) ;
+  border: 1px solid rgba(0, 0, 0, 0.397) ;
+  color: white;
+}
+
+.btn-page-traslate:hover{
+  background-color: rgba(0, 0, 0, 0.397);
+  border: 1px solid rgba(128, 0, 128, 0.314);
+  color: white;
+  transform: scale(1.1);
 }
 </style>

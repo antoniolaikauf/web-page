@@ -363,10 +363,6 @@ export default {
 @use "./../style/partials/mixins" as *;
 @use "./../style/general.scss" as *;
 @use "./../style/partials/variable" as *;
-
-* {
-  font-family: $font_cyberia;
-}
 .container-giochi > img {
   width: 40%;
 }
