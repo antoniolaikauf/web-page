@@ -123,18 +123,19 @@ export default {
         <div class="output_Cyberia text-start fs-5">
           <!-- testo output CYBERIA -->
         </div>
-        <div class="col-12 col-sm-6 ">
+        <div class="col-12 col-sm-6 select-language ">
           <select class="form-select" aria-label="Default select example" v-model="lang_from_translate">
-            <option class="text-dark" disabled value="">Select Source Language</option>
-            <option class="text-dark" :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
+            <option  disabled value="">Select Source Language</option>
+            <option  :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
-        <div class="col-12 col-sm-6">
-          <select class="form-select" aria-label="Default select example" v-model="lang_to_translate">
-            <option class="text-dark" disabled value="">Select Target Language</option>
-            <option class="text-dark" :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
+        <div class="col-12 col-sm-6 select-language">
+          <select class="form-select" aria-label="Default select example" v-model="lang_to_translate" >
+            <option  disabled value="">Select Target Language</option>
+            <option  :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
+        
         <div class="d-flex flex-wrap ">
         <div class="col-12 col-sm-6 pe-3" >
           <textarea v-model="text"  class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Iserire testo"></textarea>
@@ -147,8 +148,8 @@ export default {
         </div>
         </div>
       </div>
+      <button @click="translate_text" class="btn-page d-inline-block">Traduci</button>
     </div>
-    <button @click="translate_text" class="btn-page">Traduci</button>
   </section>
 </template>
 <style lang="scss" scoped>
@@ -160,5 +161,12 @@ export default {
 }
 .row>div{
   margin: 10px 0px;
+}
+
+.select-language>select{
+  border: none;
+  background-color:rgba(128, 0, 128, 0.815);
+  color: white;
+  overflow-y: auto;
 }
 </style>
