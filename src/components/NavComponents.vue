@@ -6,9 +6,9 @@ export default {
 
 <template>
   <section>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent px-4 mb-5">
       <div class="container-fluid">
-        <a class="navbar-brand container-img" href="#"> <img src="../../public/img/cyberia.png" alt="#" class="logo-img" /></a>
+        <a class="navbar-brand container-img" href="#"> <img src="../../public/img/logo.png" alt="#" class="logo-img" /></a>
         <button
           class="navbar-toggler button"
           id="drop-bottone"
