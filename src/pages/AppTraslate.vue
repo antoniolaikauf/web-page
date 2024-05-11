@@ -118,7 +118,6 @@ export default {
 </script>
 <template>
   <section>
-  <!-- <img src="../../public/img/backgroud.jpg" alt="" style="width: 50%;"> -->
     <div class="container">
       <div class="row">
         <div class="output_Cyberia text-start fs-5">
@@ -130,23 +129,26 @@ export default {
             <option class="text-dark" :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
-        <div class="col-12 col-sm-6 4">
+        <div class="col-12 col-sm-6">
           <select class="form-select" aria-label="Default select example" v-model="lang_to_translate">
             <option class="text-dark" disabled value="">Select Target Language</option>
             <option class="text-dark" :value="language.language" v-for="(language, i) in languages">{{ language.name }}</option>
           </select>
         </div>
-        <div >
-          <label for="exampleFormControlTextarea1" class="form-label">Iserisci testo</label>
-          <textarea v-model="text"  class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+        <div class="d-flex flex-wrap ">
+        <div class="col-12 col-sm-6 pe-3" >
+          <textarea v-model="text"  class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Iserire testo"></textarea>
+        </div>
+        <div class="d-flex col-sm-6">
+          <div>
+            <p v-if="output_wrong"><h3></h3> {{ output }}</p>
+            <p v-else><h4>Ops!! hai sbagliato a digitare il testo o a selezionare le lingue </h4> Ps. CYBERIA non è perfetta e potrebbe non riuscire a tradurre il testo</p>
+          </div>
+        </div>
         </div>
       </div>
     </div>
-    <button @click="translate_text" class="btn-page">traduci</button>
-    <div>
-      <p v-if="output_wrong"><h3></h3> {{ output }}</p>
-      <p v-else><h4>Ops!! hai sbagliato a digitare il testo o a selezionare le lingue </h4> Ps. CYBERIA non è perfetta e potrebbe non riuscire a tradurre il testo</p>
-    </div>
+    <button @click="translate_text" class="btn-page">Traduci</button>
   </section>
 </template>
 <style lang="scss" scoped>
