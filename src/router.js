@@ -4,7 +4,7 @@ import AppGioco from './pages/AppGioco.vue';
 import AppHome from "./pages/AppHome.vue";
 import NotFound from "./pages/NotFound.vue";
 import calculator from "./pages/appCalcolatrice.vue";
-import Traslate from "./pages/AppTraslate.vue";
+import Traslate from "./pages/AppTranslate.vue";
 
  
 // creazione delle rotte e il loro 'percorso'
