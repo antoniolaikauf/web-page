@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Include specific files
-src/pages/AppTraslate.vue
+# # Include specific files
+# src/pages/AppTraslate.vue
