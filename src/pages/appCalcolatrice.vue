@@ -5,12 +5,13 @@ export default {
   data() {
     return {
       pulsanti: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "+", "-", "*", "/", "="],
+      complex_operators: ["Log", "&#8730;", "Pow", "Sin", "Cos"],
       console: "",
       numbers: "",
-      result: "",
-      complex_operators: ["Log", "&#8730;", "<div>x<sup>y</sup></div>", "Sin", "Cos"],
       number1: "",
       number2: "",
+      result: "",
+      operationShow: "",
     };
   },
   methods: {
@@ -19,6 +20,7 @@ export default {
       this.console = this.console.replace(/([+\-*/])\1+/g, "$1"); // [+\-*/] cerca i caratteri, \1+/g questo permette di continuare a cercare
       var regex = /[\+\-\*\/]|(\d+)/g; // prima parte corrisponde a tutti gli operatori la seconda parte corrisponde ai numeri
       this.numbers = this.console.match(regex); //  ritorna un array che con delle corrispondenze con l'espressione inserita dentro il metodo match
+      this.operationShow = this.numbers.join("");
       if ("=" === this.pulsanti[Nindex] && this.numbers.length <= 2) {
         // controllo se utente ha inserito almeno un operatore e due numeri
         alert("devi inserire un operatore o piu numeri ");
@@ -32,9 +34,10 @@ export default {
     },
     calculation_complex(Oindex) {
       this.deleteResult();
+
       while (true) {
-        if (this.complex_operators[Oindex] === "Sin" || this.complex_operators[Oindex] === "Cos" || this.complex_operators[Oindex] === "Radice")
-          this.number1 = parseInt(prompt(`Inserisci primo valore per ${this.complex_operators[Oindex]}`));
+        if (this.complex_operators[Oindex] === "Sin" || this.complex_operators[Oindex] === "Cos" || this.complex_operators[Oindex] === "&#8730;")
+          this.number1 = parseInt(prompt(`Inserisci il valore`));
         else {
           this.number1 = parseInt(prompt(`Inserisci primo valore per ${this.complex_operators[Oindex]}`));
           this.number2 = parseInt(prompt(`Inserisci secondo valore per ${this.complex_operators[Oindex]}`));
@@ -42,10 +45,11 @@ export default {
         if (!isNaN(this.number1) || !isNaN(this.number2)) break;
       }
       if (this.complex_operators[Oindex] === "Log") this.result = Math.log(this.number1) / Math.log(this.number2);
-      if (this.complex_operators[Oindex] === "Radice") this.result = Math.sqrt(this.number1);
+      if (this.complex_operators[Oindex] === "&#8730;") this.result = Math.sqrt(this.number1);
       if (this.complex_operators[Oindex] === "Pow") this.result = Math.pow(this.number1, this.number2);
       if (this.complex_operators[Oindex] === "Sin") this.result = Math.sin((this.number1 * Math.PI) / 180);
       if (this.complex_operators[Oindex] === "Cos") this.result = Math.cos((this.number1 * Math.PI) / 180);
+      console.log(this.result);
     },
   },
 };
@@ -54,7 +58,7 @@ export default {
   <section>
     <div class="calculator">
       <div class="results">
-        <span v-for="(number, i) in numbers"> {{ number }}</span>
+        <span>{{ operationShow }}</span>
         <h5>{{ result }}</h5>
       </div>
       <!-- <hr /> -->
@@ -78,6 +82,9 @@ export default {
 .results {
   height: 80px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.295);
+  text-align: end;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 .calculator {
   width: 30%;
