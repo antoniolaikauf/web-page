@@ -14,6 +14,8 @@ export default {
       operationShow: "",
     };
   },
+
+  // sistemare la calcolatrice non fare con due metodi ma cercare di farlo tutto insiem
   methods: {
     calculation(Nindex) {
       this.console += this.pulsanti[Nindex];
@@ -73,6 +75,13 @@ export default {
       </div>
     </div>
   </section>
+  <section class="description d-flex justify-content-end">
+    <p>
+      Ecco una piccola calcolatrice in cui potresti fare operazioni matematiche, per quanto riguarda l'utilizzo dei primi quattro operatori comparirà
+      un spazio in cui inserire i numeri se si volesse utilizzare il log prima si inserisce l'argomento del logaritmo, e dopo la base invece se si
+      volesse usare la potenza prima si inserisce prima la base e dopo l'esponente
+    </p>
+  </section>
 </template>
 <style lang="scss" scoped>
 @use "./../style/partials/mixins" as *;
@@ -98,7 +107,6 @@ export default {
   }
   .number,
   .calculation-complex {
-    background-color: black;
     margin: 1px;
     width: calc((100% / 5) - 2px);
     border-radius: 3px;
@@ -109,6 +117,14 @@ export default {
   }
   .calculation-complex {
     background-color: #9e9e9e;
+  }
+}
+
+.description {
+  p {
+    margin-top: 50px;
+    width: 50%;
+    text-align: start;
   }
 }
 </style>
