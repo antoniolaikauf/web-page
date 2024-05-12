@@ -139,7 +139,7 @@ export default {
         </div>
         <div class="d-flex flex-wrap">
           <div class="col-12 col-sm-6  text-to-traslate">
-            <textarea v-model="text" class="form-control " id="exampleFormControlTextarea1" rows="5" placeholder="Iserire testo"></textarea>
+            <textarea v-model="text" class="form-control rounded-0" id="exampleFormControlTextarea1" rows="5" placeholder="Iserire testo"></textarea>
           </div>
           <div class="col-12 col-sm-6 answer " tabindex="0">
                <p v-if="output_wrong"><h3></h3> {{ output }}</p>
@@ -201,9 +201,6 @@ export default {
 }
 
 @media screen and (max-width:576px) {
-  .text-to-traslate>.form-control,.answer{
-    border-radius:0px ;
-  }
   .answer{
     min-height: 100px;
   }

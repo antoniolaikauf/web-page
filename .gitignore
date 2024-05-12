@@ -25,3 +25,4 @@ dist-ssr
 
 # # Include specific files
 # src/pages/AppTraslate.vue
+# git -rm cached src/pages/AppTraslate.vue in shell
