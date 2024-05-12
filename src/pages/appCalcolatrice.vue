@@ -57,6 +57,7 @@ export default {
         <span v-for="(number, i) in numbers"> {{ number }}</span>
         <h5>{{ result }}</h5>
       </div>
+      <!-- <hr /> -->
       <div class="keys">
         <div class="calculation-complex" v-for="(complex_operator, i) in complex_operators" @click="calculation_complex(i)">
           <span v-html="complex_operator"></span>
@@ -76,25 +77,31 @@ export default {
 
 .results {
   height: 80px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.295);
 }
 .calculator {
-  width: 40%;
-  margin: auto;
+  width: 30%;
+  background: #313335;
   border: 1px solid black;
   border-radius: 10px;
   .keys {
     display: flex;
     flex-wrap: wrap;
+    padding: 5px;
   }
   .number,
   .calculation-complex {
     background-color: black;
-    margin: 2px;
-    width: calc((100% / 5) - 4px);
+    margin: 1px;
+    width: calc((100% / 5) - 2px);
+    border-radius: 3px;
+    padding: 10px 0px;
   }
-
+  .number {
+    background-color: #444746;
+  }
   .calculation-complex {
-    background-color: rgb(44, 41, 41);
+    background-color: #9e9e9e;
   }
 }
 </style>
