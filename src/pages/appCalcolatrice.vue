@@ -127,4 +127,11 @@ export default {
     text-align: start;
   }
 }
+
+@media screen and (max-width: 560px) {
+  .calculator,
+  .description > p {
+    width: 100%;
+  }
+}
 </style>
