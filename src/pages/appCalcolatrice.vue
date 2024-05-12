@@ -52,16 +52,20 @@ export default {
 </script>
 <template>
   <section>
-    <div class="calculator p-3">
-      <div class="number" v-for="(pulsante, i) in pulsanti" @click="calculation(i)">{{ pulsante }}</div>
-      <div class="calculation-complex" v-for="(complex_operator, i) in complex_operators" @click="calculation_complex(i)">{{ complex_operator }}</div>
-    </div>
-    <div>
-      <button class="btn-page my-3" @click="deleteResult">Cancella risultato</button>
-    </div>
-    <div>
-      <span v-for="(number, i) in numbers"> {{ number }}</span>
-      <h5>{{ result }}</h5>
+    <div class="calculator">
+      <div class="results">
+        <span v-for="(number, i) in numbers"> {{ number }}</span>
+        <h5>{{ result }}</h5>
+      </div>
+      <div class="keys">
+        <div class="calculation-complex" v-for="(complex_operator, i) in complex_operators" @click="calculation_complex(i)">
+          {{ complex_operator }}
+        </div>
+        <div class="number" v-for="(pulsante, i) in pulsanti" @click="calculation(i)">{{ pulsante }}</div>
+      </div>
+      <div>
+        <button class="btn-page my-3" @click="deleteResult">Delete</button>
+      </div>
     </div>
   </section>
 </template>
@@ -69,19 +73,24 @@ export default {
 @use "./../style/partials/mixins" as *;
 @use "./../style/general.scss" as *;
 @use "./../style/partials/variable" as *;
+
+.results {
+  height: 80px;
+}
 .calculator {
   width: 40%;
   margin: auto;
   border: 1px solid black;
-  border-radius: 20px;
-  display: flex;
-  flex-wrap: wrap;
+  border-radius: 10px;
+  .keys {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .number,
   .calculation-complex {
     background-color: black;
-    margin: 15px;
-    width: calc((100% / 5) - 30px);
-    padding: 5px;
+    margin: 2px;
+    width: calc((100% / 5) - 4px);
   }
 }
 </style>

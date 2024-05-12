@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import AppGioco from './pages/AppGioco.vue';
 import AppHome from "./pages/AppHome.vue";
 import NotFound from "./pages/NotFound.vue";
-import calculator from "./pages/appCalcolatrice.vue";
+import calculator from "./pages/AppCalcolatrice.vue";
 import Traslate from "./pages/AppTraslate.vue";
 
  
