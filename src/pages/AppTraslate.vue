@@ -87,7 +87,7 @@ export default {
         encodedParams.set("q", this.text); // testo da tradurre
         encodedParams.set("target", this.lang_to_translate); // lingua in cui tradurre
         encodedParams.set("source", this.lang_from_translate); // lingua del testo
-        const token = "5010931314msh2de8e5ec3ecb6b0p126562jsnd5b5390a14cb"; // token api
+        const token = "35bac28155msh12acd48046117c7p1c758ejsnfe268454ef54"; // token api
         const options = {
           // parametri per chiamata
           method: "POST",
@@ -145,7 +145,8 @@ export default {
                <p v-if="output_wrong"><h3></h3> {{ output }}</p>
                <p v-else>
                 Ops!! hai sbagliato a digitare il testo o a selezionare le lingue Ps. CYBERIA non è perfetta e potrebbe non 
-                riuscire a tradurre il testo, inoltre c'è un limite di tempo da dare a CYBERIA se cerchi di tradurre tante volte del testo
+                riuscire a tradurre il testo, CYBERIA può tradurre 500 caratteri al mese e questo mese sono finiti
+                ci sarà un upgrade di CYBERIA
               </p>
           </div>
         </div>
