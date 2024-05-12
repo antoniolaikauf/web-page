@@ -143,7 +143,10 @@ export default {
           </div>
           <div class="col-12 col-sm-6 answer rounded-end " tabindex="0">
                <p v-if="output_wrong"><h3></h3> {{ output }}</p>
-               <p v-else><h4>Ops!! hai sbagliato a digitare il testo o a selezionare le lingue </h4> Ps. CYBERIA non è perfetta e potrebbe non riuscire a tradurre il testo</p>
+               <p v-else>
+                Ops!! hai sbagliato a digitare il testo o a selezionare le lingue Ps. CYBERIA non è perfetta e potrebbe non 
+                riuscire a tradurre il testo, inoltre c'è un limite di tempo da dare a CYBERIA se cerchi di tradurre tante volte del testo
+              </p>
           </div>
         </div>
       </div>
