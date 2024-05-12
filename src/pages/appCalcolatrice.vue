@@ -8,7 +8,7 @@ export default {
       console: "",
       numbers: "",
       result: "",
-      complex_operators: ["Log", "Radice", "Pow", "Sin", "Cos"],
+      complex_operators: ["Log", "&#8730;", "<div>x<sup>y</sup></div>", "Sin", "Cos"],
       number1: "",
       number2: "",
     };
@@ -59,7 +59,7 @@ export default {
       </div>
       <div class="keys">
         <div class="calculation-complex" v-for="(complex_operator, i) in complex_operators" @click="calculation_complex(i)">
-          {{ complex_operator }}
+          <span v-html="complex_operator"></span>
         </div>
         <div class="number" v-for="(pulsante, i) in pulsanti" @click="calculation(i)">{{ pulsante }}</div>
       </div>
@@ -91,6 +91,10 @@ export default {
     background-color: black;
     margin: 2px;
     width: calc((100% / 5) - 4px);
+  }
+
+  .calculation-complex {
+    background-color: rgb(44, 41, 41);
   }
 }
 </style>
