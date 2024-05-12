@@ -77,9 +77,9 @@ export default {
   </section>
   <section class="description d-flex justify-content-end">
     <p>
-      Ecco una piccola calcolatrice in cui potresti fare operazioni matematiche, per quanto riguarda l'utilizzo dei primi quattro operatori comparirà
-      un spazio in cui inserire i numeri se si volesse utilizzare il log prima si inserisce l'argomento del logaritmo, e dopo la base invece se si
-      volesse usare la potenza prima si inserisce prima la base e dopo l'esponente
+      Ecco una piccola calcolatrice con cui puoi eseguire operazioni matematiche. Per l'utilizzo dei primi quattro operatori, apparirà uno spazio in
+      cui inserire i numeri. Se si desidera utilizzare il logaritmo, si inserisce prima l'argomento e poi la base; invece, se si vuole utilizzare la
+      potenza, si inserisce prima la base e poi l'esponente.
     </p>
   </section>
 </template>
