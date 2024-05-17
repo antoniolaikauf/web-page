@@ -11,6 +11,6 @@ class message extends Model
 
     public function users()
     {
-        $this->hasMany(User::class);
+        $this->belongsTo(User::class);
     }
 }
