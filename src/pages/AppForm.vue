@@ -9,11 +9,10 @@ export default {
     };
   },
   methods: {
-      form() {
-        
-    //   console.log(this.name);
-    //   console.log(this.email);
-    //   console.log(this.password);
+    form() {
+        console.log(this.name);
+        console.log(this.email);
+        console.log(this.password);
     },
   },
 };
@@ -36,6 +35,9 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
+    </div>
+    <div class="img-face">
+      <img src="/img/face.png" alt="" />
     </div>
   </section>
 </template>
@@ -63,5 +65,8 @@ export default {
   .dati_utente {
     width: 100%;
   }
+}
+.img-face {
+  text-align: end;
 }
 </style>

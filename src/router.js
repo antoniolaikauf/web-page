@@ -40,7 +40,7 @@ const router = createRouter({
       path: "/Forum",
       name: 'Forum',
       component: forum,
-      meta:{backgroundImage:'url(/img/background.jpg)'}
+      meta:{backgroundImage:'url(/img/matrix.jpeg)'}
     },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
@@ -56,7 +56,8 @@ router.beforeResolve((to, from, next) => {
   // to fa riferimento alla rotta che si va
   if (to.name === 'Traslate' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
   else if (to.name === 'home' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
-  else if (to.name === 'gioco' || to.name==='Notfound' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
+  else if (to.name === 'gioco' || to.name === 'Notfound' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
+  else if(to.name ==='Forum' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
   else Img(to.meta.backgroundImage)
   next()
 
