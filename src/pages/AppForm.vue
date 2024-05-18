@@ -1,18 +1,28 @@
 <script>
+import axios from "axios";
 export default {
   name: "forum",
   data() {
     return {
-      name: "rr",
-      email: "antonio@gmial.com",
-      password: "rrr",
+      dati: {
+        name: "rr",
+        email: "antonio@gmial.com",
+        password: "rrr",
+      },
     };
   },
   methods: {
-    form() {
-        console.log(this.name);
-        console.log(this.email);
-        console.log(this.password);
+    async form() {
+      try {
+        const call = await axios.get("http://localhost:8000/api/v1/User");
+        console.log(call.data);
+      } catch (error) {
+        console.log(error);
+      }
+
+      console.log(this.dati.name);
+      console.log(this.dati.email);
+      console.log(this.dati.password);
     },
   },
 };
@@ -23,15 +33,15 @@ export default {
       <form @submit.prevent="form">
         <div>
           <label for="name">Inserire Nome</label> <br />
-          <input type="text" id="name" placeholder="Nome" v-model="name" />
+          <input type="text" id="name" placeholder="Nome" v-model="dati.name" />
         </div>
         <div>
           <label for="email">Inserire email</label> <br />
-          <input type="email" id="email" placeholder="Email" v-model="email" />
+          <input type="email" id="email" placeholder="Email" v-model="dati.email" />
         </div>
         <div>
           <label for="password"> Inserire password</label> <br />
-          <input type="password" id="password" placeholder="Password" v-model="password" />
+          <input type="password" id="password" placeholder="Password" v-model="dati.password" />
         </div>
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
