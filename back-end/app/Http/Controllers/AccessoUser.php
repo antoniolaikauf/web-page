@@ -10,14 +10,19 @@ use App\Models\User;
 
 class AccessoUser extends Controller
 {
-    public function Userdati()
+    public function Userdati(Request $request)
     {
-        // $user = User::all();
-        $user = 'antonioi';
+        $userData = $request->all(); // ottieni i dati inviati
+        // creai un nuovo user
+        $NewUser = new User();
+        $NewUser->name = $userData['name'];
+        $NewUser->email = $userData['email'];
+        $NewUser->password = $userData['password'];
+        $NewUser->save(); //salvi nel database
 
         return response()->json([
             'chiamata' => 'riuscita',
-            'User' => $user
+            'User' => $NewUser
         ]);
     }
 }

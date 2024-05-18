@@ -14,7 +14,7 @@ export default {
   methods: {
     async form() {
       try {
-        const call = await axios.get("http://localhost:8000/api/v1/User");
+        const call = await axios.post("http://localhost:8000/api/v1/User", this.dati);
         console.log(call.data);
       } catch (error) {
         console.log(error);
