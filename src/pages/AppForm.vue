@@ -2,25 +2,37 @@
 export default {
   name: "forum",
   data() {
-    return {};
+    return {
+      name: "rr",
+      email: "antonio@gmial.com",
+      password: "rrr",
+    };
+  },
+  methods: {
+      form() {
+        
+    //   console.log(this.name);
+    //   console.log(this.email);
+    //   console.log(this.password);
+    },
   },
 };
 </script>
 <template>
   <section>
     <div class="dati_utente">
-      <form action="Get">
+      <form @submit.prevent="form">
         <div>
           <label for="name">Inserire Nome</label> <br />
-          <input type="text" id="name" placeholder="Nome" />
+          <input type="text" id="name" placeholder="Nome" v-model="name" />
         </div>
         <div>
           <label for="email">Inserire email</label> <br />
-          <input type="email" id="email" placeholder="Email" />
+          <input type="email" id="email" placeholder="Email" v-model="email" />
         </div>
         <div>
           <label for="password"> Inserire password</label> <br />
-          <input type="password" id="password" placeholder="Password" />
+          <input type="password" id="password" placeholder="Password" v-model="password" />
         </div>
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
@@ -33,7 +45,7 @@ export default {
 @use "./../style/partials/variable" as *;
 
 .dati_utente {
-  width: 25%;
+  width: 250px;
   border: 1px solid black;
   border-radius: 20px;
   padding: 20px 0px;
@@ -42,6 +54,7 @@ export default {
     input {
       padding: 5px;
       border-radius: 2px;
+      color: black;
     }
   }
 }
