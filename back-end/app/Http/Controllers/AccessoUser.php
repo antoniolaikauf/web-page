@@ -17,8 +17,10 @@ class AccessoUser extends Controller
         $NewUser = new User();
         $NewUser->name = $userData['name'];
         $NewUser->email = $userData['email'];
+        $NewUser->email_verified_at = now();
         $NewUser->password = $userData['password'];
-        $NewUser->save(); //salvi nel database
+        // $NewUser->messages()->associate()
+        // $NewUser->save(); //salvi nel database
 
         return response()->json([
             'chiamata' => 'riuscita',

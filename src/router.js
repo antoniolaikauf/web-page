@@ -36,12 +36,12 @@ const router = createRouter({
       component: Traslate,
       meta:{backgroundImage:'url(/img/chip.png)'}
     },
-    {
-      path: "/Forum",
-      name: 'Forum',
-      component: forum,
-      meta:{backgroundImage:'url(/img/matrix.jpeg)'}
-    },
+    // {
+    //   path: "/Forum",
+    //   name: 'Forum',
+    //   component: forum,
+    //   meta:{backgroundImage:'url(/img/matrix.jpeg)'}
+    // },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
       path: "/:pathMatch(.*)*",
