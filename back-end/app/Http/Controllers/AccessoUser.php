@@ -18,7 +18,7 @@ class AccessoUser extends Controller
         $NewUser->name = $userData['name'];
         $NewUser->email = $userData['email'];
         $NewUser->email_verified_at = now();
-        $NewUser->password = $userData['password'];
+        $NewUser->password = $userData['password']; // normale che non sia ritornato nell'oggetto lo nasconde laravel 
         // $NewUser->messages()->associate()
         // $NewUser->save(); //salvi nel database
 
