@@ -5,6 +5,7 @@ import AppHome from "./pages/AppHome.vue";
 import NotFound from "./pages/NotFound.vue";
 import calculator from "./pages/appCalcolatrice.vue";
 import Traslate from "./pages/AppTranslate.vue";
+import forum from "./pages/AppForm.vue"
 
  
 // creazione delle rotte e il loro 'percorso'
@@ -34,6 +35,12 @@ const router = createRouter({
       name: "Traslate",
       component: Traslate,
       meta:{backgroundImage:'url(/img/chip.png)'}
+    },
+    {
+      path: "/Forum",
+      name: 'Forum',
+      component: forum,
+      meta:{backgroundImage:'url(/img/background.jpg)'}
     },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.

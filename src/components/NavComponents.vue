@@ -27,23 +27,26 @@ export default {
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'home' }"> Home </router-link></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active fs-4" aria-current="page" href="#"
-                ><router-link :to="{ name: 'Traslate' }"> Traslate </router-link></a
-              >
+              <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Traslate' }"> Traslate </router-link></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active fs-4" aria-current="page" href="#"
-                ><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a
-              >
+              <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
+              <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Forum' }">Login</router-link></a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link active fs-4" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
               <a class="nav-link active fs-4 text-white" aria-current="page" target="_blank" href="https://github.com/antoniolaikauf"> Github </a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link active text-white fs-4" aria-current="page" target="_blank" href="https://www.linkedin.com/in/antonio-laikauf-8239892b8/"
+            <li class="nav-item">
+              <a
+                class="nav-link active text-white fs-4"
+                aria-current="page"
+                target="_blank"
+                href="https://www.linkedin.com/in/antonio-laikauf-8239892b8/"
                 >Linkedin
               </a>
             </li>
