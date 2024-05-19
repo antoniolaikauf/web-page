@@ -15,8 +15,8 @@ class AccessoUser extends Controller
     {
         $userData = $request->all(); // ottieni i dati inviati
         // creai un nuovo user
-        $NewUser = new message();
-        $NewUser->content = $userData['name'];
+        $NewUser = new User();
+        $NewUser->name = $userData['name'];
         $NewUser->email = $userData['email'];
         $NewUser->email_verified_at = now();
         $NewUser->password = $userData['password']; // normale che non sia ritornato nell'oggetto lo nasconde laravel 
