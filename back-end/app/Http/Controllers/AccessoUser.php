@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use App\Models\message;
 use App\Models\User;
 
+use Illuminate\Support\Facades\Hash;
+
 class AccessoUser extends Controller
 {
     public function Userdati(Request $request)
@@ -19,7 +21,8 @@ class AccessoUser extends Controller
         $NewUser->name = $userData['name'];
         $NewUser->email = $userData['email'];
         $NewUser->email_verified_at = now();
-        $NewUser->password = $userData['password']; // normale che non sia ritornato nell'oggetto lo nasconde laravel 
+        $NewUser->password = Hash::make($userData['password']); // normale che non sia ritornato nell'oggetto lo nasconde laravel 
+
         $NewUser->remember_token = Str::random(10);
 
         // $NewUser->messages()->associate();
