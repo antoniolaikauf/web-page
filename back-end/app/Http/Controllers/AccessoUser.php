@@ -37,16 +37,12 @@ class AccessoUser extends Controller
         $userData = $request->all();
         $name = $userData['name'];
         $check = User::where('name', '=', $name)->get();
-        // if (!$check) return response()->json(['risposta' => 'ti devi registrare']);
-        // else {
-        //     return response()->json([
-        //         'chiamata' => 'riuscita',
-        //         'risposta' => $userData,
-        //     ]);
-        // }
-        return response()->json([
-            'risposta' => $name,
-            'rispostaaa' => $check
-        ]);
+        if (!count($check)) return response()->json(['risposta' => 'ti devi registrare']);
+        else {
+            return response()->json([
+                'chiamata' => 'riuscita',
+                'risposta' => $check,
+            ]);
+        }
     }
 }
