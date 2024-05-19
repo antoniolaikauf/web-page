@@ -6,7 +6,7 @@ import NotFound from "./pages/NotFound.vue";
 import calculator from "./pages/appCalcolatrice.vue";
 import Traslate from "./pages/AppTranslate.vue";
 import login from "./pages/AppLogin.vue";
-import Signin from "./pages/AppSgnin.vue";
+import Signin from "./pages/AppSignin.vue";
 
  
 // creazione delle rotte e il loro 'percorso'

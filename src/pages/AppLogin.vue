@@ -16,7 +16,7 @@ export default {
   methods: {
     async form() {
       try {
-        const call = await axios.post("http://localhost:8000/api/v1/User", this.dati);
+        const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.dati);
         console.log(call.data.name);
         this.date_user = call.data.name;
         this.accesso = true;

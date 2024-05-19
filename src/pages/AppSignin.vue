@@ -5,20 +5,20 @@ export default {
   data() {
     return {
       date: {
-        name: "",
-        password: "",
-      },
-      methods: {
-        async access() {
-          try {
-            const call = await axios.get("http://localhost:8000/api/v1/User", this.date);
-            console.log(call.data);
-          } catch (error) {
-            console.log(error);
-          }
-        },
+        name: "fff",
+        password: "fff",
       },
     };
+  },
+  methods: {
+    async access() {
+      try {
+        const call = await axios.get("http://localhost:8000/api/v1/UserSignin");
+        console.log(call.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>

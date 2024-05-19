@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AccessoUser extends Controller
 {
-    public function Userdati(Request $request)
+    public function UserLogin(Request $request)
     {
         $userData = $request->all(); // ottieni i dati inviati
         // creai un nuovo user
@@ -31,5 +31,12 @@ class AccessoUser extends Controller
                 'name' => $NewUser->name,
             ]);
         }
+    }
+    public function UserSignin()
+    {
+
+        return response()->json([
+            'risposta' => 'funziopni',
+        ]);
     }
 }

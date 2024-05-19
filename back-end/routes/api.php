@@ -21,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // gruppo chiamate
 Route::group(['prefix' => '/v1'], function () {
-    route::post('User', [AccessoUser::class, 'Userdati']);
+    route::post('UserLogin', [AccessoUser::class, 'UserLogin']);
+    route::get('UserSignin', [AccessoUser::class, 'UserSignin']);
 });
-
