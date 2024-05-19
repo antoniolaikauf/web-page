@@ -5,30 +5,31 @@ export default {
   data() {
     return {
       dati: {
-        name: "rr",
+        name: "rrr",
         email: "antonio@gmial.com",
         password: "rrr",
       },
+      date_user: "",
+      accesso: false,
     };
   },
   methods: {
     async form() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/User", this.dati);
-        console.log(call.data);
+        console.log(call.data.name);
+        this.date_user = call.data.name;
+        this.accesso = true;
       } catch (error) {
         console.log(error);
       }
-
-      console.log(this.dati.name);
-      console.log(this.dati.email);
-      console.log(this.dati.password);
     },
   },
 };
 </script>
 <template>
   <section>
+    <div class="name_user" v-if="accesso">{{ date_user }}cisosodisidf</div>
     <div class="dati_utente">
       <form @submit.prevent="form">
         <div>

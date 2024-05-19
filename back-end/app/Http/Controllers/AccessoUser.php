@@ -22,15 +22,14 @@ class AccessoUser extends Controller
         $NewUser->email = $userData['email'];
         $NewUser->email_verified_at = now();
         $NewUser->password = Hash::make($userData['password']); // normale che non sia ritornato nell'oggetto lo nasconde laravel 
-
         $NewUser->remember_token = Str::random(10);
 
-        // $NewUser->messages()->associate();
         $NewUser->save(); //salvi nel database
-
-        return response()->json([
-            'chiamata' => 'riuscita',
-            'User' => $NewUser
-        ]);
+        if ($NewUser) {
+            return response()->json([
+                'chiamata' => 'riuscita',
+                'name' => $NewUser->name,
+            ]);
+        }
     }
 }
