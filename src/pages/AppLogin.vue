@@ -46,7 +46,7 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Registrati" />
       </form>
-      <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
+      <!-- <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a> -->
     </div>
     <div class="img-face">
       <img src="/img/face.png" alt="" />
