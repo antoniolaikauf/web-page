@@ -44,7 +44,7 @@ export default {
           <label for="password"> Inserire password</label> <br />
           <input type="password" id="password" placeholder="Password" v-model="dati.password" />
         </div>
-        <input type="submit" class="btn-page" value="Accedi" />
+        <input type="submit" class="btn-page" value="Registrati" />
       </form>
       <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
     </div>
