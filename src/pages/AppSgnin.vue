@@ -1,18 +1,37 @@
 <script>
+import axios from "axios";
 export default {
   name: "Signin",
+  data() {
+    return {
+      date: {
+        name: "",
+        password: "",
+      },
+      methods: {
+        async access() {
+          try {
+            const call = await axios.get("http://localhost:8000/api/v1/User", this.date);
+            console.log(call.data);
+          } catch (error) {
+            console.log(error);
+          }
+        },
+      },
+    };
+  },
 };
 </script>
 <template>
   <div class="dati_utente">
-    <form @submit.prevent="" class="my-2">
+    <form @submit.prevent="access" class="my-2">
       <div>
         <label for="name">Inserire Nome</label> <br />
-        <input type="text" id="name" placeholder="Nome" />
+        <input type="text" id="name" placeholder="Nome" v-model="date.name" />
       </div>
       <div>
         <label for="password"> Inserire password</label> <br />
-        <input type="password" id="password" placeholder="Password" />
+        <input type="password" id="password" placeholder="Password" v-model="date.password" />
       </div>
       <input type="submit" class="btn-page" value="Accedi" />
     </form>
