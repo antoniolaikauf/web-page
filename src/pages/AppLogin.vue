@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "forum",
+  name: "login",
   data() {
     return {
       dati: {
@@ -31,7 +31,7 @@ export default {
   <section>
     <div class="name_user" v-if="accesso">{{ date_user }}cisosodisidf</div>
     <div class="dati_utente">
-      <form @submit.prevent="form">
+      <form @submit.prevent="form" class="my-2">
         <div>
           <label for="name">Inserire Nome</label> <br />
           <input type="text" id="name" placeholder="Nome" v-model="dati.name" />
@@ -46,6 +46,7 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
+      <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
     </div>
     <div class="img-face">
       <img src="/img/face.png" alt="" />
@@ -59,7 +60,7 @@ export default {
 
 .dati_utente {
   width: 250px;
-  border: 1px solid black;
+  border: 1px solid grey;
   border-radius: 20px;
   padding: 20px 0px;
   div {

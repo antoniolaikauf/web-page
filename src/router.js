@@ -5,7 +5,8 @@ import AppHome from "./pages/AppHome.vue";
 import NotFound from "./pages/NotFound.vue";
 import calculator from "./pages/appCalcolatrice.vue";
 import Traslate from "./pages/AppTranslate.vue";
-import forum from "./pages/AppForm.vue"
+import login from "./pages/AppLogin.vue";
+import Signin from "./pages/AppSgnin.vue";
 
  
 // creazione delle rotte e il loro 'percorso'
@@ -21,26 +22,32 @@ const router = createRouter({
     {
       path: "/gioco",
       name: "gioco",
-      component:AppGioco,
-      meta:{backgroundImage:'url(/img/sfondo.png)'}
+      component: AppGioco,
+      meta: { backgroundImage: 'url(/img/sfondo.png)' }
     },
     {
       path: "/calcolatrice",
       name: "calcolatrice",
       component: calculator,
-      meta:{backgroundImage:'url(/img/hand.png)'}
+      meta: { backgroundImage: 'url(/img/hand.png)' }
     },
     {
       path: "/Traslate",
       name: "Traslate",
       component: Traslate,
-      meta:{backgroundImage:'url(/img/chip.png)'}
+      meta: { backgroundImage: 'url(/img/chip.png)' }
     },
     {
-      path: "/Forum",
-      name: 'Forum',
-      component: forum,
-      meta:{backgroundImage:'url(/img/matrix.jpeg)'}
+      path: "/login",
+      name: 'login',
+      component: login,
+      meta: { backgroundImage: 'url(/img/matrix.jpeg)' }
+    },
+    {
+      path: '/Signin',
+      name: 'Signin',
+      component: Signin,
+      meta:{backgroundImage:'url(/img/matrix.jpeg)'},
     },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
@@ -57,7 +64,8 @@ router.beforeResolve((to, from, next) => {
   if (to.name === 'Traslate' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
   else if (to.name === 'home' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
   else if (to.name === 'gioco' || to.name === 'Notfound' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
-  else if(to.name ==='Forum' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
+  else if (to.name === 'login' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
+  else if (to.name==='Signin' && to.meta.backgroundImage) Img(to.meta.backgroundImage)
   else Img(to.meta.backgroundImage)
   next()
 
