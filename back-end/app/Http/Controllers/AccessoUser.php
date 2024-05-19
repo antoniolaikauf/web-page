@@ -35,10 +35,18 @@ class AccessoUser extends Controller
     public function UserSignin(Request $request)
     {
         $userData = $request->all();
-        
+        $name = $userData['name'];
+        $check = User::where('name', '=', $name)->get();
+        // if (!$check) return response()->json(['risposta' => 'ti devi registrare']);
+        // else {
+        //     return response()->json([
+        //         'chiamata' => 'riuscita',
+        //         'risposta' => $userData,
+        //     ]);
+        // }
         return response()->json([
-            'chiamata' => 'riuscita',
-            'risposta' => $userData,
+            'risposta' => $name,
+            'rispostaaa' => $check
         ]);
     }
 }
