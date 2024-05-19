@@ -32,11 +32,13 @@ class AccessoUser extends Controller
             ]);
         }
     }
-    public function UserSignin()
+    public function UserSignin(Request $request)
     {
-
+        $userData = $request->all();
+        
         return response()->json([
-            'risposta' => 'funziopni',
+            'chiamata' => 'riuscita',
+            'risposta' => $userData,
         ]);
     }
 }

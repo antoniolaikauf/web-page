@@ -13,7 +13,7 @@ export default {
   methods: {
     async access() {
       try {
-        const call = await axios.get("http://localhost:8000/api/v1/UserSignin");
+        const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
         console.log(call.data);
       } catch (error) {
         console.log(error);
