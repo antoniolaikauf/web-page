@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       date: {
-        name: "rr",
+        name: "rrr",
         password: "rrr",
       },
     };
