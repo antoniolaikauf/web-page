@@ -21,7 +21,7 @@ class AccessoUser extends Controller
         $NewUser->name = $userData['name'];
         $NewUser->email = $userData['email'];
         $NewUser->email_verified_at = now();
-        $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // normale che non sia ritornato nell'oggetto lo nasconde laravel 
+        $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel 
         $NewUser->remember_token = Str::random(10);
 
         $NewUser->save(); //salvi nel database
@@ -35,15 +35,16 @@ class AccessoUser extends Controller
     public function UserSignin(Request $request)
     {
         $userData = $request->all();
+        $id = User::find('1');
         $name = $userData['name'];
-        $password = User::select('password')->get();
-        $passwordUser = password_verify($userData['password'], '$2y$10$/FPkViahLxbSKQp0n2cNqOCoBk03mpzAoThZq5An9pu4KcTIph8mK');
+        $password = $userData['password'];
         $check = User::where('name', '=', $name)->get();
-        if (!count($check)) return response()->json(['risposta' => 'ti devi registrare']);
+        $passwordUser = Hash::check($password, $id->password);
+        if (!count($check) || !$passwordUser) return response()->json(['risposta' => 'ti devi registrare']);
         else {
             return response()->json([
                 'chiamata' => 'riuscita',
-                'risposta' => $password,
+                'risposta' => $passwordUser,
             ]);
         }
     }
