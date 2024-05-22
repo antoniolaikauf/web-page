@@ -37,10 +37,11 @@ class AccessoUser extends Controller
         $userData = $request->all();
         $idUser = User::select('id')->get();
         $id = User::find($idUser[0]['id']);
+        // dati ottenuti dal form 
         $name = $userData['name'];
         $password = $userData['password'];
-        $check = User::where('name', '=', $name)->get();
-        $passwordUser = Hash::check($password, $id->password);
+        $check = User::where('name', '=', $name)->get(); // preso singolo user
+        $passwordUser = Hash::check($password, $id->password); // cpntrollo password
         if (!count($check) || !$passwordUser) return response()->json(['risposta' => 'ti devi registrare']);
         else {
             return response()->json([
