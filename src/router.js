@@ -7,6 +7,7 @@ import calculator from "./pages/appCalcolatrice.vue";
 import Traslate from "./pages/AppTranslate.vue";
 import login from "./pages/AppLogin.vue";
 import Signin from "./pages/AppSignin.vue";
+import Message from "./pages/AppGroup.vue";
 
  
 // creazione delle rotte e il loro 'percorso'
@@ -48,6 +49,12 @@ const router = createRouter({
       name: 'Signin',
       component: Signin,
       meta:{backgroundImage:'url(/img/background1.jpg)'},
+    },
+     {
+       path: '/Message',
+       name: 'Message',
+       component:Message,
+       meta:{backgroundImage:'url(/img/background1.jpg)'}
     },
     {
       // The /:pathMatch(.*)* syntax is a special route configuration that captures any path and performs route redirection.
