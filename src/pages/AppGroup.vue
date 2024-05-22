@@ -4,11 +4,25 @@ import axios from "axios";
 export default {
   name: "Message",
   data() {
-    return {};
+    return {
+      message: {
+        messageUser: "",
+      },
+    };
   },
-  methods: {},
+  methods: {
+    async invio_message() {
+      try {
+        const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
+        console.log(call.data);
+      } catch (error) {
+        console.log(error);
+      }
+      console.log(this.message);
+    },
+  },
   mounted() {
-    console.log(store.name.dati[0].name);
+    console.log(store.name);
   },
 };
 </script>
@@ -16,10 +30,12 @@ export default {
   <section>
     <h3>Gruppo generale</h3>
     <div class="group">
-      <div class="messaggi text-start">ciao</div>
+      <div class="messaggi text-start">
+        <div></div>
+      </div>
       <div class="enter">
-        <input type="text" />
-        <button class="btn-page">Enter</button>
+        <input type="text" v-model="message.messageUser" />
+        <button class="btn-page" @click="invio_message">Enter</button>
       </div>
     </div>
   </section>

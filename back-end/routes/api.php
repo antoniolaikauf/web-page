@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // controller che ritorna dati
 use App\Http\Controllers\AccessoUser;
+// controller per messaggi
+use App\Http\Controllers\MessageUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,6 @@ Route::group(['prefix' => '/v1'], function () {
     route::post('UserLogin', [AccessoUser::class, 'UserLogin']);
     // chiamata per accesso
     route::post('UserSignin', [AccessoUser::class, 'UserSignin']);
+    // create new message
+    route::post('UserMessage', [MessageUser::class, 'message']);
 });
