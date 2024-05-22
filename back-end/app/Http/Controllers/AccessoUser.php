@@ -47,6 +47,7 @@ class AccessoUser extends Controller
             return response()->json([
                 'chiamata' => 'riuscita',
                 'risposta' => $passwordUser,
+                'dati' => $check,
             ]);
         }
     }

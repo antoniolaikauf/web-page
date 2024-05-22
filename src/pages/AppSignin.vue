@@ -15,6 +15,7 @@ export default {
     async access() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
+        store.name = call.data;
         console.log(call.data);
       } catch (error) {
         console.log(error);
