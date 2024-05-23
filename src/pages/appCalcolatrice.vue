@@ -33,6 +33,7 @@ export default {
       this.result = "";
       this.numbers = "";
       this.console = "";
+      this.operationShow = "";
     },
     calculation_complex(Oindex) {
       this.deleteResult();
@@ -51,7 +52,6 @@ export default {
       if (this.complex_operators[Oindex] === "Pow") this.result = Math.pow(this.number1, this.number2);
       if (this.complex_operators[Oindex] === "Sin") this.result = Math.sin((this.number1 * Math.PI) / 180);
       if (this.complex_operators[Oindex] === "Cos") this.result = Math.cos((this.number1 * Math.PI) / 180);
-      console.log(this.result);
     },
   },
 };
