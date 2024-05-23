@@ -47,7 +47,7 @@ export default {
       </form>
       <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
     </div>
-    <div v-if="controllData">I dati presenti esistono di gia</div>
+    <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>
     <div class="img-face">
       <img src="/img/face.png" alt="" />
     </div>
@@ -77,8 +77,29 @@ export default {
   .dati_utente {
     width: 100%;
   }
+  .img-face {
+    display: none;
+  }
 }
 .img-face {
-  text-align: end;
+  img {
+    top: 150px;
+    right: 20px;
+    position: absolute;
+  }
+}
+
+.error {
+  opacity: 0px;
+  animation-name: errorAnimation;
+  animation-duration: 2s;
+}
+@keyframes errorAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>
