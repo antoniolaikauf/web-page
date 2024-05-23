@@ -14,12 +14,13 @@ class MessageUser extends Controller
         $data = $request->all();
         $userName = $data['nameUser'];
         $selectUser = user::where('name', '=', $userName)->get();
-        
-        // $idUser=User::find()
-        $newMessage = new message();
+        $idUser = User::find($selectUser[0]['id']);
+
+        $newMessage = new Message();
         $newMessage->content = $data['messageUser'];
-        $newMessage->user_id=
-        $selectUser->message()->associate($newMessage);
-        return response()->json(['risposta' => 'funziono']);
+        $newMessage->user()->associate($idUser);
+        $newMessage->save();
+        $messages = message::all();
+        return response()->json(['risposta' => $messages]);
     }
 }

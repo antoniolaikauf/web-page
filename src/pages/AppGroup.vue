@@ -19,7 +19,7 @@ export default {
       } catch (error) {
         console.log(error);
       }
-      console.log(this.message);
+      // console.log(this.message);
     },
   },
   mounted() {
