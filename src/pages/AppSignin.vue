@@ -9,6 +9,7 @@ export default {
         name: "rrr",
         password: "rrr",
       },
+      accesso: false,
     };
   },
   methods: {
@@ -16,7 +17,9 @@ export default {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
         store.name = call.data.dati[0].name;
+        console.log(store.name);
         console.log(call.data.dati[0].name);
+        this.accesso = true;
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +42,7 @@ export default {
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
     </div>
-    <div>
+    <div v-if="accesso">
       <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
     </div>
   </section>

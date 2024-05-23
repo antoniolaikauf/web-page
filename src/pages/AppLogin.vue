@@ -10,7 +10,6 @@ export default {
         password: "rrr",
       },
       date_user: "",
-      accesso: false,
     };
   },
   methods: {
@@ -19,7 +18,6 @@ export default {
         const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.dati);
         console.log(call.data.name);
         this.date_user = call.data.name;
-        this.accesso = true;
       } catch (error) {
         console.log(error);
       }
@@ -29,7 +27,6 @@ export default {
 </script>
 <template>
   <section>
-    <div class="name_user" v-if="accesso">{{ date_user }}cisosodisidf</div>
     <div class="dati_utente">
       <form @submit.prevent="form" class="my-2">
         <div>
@@ -46,7 +43,7 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Registrati" />
       </form>
-      <!-- <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a> -->
+      <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
     </div>
     <div class="img-face">
       <img src="/img/face.png" alt="" />
