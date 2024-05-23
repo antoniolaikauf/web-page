@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->foreignId('User_id')->constrained();
+            $table->foreignId('user_id')->constrained();
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
     {
         Schema::table('messages', function (Blueprint $table) {
             $table->dropForeign('messages_user_id_foreign');
-            $table->dropColumn('User_id');
+            $table->dropColumn('user_id');
         });
     }
 };

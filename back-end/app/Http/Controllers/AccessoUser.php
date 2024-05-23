@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 // tabelle importate
-use App\Models\message;
+use App\Models\Message;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Hash;
