@@ -37,19 +37,18 @@ class AccessoUser extends Controller
     }
     public function UserSignin(Request $request)
     {
-        $userData = $request->all();
-        $idUser = User::select('id')->get(); // selezion tutti gli id della tabella
-        $id = User::find($idUser[0]['id']);  // trova quello corretto
         // dati ottenuti dal form 
-        $name = $userData['name'];
+        $userData = $request->all();
         $password = $userData['password'];
+        $name = $userData['name'];
         $check = User::where('name', '=', $name)->get(); // preso singolo user
-        $passwordUser = Hash::check($password, $id->password); // cpntrollo password
+        $id = User::find($check[0]['id']);  // trova quello corretto
+        $passwordUser = Hash::check($password, $id->password); // controllo password
         if (!count($check) || !$passwordUser) return response()->json(['risposta' => 'ti devi registrare']);
         else {
             return response()->json([
                 'chiamata' => 'riuscita',
-                'risposta' => $idUser,
+                'risposta' => $id,
                 'dati' => $check,
             ]);
         }

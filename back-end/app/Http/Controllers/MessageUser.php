@@ -14,6 +14,7 @@ class MessageUser extends Controller
         $data = $request->all();
         $userName = $data['nameUser'];
         $selectUser = user::where('name', '=', $userName)->get();
+        
         // $idUser=User::find()
         $newMessage = new message();
         $newMessage->content = $data['messageUser'];
