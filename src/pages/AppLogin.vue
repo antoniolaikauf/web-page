@@ -9,7 +9,7 @@ export default {
         email: "antonio@gmial.com",
         password: "rrr",
       },
-      date_user: "",
+      controllData: false,
     };
   },
   methods: {
@@ -17,9 +17,11 @@ export default {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.dati);
         console.log(call.data);
-        this.date_user = call.data.name;
+        if (!call.data.chiamata) this.controllData = true;
+        else this.controllData = false;
       } catch (error) {
         console.log(error);
+        this.controllData = true;
       }
     },
   },
@@ -45,6 +47,7 @@ export default {
       </form>
       <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
     </div>
+    <div v-if="controllData">I dati presenti esistono di gia</div>
     <div class="img-face">
       <img src="/img/face.png" alt="" />
     </div>

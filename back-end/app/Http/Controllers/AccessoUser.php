@@ -24,7 +24,7 @@ class AccessoUser extends Controller
         $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel 
         $NewUser->remember_token = Str::random(10);
         // controllo se user gia esistente
-        if (User::where('name', '=', $userData['name'])->exists()) return response()->json(['chiamata' => 'user gia esistente']);
+        if (User::where('name', '=', $userData['name'])->exists()) return response()->json(['chiamata' => false]);
         else {
             $NewUser->save(); //salvi nel database
             if ($NewUser) {
