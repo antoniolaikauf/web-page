@@ -18,7 +18,7 @@ export default {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
         store.name = call.data.dati[0].name;
         console.log(store.name);
-        console.log(call.data.dati[0].name);
+        console.log(call.data);
         this.accesso = true;
       } catch (error) {
         console.log(error);

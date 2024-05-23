@@ -23,20 +23,23 @@ class AccessoUser extends Controller
         $NewUser->email_verified_at = now();
         $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel 
         $NewUser->remember_token = Str::random(10);
-
-        $NewUser->save(); //salvi nel database
-        if ($NewUser) {
-            return response()->json([
-                'chiamata' => 'riuscita',
-                'name' => $NewUser->name,
-            ]);
+        // controllo se user gia esistente
+        if (User::where('name', '=', $userData['name'])->exists()) return response()->json(['chiamata' => 'user gia esistente']);
+        else {
+            $NewUser->save(); //salvi nel database
+            if ($NewUser) {
+                return response()->json([
+                    'chiamata' => 'riuscita',
+                    'name' => $NewUser->name,
+                ]);
+            }
         }
     }
     public function UserSignin(Request $request)
     {
         $userData = $request->all();
-        $idUser = User::select('id')->get();
-        $id = User::find($idUser[0]['id']);
+        $idUser = User::select('id')->get(); // selezion tutti gli id della tabella
+        $id = User::find($idUser[0]['id']);  // trova quello corretto
         // dati ottenuti dal form 
         $name = $userData['name'];
         $password = $userData['password'];
@@ -46,7 +49,7 @@ class AccessoUser extends Controller
         else {
             return response()->json([
                 'chiamata' => 'riuscita',
-                'risposta' => $passwordUser,
+                'risposta' => $idUser,
                 'dati' => $check,
             ]);
         }
