@@ -73,6 +73,8 @@ export default {
   .messaggi {
     height: 90%;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
   }
   .enter-message {
     height: calc(100% - 90%);
