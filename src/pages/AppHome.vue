@@ -162,23 +162,6 @@ export default {
   }
 }
 
-// .loading {
-//   animation-name: giro;
-//   animation-duration: 4s;
-//   animation-timing-function: linear;
-//   animation-iteration-count: infinite;
-// }
-
-// @keyframes giro {
-//   0% {
-//     transform: rotate(0deg);
-//   }
-
-//   100% {
-//     transform: rotate(360deg);
-//   }
-// }
-
 .animazione {
   border-radius: 20px;
   padding: 20px;

@@ -64,7 +64,7 @@ export default {
         <h5>{{ result }}</h5>
       </div>
       <!-- <hr /> -->
-      <div class="keys">
+      <div class="keys d-flex">
         <div class="calculation-complex" v-for="(complex_operator, i) in complex_operators" @click="calculation_complex(i)">
           <span v-html="complex_operator"></span>
         </div>
@@ -98,10 +98,9 @@ export default {
 .calculator {
   width: 30%;
   background: #313335;
-  border: 1px solid black;
+  border: 1px solid $black;
   border-radius: 10px;
   .keys {
-    display: flex;
     flex-wrap: wrap;
     padding: 5px;
   }

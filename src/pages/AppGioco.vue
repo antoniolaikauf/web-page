@@ -393,7 +393,7 @@ export default {
     width: calc(100% / 3);
     height: 200px;
     backdrop-filter: blur(10px);
-    border: 1px solid black;
+    border: 1px solid $black;
   }
   .backgroud-tris-user-js {
     background-color: green;

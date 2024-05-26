@@ -73,7 +73,7 @@ export default {
     input {
       padding: 5px;
       border-radius: 2px;
-      color: black;
+      color: $black;
     }
   }
 }

@@ -34,7 +34,7 @@ export default {
     <h3>Gruppo generale</h3>
     <div class="group">
       <!-- lettura messaggi -->
-      <div class="messagge">
+      <div class="messagge d-flex">
         <div v-for="(singleMessage, i) in messageBack" class="mx-3" >
             <p  :class="singleMessage.user.name === name?'position-messageUser' :'position-messageUsers'">
               <div class="message-userlog">
@@ -64,13 +64,12 @@ export default {
   margin: auto;
   width: 80%;
   height: 70vh;
-  border: 1px solid black;
+  border: 1px solid $black;
   border-radius: 8px;
   backdrop-filter: blur(10px);
   .messagge { // class messagg
     height: 90%;
     overflow-y: scroll;
-    display: flex;
     flex-direction: column-reverse;
     .message-userlog {
       background-color: white;
@@ -78,7 +77,7 @@ export default {
       padding: 5px;
       max-width: 50%;
       div, small{
-        color: black;
+        color: $black;
       }
     }
   }
@@ -87,11 +86,11 @@ export default {
     display: flex;
     padding: 17px;
     justify-content: space-between;
-    border-top: 1px solid black;
+    border-top: 1px solid $black;
     input {
       border-radius: 8px;
       width: 70%;
-      color: black;
+      color: $black;
     }
     button {
       width: 5%;

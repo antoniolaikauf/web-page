@@ -196,7 +196,7 @@ export default {
   background-color: white;
   // border-radius: ;
   p {
-    color: black;
+    color: $black;
   }
 }
 

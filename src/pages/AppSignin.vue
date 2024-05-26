@@ -28,7 +28,7 @@ export default {
 };
 </script>
 <template>
-  <section>
+  <section class="d-flex justify-content-center">
     <div class="dati_utente">
       <h2>Welcome</h2>
       <form @submit.prevent="access" class="my-2">
@@ -53,7 +53,7 @@ export default {
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
 * {
-  color: black;
+  color: $black;
 }
 .dati_utente {
   width: 250px;
@@ -65,7 +65,7 @@ export default {
     input {
       padding: 5px;
       border-radius: 2px;
-      color: black;
+      color: $black;
     }
   }
   h2 {
