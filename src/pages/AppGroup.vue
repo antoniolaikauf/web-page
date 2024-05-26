@@ -26,7 +26,6 @@ export default {
     },
   },
   mounted() {
-    console.log(store.name);
   },
 };
 </script>
@@ -34,7 +33,8 @@ export default {
   <section>
     <h3>Gruppo generale</h3>
     <div class="group">
-      <div class="messaggi text-start">
+      <!-- lettura messaggi -->
+      <div class="messagge">
         <div v-for="(singleMessage, i) in messageBack" class="mx-3" >
             <p  :class="singleMessage.user.name === name?'position-messageUser' :'position-messageUsers'">
               <div class="message-userlog">
@@ -48,6 +48,7 @@ export default {
             </p>
         </div>
       </div>
+      <!-- invio messaggi -->
       <div class="enter-message">
         <input type="text" v-model="message.messageUser" />
         <button class="btn-page" @click="invio_message"> &#8593</button>
@@ -59,9 +60,6 @@ export default {
 @use "./../style/partials/mixins" as *;
 @use "./../style/general.scss" as *;
 @use "./../style/partials/variable" as *;
-* {
-  color: black;
-}
 .group {
   margin: auto;
   width: 80%;
@@ -69,13 +67,22 @@ export default {
   border: 1px solid black;
   border-radius: 8px;
   backdrop-filter: blur(10px);
-  .messaggi {
+  .messagge { // class messagg
     height: 90%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
+    .message-userlog {
+      background-color: white;
+      border-radius: 10px;
+      padding: 5px;
+      max-width: 50%;
+      div, small{
+        color: black;
+      }
+    }
   }
-  .enter-message {
+  .enter-message { // enter messagges
     height: calc(100% - 90%);
     display: flex;
     padding: 17px;
@@ -84,6 +91,7 @@ export default {
     input {
       border-radius: 8px;
       width: 70%;
+      color: black;
     }
     button {
       width: 5%;
@@ -93,46 +101,30 @@ export default {
     }
   }
 }
-
-/* width */
+// class scrollbar
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 8px;
-}
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: purple;
   border-radius: 10px;
 }
-@media screen and (max-width: 1000px) {
-  .group {
-    width: 100%;
-  }
-}
 
-.message-userlog {
-  background-color: white;
-  border-radius: 10px;
-  padding: 5px;
-  max-width: 50%;
-  div{
-    color: black;
-  }
-}
 
 .position-messageUser{
- display: flex;
- justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .position-messageUsers{
   display: flex;
   justify-content: start;
+}
+
+@media screen and (max-width: 1000px) {
+  .group {
+    width: 100%;
+  }
 }
 </style>

@@ -45,11 +45,13 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Registrati" />
       </form>
-      <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
+      <div>
+        Se hai gia un account<a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
+      </div>
     </div>
     <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>
     <div class="img-face">
-      <img src="/img/face.png" alt="" />
+      <img src="/img/face.png" alt="#" />
     </div>
   </section>
 </template>
@@ -59,7 +61,7 @@ export default {
 @use "./../style/partials/variable" as *;
 
 .dati_utente {
-  width: 250px;
+  width: 350px;
   border: 1px solid grey;
   border-radius: 20px;
   padding: 20px 0px;
