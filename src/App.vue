@@ -26,7 +26,6 @@ export default {
 @use "./style/partials/variable" as *;
 @use "./style/general.scss" as *;
 
-
 #bg-project {
   height: 100vh;
   overflow-y: scroll;

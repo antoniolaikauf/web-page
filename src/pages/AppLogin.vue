@@ -46,7 +46,10 @@ export default {
         <input type="submit" class="btn-page" value="Registrati" />
       </form>
       <div>
-        Se hai gia un account<a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
+        Se hai gia un account
+        <div>
+          <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
+        </div>
       </div>
     </div>
     <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>

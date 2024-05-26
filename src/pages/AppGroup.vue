@@ -115,11 +115,13 @@ export default {
 .position-messageUser{
   display: flex;
   justify-content: end;
+  text-align: end;
 }
 
 .position-messageUsers{
   display: flex;
   justify-content: start;
+  text-align: start;
 }
 
 @media screen and (max-width: 1000px) {

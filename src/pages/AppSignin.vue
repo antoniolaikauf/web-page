@@ -30,13 +30,14 @@ export default {
 <template>
   <section>
     <div class="dati_utente">
+      <h2>Welcome</h2>
       <form @submit.prevent="access" class="my-2">
         <div>
-          <label for="name">Inserire Nome</label> <br />
+          <label for="name">Nome</label> <br />
           <input type="text" id="name" placeholder="Nome" v-model="date.name" />
         </div>
         <div>
-          <label for="password"> Inserire password</label> <br />
+          <label for="password">Password</label> <br />
           <input type="password" id="password" placeholder="Password" v-model="date.password" />
         </div>
         <input type="submit" class="btn-page" value="Accedi" />
@@ -44,13 +45,16 @@ export default {
     </div>
     <div v-if="accesso">
       <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
-    </div> 
+    </div>
   </section>
 </template>
 <style scoped lang="scss">
 @use "./../style/general.scss" as *;
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
+* {
+  color: black;
+}
 .dati_utente {
   width: 250px;
   border: 1px solid grey;
@@ -63,6 +67,9 @@ export default {
       border-radius: 2px;
       color: black;
     }
+  }
+  h2 {
+    font-weight: bold;
   }
 }
 
