@@ -35,8 +35,8 @@ export default {
     <h3>Gruppo generale</h3>
     <div class="group">
       <div class="messaggi text-start">
-        <div v-for="(singleMessage, i) in messageBack" >
-            <p  :class="singleMessage.user.name === name?'position-message' :''">
+        <div v-for="(singleMessage, i) in messageBack" class="mx-3" >
+            <p  :class="singleMessage.user.name === name?'position-messageUser' :'position-messageUsers'">
               <div class="message-userlog">
                 <small>
                   {{ singleMessage.user.name }}
@@ -68,7 +68,6 @@ export default {
   height: 70vh;
   border: 1px solid black;
   border-radius: 8px;
-  padding-left: 10px;
   backdrop-filter: blur(10px);
   .messaggi {
     height: 90%;
@@ -112,7 +111,7 @@ export default {
   border-radius: 10px;
 }
 @media screen and (max-width: 1000px) {
-  .messaggi {
+  .group {
     width: 100%;
   }
 }
@@ -121,14 +120,19 @@ export default {
   background-color: white;
   border-radius: 10px;
   padding: 5px;
-  width: 40%;
+  max-width: 50%;
   div{
     color: black;
   }
 }
 
-.position-message{
+.position-messageUser{
  display: flex;
  justify-content: end;
+}
+
+.position-messageUsers{
+  display: flex;
+  justify-content: start;
 }
 </style>

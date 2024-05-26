@@ -20,7 +20,7 @@ class MessageUser extends Controller
         $newMessage->user()->associate($idUser); // associa lo user al messaggio
         $newMessage->save();
 
-        $message = Message::with('user')->orderby('created_at', 'ASC')->get(); // ottieni messaggi con user in ordine temporale
+        $message = Message::with('user')->orderby('created_at', 'DESC')->get(); // ottieni messaggi con user in ordine temporale
 
         return response()->json(['risposta' => $message]);
     }
