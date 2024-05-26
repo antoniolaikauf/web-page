@@ -13,6 +13,6 @@ export const store = reactive({
         }, 30);
     }
   },
-  name: 'rr',
+  name: 'rrr',
   
 });

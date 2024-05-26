@@ -68,11 +68,11 @@ export default {
   height: 70vh;
   border: 1px solid black;
   border-radius: 8px;
-  padding: 20px;
+  padding-left: 10px;
   backdrop-filter: blur(10px);
-  overflow-y: scroll;
   .messaggi {
     height: 95%;
+    overflow-y: scroll;
   }
   .enter {
     height: calc(100% - 95%);
