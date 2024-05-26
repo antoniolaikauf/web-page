@@ -48,9 +48,9 @@ export default {
             </p>
         </div>
       </div>
-      <div class="enter">
+      <div class="enter-message">
         <input type="text" v-model="message.messageUser" />
-        <button class="btn-page" @click="invio_message">Enter</button>
+        <button class="btn-page" @click="invio_message"> &#8593</button>
       </div>
     </div>
   </section>
@@ -71,18 +71,24 @@ export default {
   padding-left: 10px;
   backdrop-filter: blur(10px);
   .messaggi {
-    height: 95%;
+    height: 90%;
     overflow-y: scroll;
   }
-  .enter {
-    height: calc(100% - 95%);
+  .enter-message {
+    height: calc(100% - 90%);
     display: flex;
+    padding: 17px;
     justify-content: space-between;
+    border-top: 1px solid black;
     input {
+      border-radius: 8px;
       width: 70%;
     }
     button {
-      width: 10%;
+      width: 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
