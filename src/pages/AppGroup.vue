@@ -15,21 +15,27 @@ export default {
   },
   methods: {
     async invio_message() {
-       this.call_server()
-    },
-    async call_server() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
-        this.messageUser = '' // svuoto input
-        // console.log(call.data.risposta);
+        this.messageUser = "";
+        console.log(call.data.risposta);
         this.messageBack = call.data.risposta;
       } catch (error) {
-         console.log(error);
+        console.log(error);
+      }
+    },
+   async call_back() {
+     try {
+       const call = await axios.get('http://localhost:8000/api/v1/Message')
+       this.messageBack=call.data.risposta
+     } catch (error) {
+        console.log(error);
      }
     }
   },
   mounted() {
-    this.call_server()
+
+    this.call_back()
   },
 };
 </script>

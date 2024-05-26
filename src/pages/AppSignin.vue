@@ -30,7 +30,6 @@ export default {
 <template>
   <section class="d-flex justify-content-center">
     <div class="dati_utente">
-      <h2>Welcome</h2>
       <form @submit.prevent="access" class="my-2">
         <div>
           <label for="name">Nome</label> <br />
@@ -42,9 +41,10 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
-    </div>
-    <div v-if="accesso">
-      <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
+      <div v-if="accesso">
+        <h2>Welcome</h2>
+        <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
+      </div>
     </div>
   </section>
 </template>
