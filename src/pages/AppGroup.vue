@@ -10,6 +10,7 @@ export default {
         nameUser: store.name,
       },
       messageBack: "",
+      name:store.name,
     };
   },
   methods: {
@@ -22,7 +23,6 @@ export default {
       } catch (error) {
         console.log(error);
       }
-      // console.log(this.message);
     },
   },
   mounted() {
@@ -35,19 +35,17 @@ export default {
     <h3>Gruppo generale</h3>
     <div class="group">
       <div class="messaggi text-start">
-        <div v-for="(singleMessage, i) in messageBack">
-          <span>
-            <p v-for="(MessageUser, i) in singleMessage.messages">
+        <div v-for="(singleMessage, i) in messageBack" >
+            <p v-for="(MessageUser, i) in singleMessage.messages" :class="singleMessage.name === name?'position-message' :''">
               <div class="message-userlog">
-                <div>
+                <small>
                   {{ singleMessage.name }}
-                </div>
+                </small>
                 <div>
                   {{ MessageUser.content }}
                 </div>
               </div>
             </p>
-          </span>
         </div>
       </div>
       <div class="enter">
@@ -119,5 +117,10 @@ export default {
   div{
     color: black;
   }
+}
+
+.position-message{
+ display: flex;
+ justify-content: end;
 }
 </style>
