@@ -24,13 +24,14 @@ export default {
         console.log(error);
       }
     },
-   async call_back() {
-     try {
-       const call = await axios.get('http://localhost:8000/api/v1/Message')
+    async call_back() {
+      try {
+       const call = await axios.get('http://localhost:8000/api/v1/MessageAll')
+       console.log(call.data);
        this.messageBack=call.data.risposta
-     } catch (error) {
+      } catch (error) {
         console.log(error);
-     }
+      }
     }
   },
   mounted() {

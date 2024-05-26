@@ -24,4 +24,10 @@ class MessageUser extends Controller
 
         return response()->json(['risposta' => $message]);
     }
+
+    public function MessageAll()
+    {
+        $message = Message::with('user')->orderby('created_at', 'DESC')->get();
+        return response()->json(['risposta' => $message]);
+    }
 }

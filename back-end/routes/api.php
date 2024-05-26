@@ -29,4 +29,6 @@ Route::group(['prefix' => '/v1'], function () {
     route::post('UserSignin', [AccessoUser::class, 'UserSignin']);
     // create new message
     route::post('UserMessage', [MessageUser::class, 'message']);
+    // call message general
+    route::get('MessageAll', [MessageUser::class , 'MessageAll']);
 });
