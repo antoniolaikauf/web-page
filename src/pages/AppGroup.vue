@@ -5,16 +5,17 @@ export default {
   name: "Message",
   data() {
     return {
+      // dati da inviare a database per creazione messaggio
       message: {
         messageUser: "",
         nameUser: store.name,
       },
       messageBack: "",
-      name:store.name,
+      name:store.name, // nome da inviare a database per far riferimento allo user e crezione messaggio
     };
   },
   methods: {
-    async invio_message() {
+    async invio_message() { // chiamata creazione messaggio
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
         this.messageUser = "";
@@ -24,7 +25,7 @@ export default {
         console.log(error);
       }
     },
-    async call_back() {
+    async call_back() {  // chiamata caricamento pagina
       try {
        const call = await axios.get('http://localhost:8000/api/v1/MessageAll')
        console.log(call.data);
@@ -35,8 +36,7 @@ export default {
     }
   },
   mounted() {
-
-    this.call_back()
+    this.call_back() // chiamata caricamento pagina
   },
 };
 </script>
@@ -120,14 +120,13 @@ export default {
   background: purple;
   border-radius: 10px;
 }
-
-
+// messaggi user loggato
 .position-messageUser{
   display: flex;
   justify-content: end;
   text-align: end;
 }
-
+// messggio altri users
 .position-messageUsers{
   display: flex;
   justify-content: start;

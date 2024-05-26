@@ -5,7 +5,7 @@ export default {
   name: "Signin",
   data() {
     return {
-      date: {
+      date: { // dati da inviare a database
         name: "rrr",
         password: "rrr",
       },
@@ -13,12 +13,11 @@ export default {
     };
   },
   methods: {
-    async access() {
+    async access() { // chiamat database 
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
         store.name = call.data.dati[0].name;
-        console.log(store.name);
-        console.log(call.data);
+        // console.log(call.data);
         this.accesso = true;
       } catch (error) {
         console.log(error);
@@ -30,6 +29,7 @@ export default {
 <template>
   <section class="d-flex justify-content-center">
     <div class="dati_utente">
+      <!-- form da riempire con dati utente -->
       <form @submit.prevent="access" class="my-2">
         <div>
           <label for="name">Nome</label> <br />
@@ -41,7 +41,8 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
-      <div v-if="accesso">
+      <!-- se utente esiste dare accesso -->
+      <div v-if="accesso"> 
         <h2>Welcome</h2>
         <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
       </div>

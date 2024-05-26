@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       dati: {
+        // dati da inviare per creare utente
         name: "rrr",
         email: "antonio@gmial.com",
         password: "rrr",
@@ -17,6 +18,7 @@ export default {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.dati);
         console.log(call.data);
+        // controllo dati gia esistenti
         if (!call.data.chiamata) this.controllData = true;
         else this.controllData = false;
       } catch (error) {
@@ -30,6 +32,7 @@ export default {
 <template>
   <section>
     <div class="dati_utente">
+      <!-- form da riempire con dati -->
       <form @submit.prevent="form" class="my-2">
         <div>
           <label for="name">Inserire Nome</label> <br />
@@ -45,13 +48,14 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Registrati" />
       </form>
-      <div>
+      <!-- <div>
         Se hai gia un account
         <div>
           <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
         </div>
-      </div>
+      </div> -->
     </div>
+    <!-- dati gia esistenti -->
     <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>
     <div class="img-face">
       <img src="/img/face.png" alt="#" />

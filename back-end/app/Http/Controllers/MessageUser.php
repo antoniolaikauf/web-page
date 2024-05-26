@@ -25,9 +25,9 @@ class MessageUser extends Controller
         return response()->json(['risposta' => $message]);
     }
 
-    public function MessageAll()
+    public function MessageAll() 
     {
-        $message = Message::with('user')->orderby('created_at', 'DESC')->get();
+        $message = Message::with('user')->orderby('created_at', 'DESC')->get(); // ottieni messaggi con user in ordine temporale
         return response()->json(['risposta' => $message]);
     }
 }
