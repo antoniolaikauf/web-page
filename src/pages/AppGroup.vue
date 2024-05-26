@@ -9,13 +9,16 @@ export default {
         messageUser: "",
         nameUser: store.name,
       },
+      messageBack: "",
     };
   },
   methods: {
     async invio_message() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
-        console.log(call.data);
+        this.messageUser = "";
+        console.log(call.data.risposta);
+        this.messageBack = call.data.risposta;
       } catch (error) {
         console.log(error);
       }
@@ -32,7 +35,16 @@ export default {
     <h3>Gruppo generale</h3>
     <div class="group">
       <div class="messaggi text-start">
-        <div></div>
+        <div v-for="(singleMessage, i) in messageBack">
+          <span>
+            <p v-for="(MessageUser, i) in singleMessage.messages" class="message-userlog">
+              <h4>
+                {{ singleMessage.name }}
+              </h4>
+              {{ MessageUser.content }}
+            </p>
+          </span>
+        </div>
       </div>
       <div class="enter">
         <input type="text" v-model="message.messageUser" />
@@ -93,5 +105,10 @@ export default {
   .messaggi {
     width: 100%;
   }
+}
+
+.message-userlog {
+  background-color: black;
+  border-radius: 10px;
 }
 </style>

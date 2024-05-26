@@ -42,9 +42,9 @@ export default {
         <input type="submit" class="btn-page" value="Accedi" />
       </form>
     </div>
-    <!-- <div v-if="accesso">
+    <div v-if="accesso">
       <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
-    </div> -->
+    </div> 
   </section>
 </template>
 <style scoped lang="scss">

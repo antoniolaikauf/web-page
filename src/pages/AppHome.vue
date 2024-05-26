@@ -16,7 +16,7 @@ export default {
       // ariabile per caricamento pagina
       text_caricamento: false,
       // timer usato per settimeout
-      timeComparsa: 50,
+      timeComparsa: 30,
       // array con dentro argomenti riguardanti il proprietario
       suggestions: [
         {

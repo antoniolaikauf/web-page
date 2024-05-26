@@ -10,9 +10,9 @@ export const store = reactive({
           const frase_esposta = testo.charAt(number);
           testo_posto.innerHTML += frase_esposta;
           number++;
-        }, 50);
+        }, 30);
     }
   },
-  name: 'rrrt',
+  name: 'rr',
   
 });
