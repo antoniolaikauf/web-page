@@ -36,13 +36,13 @@ export default {
     <div class="group">
       <div class="messaggi text-start">
         <div v-for="(singleMessage, i) in messageBack" >
-            <p v-for="(MessageUser, i) in singleMessage.messages" :class="singleMessage.name === name?'position-message' :''">
+            <p  :class="singleMessage.user.name === name?'position-message' :''">
               <div class="message-userlog">
                 <small>
-                  {{ singleMessage.name }}
+                  {{ singleMessage.user.name }}
                 </small>
                 <div>
-                  {{ MessageUser.content }}
+                  {{ singleMessage.content }}
                 </div>
               </div>
             </p>
