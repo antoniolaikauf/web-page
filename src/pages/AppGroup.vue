@@ -37,11 +37,15 @@ export default {
       <div class="messaggi text-start">
         <div v-for="(singleMessage, i) in messageBack">
           <span>
-            <p v-for="(MessageUser, i) in singleMessage.messages" class="message-userlog">
-              <h4>
-                {{ singleMessage.name }}
-              </h4>
-              {{ MessageUser.content }}
+            <p v-for="(MessageUser, i) in singleMessage.messages">
+              <div class="message-userlog">
+                <div>
+                  {{ singleMessage.name }}
+                </div>
+                <div>
+                  {{ MessageUser.content }}
+                </div>
+              </div>
             </p>
           </span>
         </div>
@@ -108,7 +112,12 @@ export default {
 }
 
 .message-userlog {
-  background-color: black;
+  background-color: white;
   border-radius: 10px;
+  padding: 5px;
+  width: 40%;
+  div{
+    color: black;
+  }
 }
 </style>
