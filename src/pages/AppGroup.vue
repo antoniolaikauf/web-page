@@ -7,11 +7,11 @@ export default {
       // dati da inviare a database per creazione messaggio
       message: {
         messageUser: "",
-        nameUser: window.localStorage.getItem('name')
+        nameUser: window.sessionStorage.getItem('name') // con session i dati vengono rimossi quando chiudi la pagina
       },
       messageBack: "", // variabile contenente messaggi
       date: {  
-        name:window.localStorage.getItem('name') // nome da inviare a database per far riferimento allo user e crezione messaggio
+        name:window.sessionStorage.getItem('name') // nome da inviare a database per far riferimento allo user e crezione messaggio
       }
     };
   },
@@ -28,7 +28,6 @@ export default {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
         this.messageUser = "";
-        // console.log(call.data.risposta);
         this.messageBack = call.data.risposta;
       } catch (error) {
         console.log(error);
@@ -46,7 +45,6 @@ export default {
   },
   mounted() {
     this.call_back() // chiamata caricamento pagina
-    // console.log(this.message.nameUser);
   },
 };
 </script>
@@ -70,9 +68,9 @@ export default {
             <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body text-black">Sei sicuro di voler eliminare l'account</div>
+            <div class="modal-body text-black">Sei sicuro di voler eliminare l'account {{ date.name }}</div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" @click="deleteAccaunt" data-bs-dismiss="modal">Delete</button>
+              <button type="button" class="btn btn-primary" @click="deleteAccaunt" data-bs-dismiss="modal"><router-link :to="{ name: 'home' }">Delete</router-link></button>
             </div>
           </div>
         </div>

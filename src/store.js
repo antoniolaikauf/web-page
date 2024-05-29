@@ -13,5 +13,4 @@ export const store = reactive({
         }, 30);
     }
   },
-  name: 'rrr',
 });

@@ -1,6 +1,5 @@
 <script>
 import axios from "axios";
-// import { store } from "../store";
 export default {
   name: "Signin",
   data() {
@@ -15,7 +14,7 @@ export default {
   },
   methods: {
     async access() {
-      window.localStorage.setItem("name", this.date.name); // salvati dati in localstore
+      window.sessionStorage.setItem("name", this.date.name); // salvati dati in localstore
       // chiamata database
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
@@ -26,7 +25,7 @@ export default {
     },
   },
   mounted() {
-    var name = window.localStorage.getItem("name");
+    var name = window.sessionStorage.getItem("name");
     console.log(name);
   },
 };
