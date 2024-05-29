@@ -56,11 +56,13 @@ class AccessoUser extends Controller
     public function deleteAccount(Request $request)
     {
 
-        $dataUser = $request->all();
+        $dataUser = $request->all(); // ottieni dati
         $singleUser = $dataUser['name'];
         $user = User::where('name', '=', $singleUser)->get();
-        $user::destroy($user['id']);
+        $iduser = User::find($user[0]['id']);
+        $iduser->messages()->delete();
+        $iduser->delete();
 
-        return response()->json(['chiamata' => $user]);
+        return response()->json(['chiamata' => 'funziono']);
     }
 }
