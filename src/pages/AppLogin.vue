@@ -6,9 +6,9 @@ export default {
     return {
       dati: {
         // dati da inviare per creare utente
-        name: "rrr",
-        email: "antonio@gmial.com",
-        password: "rrr",
+        name: "",
+        email: "",
+        password: "",
       },
       controllData: false,
     };

@@ -7,7 +7,7 @@ export default {
       date: {
         // dati da inviare a database
         name: "",
-        password: "rrr",
+        password: "",
       },
       accesso: false,
     };
