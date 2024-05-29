@@ -1,13 +1,13 @@
 <script>
 import axios from "axios";
-import { store } from "../store";
+// import { store } from "../store";
 export default {
   name: "Signin",
   data() {
     return {
       date: {
         // dati da inviare a database
-        name: "rrr",
+        name: "",
         password: "rrr",
       },
       accesso: false,
@@ -15,16 +15,18 @@ export default {
   },
   methods: {
     async access() {
-      // chiamat database
+      // chiamata database
+      localStorage.name = this.date.name;
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
-        store.name = call.data.dati[0].name;
-        // console.log(call.data);
         this.accesso = true;
       } catch (error) {
         console.log(error);
       }
     },
+  },
+  mounted() {
+    console.log((this.date.name = localStorage.name));
   },
 };
 </script>
