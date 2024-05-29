@@ -58,11 +58,12 @@ class AccessoUser extends Controller
 
         $dataUser = $request->all(); // ottieni dati
         $singleUser = $dataUser['name'];
-        $user = User::where('name', '=', $singleUser)->get();
-        $iduser = User::find($user[0]['id']);
-        $iduser->messages()->delete();
-        $iduser->delete();
+        $user = User::where('name', '=', $singleUser)->get(); //cerca user
+        $user[0]->messages()->delete(); //elimina messaggi
+        $user[0]->delete(); // elimina user
 
-        return response()->json(['chiamata' => 'funziono']);
+        return response()->json([
+            'chiamata' => 'account eliminato',
+        ]);
     }
 }
