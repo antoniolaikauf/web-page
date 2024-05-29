@@ -1,5 +1,4 @@
 <script>
-import { store } from "../store";
 import axios from "axios";
 export default {
   name: "Message",
@@ -10,10 +9,9 @@ export default {
         messageUser: "",
         nameUser: window.localStorage.getItem('name')
       },
-      messageBack: "",
-      name: store.name, // nome da inviare a database per far riferimento allo user e crezione messaggio
-      date: {
-        name:window.localStorage.getItem('name')
+      messageBack: "", // variabile contenente messaggi
+      date: {  
+        name:window.localStorage.getItem('name') // nome da inviare a database per far riferimento allo user e crezione messaggio
       }
     };
   },
@@ -30,7 +28,7 @@ export default {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
         this.messageUser = "";
-        console.log(call.data.risposta);
+        // console.log(call.data.risposta);
         this.messageBack = call.data.risposta;
       } catch (error) {
         console.log(error);
@@ -83,7 +81,7 @@ export default {
       <!-- lettura messaggi -->
       <div class="messagge d-flex">
         <div v-for="(singleMessage, i) in messageBack" class="mx-3" >
-            <p  :class="singleMessage.user.name === name?'position-messageUser' :'position-messageUsers'">
+            <p  :class="singleMessage.user.name === date.name ?'position-messageUser' :'position-messageUsers'">
               <div class="message-userlog">
                 <small>
                   {{ singleMessage.user.name }}
