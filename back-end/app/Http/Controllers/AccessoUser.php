@@ -57,6 +57,10 @@ class AccessoUser extends Controller
     {
 
         $dataUser = $request->all();
-        return response()->json(['chiamata' => $dataUser]);
+        $singleUser = $dataUser['name'];
+        $user = User::where('name', '=', $singleUser)->get();
+        $user::destroy($user['id']);
+
+        return response()->json(['chiamata' => $user]);
     }
 }
