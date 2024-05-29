@@ -8,12 +8,12 @@ export default {
       // dati da inviare a database per creazione messaggio
       message: {
         messageUser: "",
-        nameUser: store.name,
+        nameUser: window.localStorage.getItem('name')
       },
       messageBack: "",
       name: store.name, // nome da inviare a database per far riferimento allo user e crezione messaggio
       date: {
-        name:'rrr'
+        name:window.localStorage.getItem('name')
       }
     };
   },
@@ -48,6 +48,7 @@ export default {
   },
   mounted() {
     this.call_back() // chiamata caricamento pagina
+    // console.log(this.message.nameUser);
   },
 };
 </script>

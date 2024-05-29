@@ -11,13 +11,11 @@ export default {
         password: "rrr",
       },
       accesso: false,
-      nameUser: "",
     };
   },
   methods: {
     async access() {
-      this.nameUser = this.date.name;
-      localStorage.nameUser = this.nameUser; // salvati dati in localstore
+      window.localStorage.setItem("name", this.date.name); // salvati dati in localstore
       // chiamata database
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
@@ -28,7 +26,8 @@ export default {
     },
   },
   mounted() {
-    console.log((this.nameUser = localStorage.nameUser));
+    var name = window.localStorage.getItem("name");
+    console.log(name);
   },
 };
 </script>
