@@ -16,7 +16,7 @@ export default {
   methods: {
     async deleteAccaunt() {
       try {
-        const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
+        const call = await axios.delete("http://localhost:8000/api/v1/DeleteAccount", this.date);
         console.log(call.data);
       } catch (error) {
         console.log(error);
