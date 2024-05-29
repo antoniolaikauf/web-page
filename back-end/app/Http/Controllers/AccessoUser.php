@@ -41,17 +41,17 @@ class AccessoUser extends Controller
         $userData = $request->all();
         $password = $userData['password'];
         $name = $userData['name'];
-        $check = User::where('name', '=', $name)->get(); // preso singolo user
-        $id = User::find($check[0]['id']);  // trova quello corretto
-        $passwordUser = Hash::check($password, $id->password); // controllo password
-        if (!count($check) || !$passwordUser) return response()->json(['risposta' => 'ti devi registrare']);
-        else {
-            return response()->json([
-                'chiamata' => 'riuscita',
-                'risposta' => $id,
-                'dati' => $check,
-            ]);
-        }
+        if (User::where('name', '=', $name)->exists()) {
+            $check = User::where('name', '=', $name)->get(); // preso singolo user
+            $passwordUser = hash::check($password, $check[0]->password);
+            if (!$passwordUser) return response()->json(['errore' => 'hai sbagliato la password']);
+            else {
+                return response()->json([
+                    'chiamata' => 'riuscita',
+                    'dati' => $check,
+                ]);
+            }
+        } else return response()->json(['errore' => 'errore']);
     }
     public function deleteAccount(Request $request)
     {

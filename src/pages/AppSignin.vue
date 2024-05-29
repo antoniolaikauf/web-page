@@ -18,6 +18,7 @@ export default {
       // chiamata database
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
+        console.log(call.data);
         this.accesso = true;
       } catch (error) {
         console.log(error);
@@ -26,7 +27,6 @@ export default {
   },
   mounted() {
     var name = window.sessionStorage.getItem("name");
-    console.log(name);
   },
 };
 </script>
