@@ -11,10 +11,21 @@ export default {
         nameUser: store.name,
       },
       messageBack: "",
-      name:store.name, // nome da inviare a database per far riferimento allo user e crezione messaggio
+      name: store.name, // nome da inviare a database per far riferimento allo user e crezione messaggio
+      date: {
+        name:'rrr'
+      }
     };
   },
   methods: {
+    async deleteAccaunt() {
+      try {
+        const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
+        console.log(call.data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async invio_message() { // chiamata creazione messaggio
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
@@ -43,6 +54,30 @@ export default {
 <template>
   <section>
     <h3>Gruppo generale</h3>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">deleteAccaunt</button>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-black">Sei sicuro di voler eliminare l'account</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" @click="deleteAccaunt" data-bs-dismiss="modal">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="group">
       <!-- lettura messaggi -->
       <div class="messagge d-flex">

@@ -14,14 +14,6 @@ export default {
     };
   },
   methods: {
-    async deleteAccaunt() {
-      try {
-        const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
-        console.log(call.data);
-      } catch (error) {
-        console.log(error);
-      }
-    },
     async access() {
       // chiamat database
       try {
@@ -52,31 +44,6 @@ export default {
           </div>
           <input type="submit" class="btn-page" value="Accedi" />
         </form>
-      </div>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">deleteAccaunt</button>
-
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">Sei sicuro di voler eliminare l'account</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" @click="deleteAccaunt" data-bs-dismiss="modal">Delete</button>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- se utente esiste dare accesso -->
       <div v-if="accesso">
