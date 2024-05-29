@@ -18,14 +18,14 @@ export default {
       // chiamata database
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
-        if (call.data.chiamat === true) this.accesso = true;
+        if (call.data.chiamata === true) this.accesso = true;
       } catch (error) {
         console.log(error);
       }
     },
   },
   mounted() {
-    var name = window.sessionStorage.getItem("name");
+    // var name = window.sessionStorage.getItem("name");
   },
 };
 </script>
