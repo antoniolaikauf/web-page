@@ -15,7 +15,12 @@ export default {
   },
   methods: {
     async deleteAccaunt() {
-      a;
+      try {
+
+        
+      } catch (error) {
+        console.log(error);
+      }
     },
     async access() {
       // chiamat database
@@ -66,10 +71,10 @@ export default {
             <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">...</div>
+            <div class="modal-body">Sei sicuro di voler eliminare l'account</div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" @click="deleteAccaunt">Cancella</button>
+              <button type="button" class="btn btn-primary" @click="deleteAccaunt">Delete</button>
             </div>
           </div>
         </div>
