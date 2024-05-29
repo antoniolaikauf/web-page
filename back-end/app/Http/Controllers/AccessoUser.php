@@ -21,7 +21,7 @@ class AccessoUser extends Controller
         $NewUser->name = $userData['name'];
         $NewUser->email = $userData['email'];
         $NewUser->email_verified_at = now();
-        $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel 
+        $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel PASSWORD_DEFAULT tipo di algoritmo
         $NewUser->remember_token = Str::random(10);
         // controllo se user gia esistente
         if (User::where('name', '=', $userData['name'])->exists()) return response()->json(['chiamata' => false]);
@@ -41,17 +41,12 @@ class AccessoUser extends Controller
         $userData = $request->all();
         $password = $userData['password'];
         $name = $userData['name'];
-        if (User::where('name', '=', $name)->exists()) {
+        if (User::where('name', '=', $name)->exists()) { // controllo user esistente 
             $check = User::where('name', '=', $name)->get(); // preso singolo user
-            $passwordUser = hash::check($password, $check[0]->password);
-            if (!$passwordUser) return response()->json(['errore' => 'hai sbagliato la password']);
-            else {
-                return response()->json([
-                    'chiamata' => 'riuscita',
-                    'dati' => $check,
-                ]);
-            }
-        } else return response()->json(['errore' => 'errore']);
+            $passwordUser = hash::check($password, $check[0]->password); // controllo password
+            if (!$passwordUser) return response()->json(['chiamata' => false, 'message' => 'password sbagliata']); // controllo password corretta
+            else return response()->json(['chiamata' => true, 'message' => 'accesso riuscito']);
+        } else return response()->json(['chaimata' => false, 'message' => 'nome non esistente']);
     }
     public function deleteAccount(Request $request)
     {
