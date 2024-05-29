@@ -20,6 +20,7 @@ export default {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
         console.log(call.data);
+        this.$router.push({ name: 'home' }) // porta alla pagina home è l'equivalente delle rotte nella navbar
       } catch (error) {
         console.log(error);
       }
@@ -70,7 +71,7 @@ export default {
             </div>
             <div class="modal-body text-black">Sei sicuro di voler eliminare l'account {{ date.name }}</div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" @click="deleteAccaunt" data-bs-dismiss="modal"><router-link :to="{ name: 'home' }">Delete</router-link></button>
+              <a type="button" class="btn btn-primary" @click="deleteAccaunt" data-bs-dismiss="modal">Delete</a>
             </div>
           </div>
         </div>
