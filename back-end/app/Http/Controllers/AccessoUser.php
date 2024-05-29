@@ -53,4 +53,8 @@ class AccessoUser extends Controller
             ]);
         }
     }
+    public function deleteAccount(Request $request)
+    {
+        return response()->json(['chiamatya' => 'eliminarto']);
+    }
 }

@@ -30,5 +30,7 @@ Route::group(['prefix' => '/v1'], function () {
     // create new message
     route::post('UserMessage', [MessageUser::class, 'message']);
     // call message general
-    route::get('MessageAll', [MessageUser::class , 'MessageAll']);
+    route::get('MessageAll', [MessageUser::class, 'MessageAll']);
+    // call elimina account
+    route::post('DeleteAccount', [AccessoUser::class, 'deleteAccount']);
 });
