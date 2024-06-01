@@ -3,7 +3,8 @@ export default {
   name: "NavBar",
   data() {
     return {
-      verifica: localStorage.getItem("remember_me"),
+      verifica_con_check: window.localStorage.getItem("remember_me_L"),
+      // verifica_login: window.sessionStorage.getItem("remember_me_S"),
     };
   },
 };
@@ -38,7 +39,7 @@ export default {
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
             <!-- verifica se il remember_token -->
-            <li class="nav-item" v-if="!verifica">
+            <li class="nav-item" v-if="!verifica_con_check">
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Signin' }">Signin</router-link></a>
             </li>
             <li class="nav-item" v-else>

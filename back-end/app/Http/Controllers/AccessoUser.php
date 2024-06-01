@@ -31,6 +31,7 @@ class AccessoUser extends Controller
                 return response()->json([
                     'chiamata' => 'riuscita',
                     'name' => $NewUser->name,
+                    'remember_me' => $NewUser->remember_token
                 ]);
             }
         }

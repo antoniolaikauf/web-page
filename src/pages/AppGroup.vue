@@ -7,11 +7,11 @@ export default {
       // dati da inviare a database per creazione messaggio
       message: {
         messageUser: "",
-        nameUser: window.sessionStorage.getItem('name') // con session i dati vengono rimossi quando chiudi la pagina
+        nameUser: window.localStorage.getItem('name') // con session i dati vengono rimossi quando chiudi la pagina
       },
       messageBack: "", // variabile contenente messaggi
       date: {  
-        name:window.sessionStorage.getItem('name') // nome da inviare a database per far riferimento allo user e crezione messaggio
+        name:window.localStorage.getItem('name') // nome da inviare a database per far riferimento allo user e crezione messaggio
       }
     };
   },
@@ -19,6 +19,7 @@ export default {
     async deleteAccaunt() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
+        window.localStorage.setItem('remember_me_L',null)
         console.log(call.data);
         this.$router.push({ name: 'home' }) // porta alla pagina home è l'equivalente delle rotte nella navbar
       } catch (error) {
