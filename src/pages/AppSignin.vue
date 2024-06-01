@@ -16,7 +16,7 @@ export default {
   methods: {
     async form() {
       try {
-        const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.dati);
+        const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.dati);
         console.log(call.data);
         // controllo dati gia esistenti
         if (!call.data.chiamata) this.controllData = true;

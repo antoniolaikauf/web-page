@@ -19,7 +19,7 @@ export default {
       window.sessionStorage.setItem("name", this.date.name); // salvati dati in localstore
       // chiamata database
       try {
-        const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
+        const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.date);
         if (call.data.chiamata === true) this.accesso = true;
         else this.accesso = false;
       } catch (error) {

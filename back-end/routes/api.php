@@ -24,9 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // gruppo chiamate
 Route::group(['prefix' => '/v1'], function () {
     // chiamata per registrazione
-    route::post('UserLogin', [AccessoUser::class, 'UserLogin']);
-    // chiamata per accesso
     route::post('UserSignin', [AccessoUser::class, 'UserSignin']);
+    // chiamata per accesso
+    route::post('UserLogin', [AccessoUser::class, 'UserLogin']);
     // create new message
     route::post('UserMessage', [MessageUser::class, 'message']);
     // call message general
