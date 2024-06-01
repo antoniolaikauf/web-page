@@ -83,26 +83,20 @@ export default {
       this.output_wrong = true;
       if (this.text === "" || this.lang_from_translate === "" || this.lang_to_translate === "") alert("inserisci il testo da tradurre");
       else {
-        const encodedParams = new URLSearchParams(); // The URLSearchParams() crea e ritorna new URLSearchParams object. questo oggetto sarebbe composto da parametri che vengono utilizzati nella query
-        encodedParams.set("q", this.text); // testo da tradurre
-        encodedParams.set("target", this.lang_to_translate); // lingua in cui tradurre
-        encodedParams.set("source", this.lang_from_translate); // lingua del testo
         const token = "35bac28155msh12acd48046117c7p1c758ejsnfe268454ef54"; // token api
-        const options = {
-          // parametri per chiamata
-          method: "POST",
-          url: "https://google-translate1.p.rapidapi.com/language/translate/v2",
-          headers: {
-            "content-type": "application/x-www-form-urlencoded",
-            "Accept-Encoding": "application/gzip",
-            "X-RapidAPI-Key": token,
-            "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
-          },
-          data: encodedParams,
-        };
-
+        const encodedParams = new URLSearchParams();
+        encodedParams.set('q', 'Hello, world!');
+        encodedParams.set('target', 'es');
+        encodedParams.set('source', 'en');
         try {
-          const response = await axios.request(options); // chiamata api
+          const response = await axios.post('https://google-translate1.p.rapidapi.com/language/translate/v2',encodedParams, {
+            headers: {
+              "content-type": "application/x-www-form-urlencoded",
+              "Accept-Encoding": "application/gzip",
+              "X-RapidAPI-Key": token,
+              "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+            },
+          }); // chiamata api
           console.log(response.data);
           this.output = response.data.data.translations[0].translatedText;
         } catch (error) {
