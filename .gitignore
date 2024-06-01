@@ -23,6 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# # Include specific files
+# Include specific files
+.env
 # src/pages/AppTraslate.vue
-# git -rm cached src/pages/AppTraslate.vue in shell
+# git -rm cached src/pages/AppTraslate.vue in shell per rimuovere file gia su github

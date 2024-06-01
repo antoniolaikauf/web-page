@@ -90,14 +90,14 @@ export default {
         encodedParams.set('target', 'es');
         encodedParams.set('source', 'en');
         try {
-          const response = await axios.post('https://google-translate1.p.rapidapi.com/language/translate/v2',encodedParams, {
+          const response = await axios.post('https://google-translate1.p.rapidapi.com/language/translate/v2', encodedParams, { // chiamata api
             headers: {
               "content-type": "application/x-www-form-urlencoded",
               "Accept-Encoding": "application/gzip",
               "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
               "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
-            },
-          }); // chiamata api
+            },},
+          ); 
           console.log(response.data);
           this.output = response.data.data.translations[0].translatedText;
         } catch (error) {

@@ -32,9 +32,9 @@ export default {
             <li class="nav-item">
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'login' }">Login</router-link></a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link active fs-4" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>
             </li>
