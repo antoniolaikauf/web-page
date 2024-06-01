@@ -57,10 +57,10 @@ export default {
         </form>
       </div>
       <!-- se utente esiste dare accesso -->
-      <div v-if="accesso">
+      <!-- <div v-if="accesso">
         <h2>Welcome</h2>
         <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>

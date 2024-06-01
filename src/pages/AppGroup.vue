@@ -31,7 +31,7 @@ export default {
       console.log(this.message.nameUser);
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
-        this.messageUser = "";
+        this.message.messageUser = "";
         this.messageBack = call.data.risposta;
       } catch (error) {
         console.log(error);

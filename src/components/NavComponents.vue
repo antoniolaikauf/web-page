@@ -4,20 +4,23 @@ export default {
   data() {
     return {
       // variabile può avere il token impostato da applogin o può essere nulla impostata da appgroup
-      isRemembered: localStorage.getItem("remember_me_L"),
+      isRemembered: localStorage.getItem("remember_me_L") !== "null", // controlla della variabile attualmente
     };
   },
   mounted() {
+    // montati eventi al caricamento della pagina
     window.addEventListener("storage", this.updateVerification);
     window.addEventListener("storage_accesso", this.updateVerification);
   },
   beforeDestroy() {
+    // togliere gli eventi  prima della distruzione dell componente (distruzione si intende per cambio pagina)
+    // in modo tale che non continui ad esserci il codice
     window.removeEventListener("storage", this.updateVerification);
     window.removeEventListener("storage_accesso", this.updateVerification);
   },
   methods: {
     updateVerification() {
-      this.isRemembered = localStorage.getItem("remember_me_L") !== "null"; // controlla della variabile attualmente 
+      this.isRemembered = localStorage.getItem("remember_me_L") !== "null"; // controlla della variabile attualmente
     },
   },
 };
@@ -52,12 +55,12 @@ export default {
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
             <!-- verifica se il remember_token -->
-            <li class="nav-item" v-if="!isRemembered">
+            <!-- <li class="nav-item" v-if="!isRemembered">
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Signin' }">Signin</router-link></a>
             </li>
             <li class="nav-item" v-else>
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Message' }">Group</router-link></a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link active fs-4" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>
             </li>
