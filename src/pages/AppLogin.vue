@@ -31,6 +31,8 @@ export default {
 </script>
 <template>
   <section>
+    <!-- dati gia esistenti -->
+    <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>
     <div class="dati_utente">
       <!-- form da riempire con dati -->
       <form @submit.prevent="form" class="my-2">
@@ -53,10 +55,8 @@ export default {
         <div>
           <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
         </div>
-      </div> 
+      </div>
     </div>
-    <!-- dati gia esistenti -->
-    <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>
     <div class="img-face">
       <img src="/img/face.png" alt="#" />
     </div>
@@ -92,7 +92,7 @@ export default {
 }
 .img-face {
   img {
-    top: 150px;
+    top: 210px;
     right: 20px;
     position: absolute;
   }
@@ -100,6 +100,7 @@ export default {
 
 .error {
   opacity: 0px;
+  margin-bottom: 30px;
   animation-name: errorAnimation;
   animation-duration: 2s;
 }

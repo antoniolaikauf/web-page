@@ -19,6 +19,7 @@ export default {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
         if (call.data.chiamata === true) this.accesso = true;
+        else this.accesso = false;
       } catch (error) {
         console.log(error);
       }
