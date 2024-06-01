@@ -26,4 +26,4 @@ dist-ssr
 # Include specific files
 .env
 # src/pages/AppTraslate.vue
-# git -rm cached src/pages/AppTraslate.vue in shell per rimuovere file gia su github
+# git rm --cached src/pages/AppTraslate.vue in shell per rimuovere file gia su github

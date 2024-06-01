@@ -1,74 +1,69 @@
 <script>
 import axios from "axios";
 export default {
-  name: "login",
+  name: "Login",
   data() {
     return {
-      dati: {
-        // dati da inviare per creare utente
+      date: {
+        // dati da inviare a database
         name: "",
-        email: "",
         password: "",
       },
-      controllData: false,
+      accesso: false,
     };
   },
   methods: {
-    async form() {
+    async access() {
+      window.sessionStorage.setItem("name", this.date.name); // salvati dati in localstore
+      // chiamata database
       try {
-        const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.dati);
-        console.log(call.data);
-        // controllo dati gia esistenti
-        if (!call.data.chiamata) this.controllData = true;
-        else this.controllData = false;
+        const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.date);
+        if (call.data.chiamata === true) this.accesso = true;
+        else this.accesso = false;
       } catch (error) {
         console.log(error);
-        this.controllData = true;
       }
     },
+  },
+  mounted() {
+    // var name = window.sessionStorage.getItem("name");
   },
 };
 </script>
 <template>
-  <section>
-    <!-- dati gia esistenti -->
-    <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>
+  <section class="d-flex justify-content-center">
     <div class="dati_utente">
-      <!-- form da riempire con dati -->
-      <form @submit.prevent="form" class="my-2">
-        <div>
-          <label for="name">Inserire Nome</label> <br />
-          <input type="text" id="name" placeholder="Nome" v-model="dati.name" />
-        </div>
-        <div>
-          <label for="email">Inserire email</label> <br />
-          <input type="email" id="email" placeholder="Email" v-model="dati.email" />
-        </div>
-        <div>
-          <label for="password"> Inserire password</label> <br />
-          <input type="password" id="password" placeholder="Password" v-model="dati.password" />
-        </div>
-        <input type="submit" class="btn-page" value="Registrati" />
-      </form>
-      <!-- <div>
-        Se hai gia un account
-        <div>
-          <a class="btn-page" href="#"><router-link :to="{ name: 'Signin' }"> Sign in </router-link></a>
-        </div>
-      </div> -->
-    </div>
-    <div class="img-face">
-      <img src="/img/face.png" alt="#" />
+      <!-- form da riempire con dati utente -->
+      <div>
+        <form @submit.prevent="access" class="my-2">
+          <div>
+            <label for="name">Nome</label> <br />
+            <input type="text" id="name" placeholder="Nome" v-model="date.name" />
+          </div>
+          <div>
+            <label for="password">Password</label> <br />
+            <input type="password" id="password" placeholder="Password" v-model="date.password" />
+          </div>
+          <input type="submit" class="btn-page" value="Accedi" />
+        </form>
+      </div>
+      <!-- se utente esiste dare accesso -->
+      <div v-if="accesso">
+        <h2>Welcome</h2>
+        <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
+      </div>
     </div>
   </section>
 </template>
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @use "./../style/general.scss" as *;
 @use "./../style/partials/mixins" as *;
 @use "./../style/partials/variable" as *;
-
+* {
+  color: $black;
+}
 .dati_utente {
-  width: 350px;
+  width: 250px;
   border: 1px solid grey;
   border-radius: 20px;
   padding: 20px 0px;
@@ -80,36 +75,14 @@ export default {
       color: $black;
     }
   }
+  h2 {
+    font-weight: bold;
+  }
 }
 
 @media screen and (max-width: 800px) {
   .dati_utente {
     width: 100%;
-  }
-  .img-face {
-    display: none;
-  }
-}
-.img-face {
-  img {
-    top: 210px;
-    right: 20px;
-    position: absolute;
-  }
-}
-
-.error {
-  opacity: 0px;
-  margin-bottom: 30px;
-  animation-name: errorAnimation;
-  animation-duration: 2s;
-}
-@keyframes errorAnimation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 </style>
