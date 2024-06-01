@@ -43,8 +43,11 @@ class AccessoUser extends Controller
         $name = $userData['name'];
         if (User::where('name', '=', $name)->exists()) { // controllo user esistente 
             if ($userData['remember_me']) {
-                $data = ['remember_token' => str::random(10)];
-                User::where('name', '=', $name)->update($data); // update fa come save cambia i datio all'interno della colonna
+                $data = ['remember_token' => str::random(10)]; // cambiato dati se value true
+                User::where('name', '=', $name)->update($data); // update fa come save cambia i dati all'interno della colonna
+            } else {
+                $data = ['remember_token' => null];  // cambiato dati se value false
+                User::where('name', '=', $name)->update($data);
             };
             $user = User::where('name', '=', $name)->get(); // preso singolo user
             $passwordUser = hash::check($password, $user[0]->password); // controllo password
