@@ -84,7 +84,7 @@ export default {
       if (this.text === "" || this.lang_from_translate === "" || this.lang_to_translate === "") alert("inserisci il testo da tradurre");
       else {
         const token = "35bac28155msh12acd48046117c7p1c758ejsnfe268454ef54"; // token api
-        const encodedParams = new URLSearchParams();
+        const encodedParams = new URLSearchParams();  // dati encoded URL se no da problemi se non  si passano in questo modo
         encodedParams.set('q', 'Hello, world!');
         encodedParams.set('target', 'es');
         encodedParams.set('source', 'en');
