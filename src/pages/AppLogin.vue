@@ -20,9 +20,11 @@ export default {
       try {
         const call = await axios.put("http://localhost:8000/api/v1/UserLogin", this.date);
         console.log(call.data.remember_token);
-        if (call.data.remember_token) localStorage.setItem("remember_me_L", call.data.remember_token);
-        if (call.data.chiamata === true) this.accesso = true;
-        else this.accesso = false;
+        if (call.data.chiamata === true) {
+          if (call.data.remember_token) localStorage.setItem("remember_me_L", call.data.remember_token);
+          this.accesso = true;
+          window.dispatchEvent(new Event("storage_accesso"));
+        } else this.accesso = false;
       } catch (error) {
         console.log(error);
       }

@@ -19,7 +19,8 @@ export default {
     async deleteAccaunt() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
-        // window.localStorage.setValue('remember_me_L',null)
+        localStorage.setItem('remember_me_L','null');
+        window.dispatchEvent(new Event('storage'));
         console.log(call.data);
         this.$router.push({ name: 'home' }) // porta alla pagina home è l'equivalente delle rotte nella navbar
       } catch (error) {

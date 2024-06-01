@@ -3,9 +3,22 @@ export default {
   name: "NavBar",
   data() {
     return {
-      verifica_con_check: window.localStorage.getItem("remember_me_L"),
-      // verifica_login: window.sessionStorage.getItem("remember_me_S"),
+      // variabile può avere il token impostato da applogin o può essere nulla impostata da appgroup
+      isRemembered: localStorage.getItem("remember_me_L"),
     };
+  },
+  mounted() {
+    window.addEventListener("storage", this.updateVerification);
+    window.addEventListener("storage_accesso", this.updateVerification);
+  },
+  beforeDestroy() {
+    window.removeEventListener("storage", this.updateVerification);
+    window.removeEventListener("storage_accesso", this.updateVerification);
+  },
+  methods: {
+    updateVerification() {
+      this.isRemembered = localStorage.getItem("remember_me_L") !== "null"; // controlla della variabile attualmente 
+    },
   },
 };
 </script>
@@ -39,7 +52,7 @@ export default {
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
             <!-- verifica se il remember_token -->
-            <li class="nav-item" v-if="!verifica_con_check">
+            <li class="nav-item" v-if="!isRemembered">
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Signin' }">Signin</router-link></a>
             </li>
             <li class="nav-item" v-else>
