@@ -1,5 +1,6 @@
 <script>
 import { store } from "../store";
+import.meta.env.VITE_API_KEY
 import axios from "axios";
 export default {
   name: "Traslate",
@@ -83,8 +84,8 @@ export default {
       this.output_wrong = true;
       if (this.text === "" || this.lang_from_translate === "" || this.lang_to_translate === "") alert("inserisci il testo da tradurre");
       else {
-        const token = "35bac28155msh12acd48046117c7p1c758ejsnfe268454ef54"; // token api
-        const encodedParams = new URLSearchParams();  // dati encoded URL se no da problemi se non  si passano in questo modo
+        // const token = "35bac28155msh12acd48046117c7p1c758ejsnfe268454ef54"; // token api
+        const encodedParams = new URLSearchParams();  // dati encoded URL se no da problemi se non  si passano in questo modo 
         encodedParams.set('q', 'Hello, world!');
         encodedParams.set('target', 'es');
         encodedParams.set('source', 'en');
@@ -93,7 +94,7 @@ export default {
             headers: {
               "content-type": "application/x-www-form-urlencoded",
               "Accept-Encoding": "application/gzip",
-              "X-RapidAPI-Key": token,
+              "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
               "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
             },
           }); // chiamata api
