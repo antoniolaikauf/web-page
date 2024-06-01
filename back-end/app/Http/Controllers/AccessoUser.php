@@ -52,7 +52,7 @@ class AccessoUser extends Controller
             $user = User::where('name', '=', $name)->get(); // preso singolo user
             $passwordUser = hash::check($password, $user[0]->password); // controllo password
             if (!$passwordUser) return response()->json(['chiamata' => false, 'message' => 'password sbagliata']); // controllo password corretta
-            else return response()->json(['chiamata' => true, 'message' => $user[0]]);
+            else return response()->json(['chiamata' => true, 'message' => $user[0], 'remember_token' => $user[0]->remember_token,]);
         } else return response()->json(['chaimata' => false, 'message' => 'nome non esistente']);
     }
     public function deleteAccount(Request $request)

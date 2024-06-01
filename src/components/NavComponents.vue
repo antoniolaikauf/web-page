@@ -1,6 +1,11 @@
 <script>
 export default {
   name: "NavBar",
+  data() {
+    return {
+      verifica: localStorage.getItem("remember_me"),
+    };
+  },
 };
 </script>
 
@@ -32,8 +37,12 @@ export default {
             <li class="nav-item">
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Signin' }">Signin</router-link></a>
+            <!-- verifica se il remember_token -->
+            <li class="nav-item" v-if="!verifica">
+              <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Signin' }">Signin</router-link></a>
+            </li>
+            <li class="nav-item" v-else>
+              <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Message' }">Group</router-link></a>
             </li>
             <li class="nav-item">
               <a class="nav-link active fs-4" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>

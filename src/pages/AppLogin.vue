@@ -19,7 +19,8 @@ export default {
       // chiamata database
       try {
         const call = await axios.put("http://localhost:8000/api/v1/UserLogin", this.date);
-        console.log(call.data.message);
+        console.log(call.data.remember_token);
+        if (call.data.remember_token) localStorage.setItem("remember_me", call.data.remember_token);
         if (call.data.chiamata === true) this.accesso = true;
         else this.accesso = false;
       } catch (error) {
