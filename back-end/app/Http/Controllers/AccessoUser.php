@@ -23,8 +23,8 @@ class AccessoUser extends Controller
         $NewUser->email_verified_at = now();
         $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel PASSWORD_DEFAULT tipo di algoritmo
         $NewUser->remember_token = Str::random(10);
-        // controllo se user gia esistente
-        if (User::where('name', '=', $userData['name'])->exists()) return response()->json(['chiamata' => false]);
+        // controllo se user gia esistente tramite name e email
+        if (User::where('name', '=', $userData['name'])->exists() || User::where('email', '=', $userData['email'])->exists()) return response()->json(['chiamata' => false]);
         else {
             $NewUser->save(); //salvi nel database
             if ($NewUser) {

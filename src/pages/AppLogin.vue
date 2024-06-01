@@ -8,12 +8,14 @@ export default {
         // dati da inviare a database
         name: "",
         password: "",
+        remember_me: "",
       },
       accesso: false,
     };
   },
   methods: {
     async access() {
+      console.log(this.date.remember_me);
       window.sessionStorage.setItem("name", this.date.name); // salvati dati in localstore
       // chiamata database
       try {
@@ -43,6 +45,10 @@ export default {
           <div>
             <label for="password">Password</label> <br />
             <input type="password" id="password" placeholder="Password" v-model="date.password" />
+          </div>
+          <div>
+            <label for="token">Remember me</label>
+            <input type="checkbox" name="" id="token" v-model="date.remember_me" />
           </div>
           <input type="submit" class="btn-page" value="Accedi" />
         </form>
