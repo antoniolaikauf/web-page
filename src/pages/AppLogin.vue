@@ -23,7 +23,7 @@ export default {
         if (call.data.chiamata === true) {
           if (call.data.remember_token) localStorage.setItem("remember_me_L", call.data.remember_token);
           this.accesso = true;
-          window.dispatchEvent(new Event("storage_accesso"));
+          window.dispatchEvent(new Event("storage_accesso")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage_accesso') crea un evento storage
         } else this.accesso = false;
       } catch (error) {
         console.log(error);
