@@ -17,7 +17,7 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['POST', 'GET', 'DELETE'],
+    'allowed_methods' => ['POST', 'GET', 'DELETE','PUT'],
     // messo url che ha il permesso https://cyberiaback.000webhostapp.com/
     'allowed_origins' => ['*'],
 

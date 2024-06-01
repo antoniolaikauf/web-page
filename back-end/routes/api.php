@@ -26,7 +26,7 @@ Route::group(['prefix' => '/v1'], function () {
     // chiamata per registrazione
     route::post('UserSignin', [AccessoUser::class, 'UserSignin']);
     // chiamata per accesso
-    route::post('UserLogin', [AccessoUser::class, 'UserLogin']);
+    route::put('UserLogin', [AccessoUser::class, 'UserLogin']);
     // create new message
     route::post('UserMessage', [MessageUser::class, 'message']);
     // call message general

@@ -15,11 +15,11 @@ export default {
   },
   methods: {
     async access() {
-      console.log(this.date.remember_me);
       window.sessionStorage.setItem("name", this.date.name); // salvati dati in localstore
       // chiamata database
       try {
-        const call = await axios.post("http://localhost:8000/api/v1/UserLogin", this.date);
+        const call = await axios.put("http://localhost:8000/api/v1/UserLogin", this.date);
+        console.log(call.data.message);
         if (call.data.chiamata === true) this.accesso = true;
         else this.accesso = false;
       } catch (error) {

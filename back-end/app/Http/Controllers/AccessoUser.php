@@ -42,10 +42,14 @@ class AccessoUser extends Controller
         $password = $userData['password'];
         $name = $userData['name'];
         if (User::where('name', '=', $name)->exists()) { // controllo user esistente 
-            $check = User::where('name', '=', $name)->get(); // preso singolo user
-            $passwordUser = hash::check($password, $check[0]->password); // controllo password
+            if ($userData['remember_me']) {
+                $data = ['remember_token' => str::random(10)];
+                User::where('name', '=', $name)->update($data); // update fa come save cambia i datio all'interno della colonna
+            };
+            $user = User::where('name', '=', $name)->get(); // preso singolo user
+            $passwordUser = hash::check($password, $user[0]->password); // controllo password
             if (!$passwordUser) return response()->json(['chiamata' => false, 'message' => 'password sbagliata']); // controllo password corretta
-            else return response()->json(['chiamata' => true, 'message' => 'accesso riuscito']);
+            else return response()->json(['chiamata' => true, 'message' => $user[0]]);
         } else return response()->json(['chaimata' => false, 'message' => 'nome non esistente']);
     }
     public function deleteAccount(Request $request)
