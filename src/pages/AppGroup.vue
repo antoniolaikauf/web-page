@@ -19,7 +19,7 @@ export default {
     async deleteAccaunt() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
-        window.localStorage.setItem('remember_me_L',null)
+        // window.localStorage.setValue('remember_me_L',null)
         console.log(call.data);
         this.$router.push({ name: 'home' }) // porta alla pagina home è l'equivalente delle rotte nella navbar
       } catch (error) {
@@ -27,6 +27,7 @@ export default {
       }
     },
     async invio_message() { // chiamata creazione messaggio
+      console.log(this.message.nameUser);
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserMessage", this.message);
         this.messageUser = "";

@@ -15,6 +15,7 @@ export default {
   },
   methods: {
     async access() {
+      window.localStorage.setItem("name", this.date.name);
       // chiamata database
       try {
         const call = await axios.put("http://localhost:8000/api/v1/UserLogin", this.date);
