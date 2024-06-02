@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       // variabile può avere il token impostato da applogin o può essere nulla impostata da appgroup
-      isRemembered: localStorage.getItem("remember_me_L") === "null", // controlla della variabile attualmente
+      isRemembered: localStorage.getItem("remember_me_L") !== "null", // controlla della variabile attualmente
       remember_signin: sessionStorage.getItem("remember_me_S") === "true",
     };
   },
@@ -22,15 +22,15 @@ export default {
   },
   methods: {
     updateVerification_L() {
-      this.isRemembered = localStorage.getItem("remember_me_L") === "null"; // controlla della variabile attualmente
-      // this.check();
+      this.isRemembered = localStorage.getItem("remember_me_L") !== "null"; // controlla della variabile attualmente
+      this.check();
     },
     updateVerification_S() {
       this.remember_signin = sessionStorage.getItem("remember_me_S") !== "null";
-      // this.check();
+      this.check();
     },
     check() {
-      if (this.remember_signin === "null" || this.isRemembered !== "null") return true;
+      if (this.isRemembered === true || this.remember_signin === true) return true;
       else return false;
     },
   },
@@ -66,7 +66,7 @@ export default {
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
             <!-- verifica se il remember_token -->
-            <li class="nav-item" v-if="!remember_signin">
+            <li class="nav-item" v-if="!check()">
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Signin' }">Signin</router-link></a>
             </li>
             <li class="nav-item" v-else>

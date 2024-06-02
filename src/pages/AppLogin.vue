@@ -22,20 +22,22 @@ export default {
         console.log(call.data.remember_token);
         if (call.data.chiamata === true) {
           // impostazione in baso a checkbox cliccato
-          if (call.data.remember_token) localStorage.setItem("remember_me_L", call.data.remember_token);
-          else localStorage.setItem("remember_me_L", "null");
+          if (call.data.remember_token) {
+            localStorage.setItem("remember_me_L", call.data.remember_token);
+            window.dispatchEvent(new Event("storage")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage_accesso') crea un evento storage
+          } else {
+            sessionStorage.setItem("remember_me_S", "true");
+            window.dispatchEvent(new Event("storage_accesso"));
+          }
+          console.log(window.localStorage.getItem("name"));
           this.accesso = true;
-          window.dispatchEvent(new Event("storage_accesso"));
-          window.dispatchEvent(new Event("storage")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage_accesso') crea un evento storage
         } else this.accesso = false;
       } catch (error) {
         console.log(error);
       }
     },
   },
-  mounted() {
-    // var name = window.sessionStorage.getItem("name");
-  },
+  mounted() {},
 };
 </script>
 <template>
