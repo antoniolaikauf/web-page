@@ -57,9 +57,9 @@ export default {
 </script>
 <template>
   <section>
-    <h3>Gruppo generale</h3>
+    <h3>General group</h3>
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">deleteAccaunt</button>
+      <button type="button" class="btn-page my-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">deleteAccaunt</button>
       <!-- Modal -->
       <div
         class="modal fade"
