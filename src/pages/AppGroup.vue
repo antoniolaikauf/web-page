@@ -85,12 +85,13 @@ export default {
     <div class="group">
       <!-- lettura messaggi -->
       <div class="messagge d-flex">
-        <div v-for="(singleMessage, i) in messageBack" class="mx-3" >
+        <div v-for="(singleMessage, i) in messageBack" class="mx-3" :index="i">
             <p  :class="singleMessage.user.name === date.name ?'position-messageUser' :'position-messageUsers'">
               <div class="message-userlog">
-                <small>
-                  {{ singleMessage.user.name }}
-                </small>
+
+                  <small class="name">{{ singleMessage.user.name }}</small>
+                  <small class="date" >{{ new Date(singleMessage.created_at).toLocaleString('nl-NL') }}</small>
+            
                 <div>
                   {{ singleMessage.content }}
                 </div>
@@ -126,8 +127,12 @@ export default {
       border-radius: 10px;
       padding: 5px;
       max-width: 50%;
-      div, small{
+      div, .name,.date{
         color: $black;
+      }
+      .date{
+        font-size: 10px;
+        padding: 0px 4px;
       }
     }
   }
