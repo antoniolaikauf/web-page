@@ -19,8 +19,12 @@ export default {
     async deleteAccaunt() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
-        localStorage.setItem('remember_me_L','null');
-        window.dispatchEvent(new Event('storage')); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage') crea un evento storage 
+        // impostazioni per storage svuotamento 
+        localStorage.setItem("remember_me_L", 'null');
+        sessionStorage.setItem('remember_me_S', 'null')
+        // eseguire eventi
+        window.dispatchEvent(new Event('storage_accesso'))
+        window.dispatchEvent(new Event("storage")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage') crea un evento storage 
         console.log(call.data);
         this.$router.push({ name: 'home' }) // porta alla pagina home è l'equivalente delle rotte nella navbar
       } catch (error) {

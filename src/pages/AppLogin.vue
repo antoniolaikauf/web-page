@@ -21,9 +21,12 @@ export default {
         const call = await axios.put("http://localhost:8000/api/v1/UserLogin", this.date);
         console.log(call.data.remember_token);
         if (call.data.chiamata === true) {
+          // impostazione in baso a checkbox cliccato
           if (call.data.remember_token) localStorage.setItem("remember_me_L", call.data.remember_token);
+          else localStorage.setItem("remember_me_L", "null");
           this.accesso = true;
-          window.dispatchEvent(new Event("storage_accesso")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage_accesso') crea un evento storage
+          window.dispatchEvent(new Event("storage_accesso"));
+          window.dispatchEvent(new Event("storage")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage_accesso') crea un evento storage
         } else this.accesso = false;
       } catch (error) {
         console.log(error);
@@ -57,10 +60,10 @@ export default {
         </form>
       </div>
       <!-- se utente esiste dare accesso -->
-      <!-- <div v-if="accesso">
+      <div v-if="accesso">
         <h2>Welcome</h2>
         <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
-      </div> -->
+      </div>
     </div>
   </section>
 </template>
