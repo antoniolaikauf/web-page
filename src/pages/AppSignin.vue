@@ -53,12 +53,12 @@ export default {
         </div>
         <input type="submit" class="btn-page" value="Registrati" />
       </form>
-      <div>
+      <!-- <div>
         Se hai gia un account
         <div>
           <a class="btn-page" href="#"><router-link :to="{ name: 'login' }"> Login </router-link></a>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="img-face">
       <img src="/img/face.png" alt="#" />
