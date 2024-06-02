@@ -10,7 +10,7 @@ export default {
         password: "",
         remember_me: "",
       },
-      accesso: false,
+      accesso: "",
     };
   },
   methods: {
@@ -28,8 +28,8 @@ export default {
             sessionStorage.setItem("remember_me_S", "true");
             window.dispatchEvent(new Event("storage_accesso"));
           }
-          this.accesso = true;
-        } else this.accesso = false;
+          this.accesso = "correct";
+        } else this.accesso = "not correct";
       } catch (error) {
         console.log(error);
       }
@@ -59,12 +59,13 @@ export default {
         </form>
       </div>
       <!-- se utente esiste dare accesso -->
-      <div v-if="accesso">
-        <h2>Welcome</h2>
-        <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
-      </div>
     </div>
   </section>
+  <div v-if="accesso === 'correct'">
+    <h2>Welcome</h2>
+    <a class="btn-page" href="#"><router-link :to="{ name: 'Message' }"> Gruppo </router-link></a>
+  </div>
+  <h5 v-if="accesso === 'not correct'" class="error">I dati insertiti sono sbagliati</h5>
 </template>
 <style scoped lang="scss">
 @use "./../style/general.scss" as *;
@@ -96,4 +97,6 @@ export default {
     width: 100%;
   }
 }
+
+.error
 </style>
