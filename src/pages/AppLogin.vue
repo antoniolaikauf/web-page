@@ -19,7 +19,6 @@ export default {
       // chiamata database
       try {
         const call = await axios.put("http://localhost:8000/api/v1/UserLogin", this.date);
-        console.log(call.data.remember_token);
         if (call.data.chiamata === true) {
           // impostazione in baso a checkbox cliccato
           if (call.data.remember_token) {
@@ -29,7 +28,6 @@ export default {
             sessionStorage.setItem("remember_me_S", "true");
             window.dispatchEvent(new Event("storage_accesso"));
           }
-          console.log(window.localStorage.getItem("name"));
           this.accesso = true;
         } else this.accesso = false;
       } catch (error) {
@@ -37,7 +35,6 @@ export default {
       }
     },
   },
-  mounted() {},
 };
 </script>
 <template>

@@ -25,7 +25,6 @@ export default {
         // eseguire eventi
         window.dispatchEvent(new Event('storage_accesso'))
         window.dispatchEvent(new Event("storage")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage') crea un evento storage 
-        console.log(call.data);
         this.$router.push({ name: 'home' }) // porta alla pagina home è l'equivalente delle rotte nella navbar
       } catch (error) {
         console.log(error);

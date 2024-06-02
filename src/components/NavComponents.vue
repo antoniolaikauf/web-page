@@ -5,7 +5,7 @@ export default {
     return {
       // variabile può avere il token impostato da applogin o può essere nulla impostata da appgroup
       isRemembered: localStorage.getItem("remember_me_L") !== "null", // controlla della variabile attualmente
-      remember_signin: sessionStorage.getItem("remember_me_S") === "true",
+      remember_signin: sessionStorage.getItem("remember_me_S") === "true", // controlla variabile senza check
     };
   },
   mounted() {
@@ -18,7 +18,6 @@ export default {
     // in modo tale che non continui ad esserci il codice
     window.removeEventListener("storage", this.updateVerification_L);
     window.removeEventListener("storage_accesso", this.updateVerification_S);
-    // this.check();
   },
   methods: {
     updateVerification_L() {
@@ -30,7 +29,7 @@ export default {
       this.check();
     },
     check() {
-      if (this.isRemembered === true || this.remember_signin === true) return true;
+      if (this.isRemembered || this.remember_signin) return true; // controllo due variabili
       else return false;
     },
   },
