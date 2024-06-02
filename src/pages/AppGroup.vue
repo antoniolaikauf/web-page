@@ -48,6 +48,16 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    Logout() {
+      this.date_store()
+    },
+    date_store() {
+      localStorage.setItem('remember_me_L', 'null')
+      sessionStorage.setItem('remember_me_S', 'null')
+      window.dispatchEvent(new Event("storage"))
+      window.dispatchEvent(new Event('storage_accesso'))
+      this.$router.push({name:'home'})
     }
   },
   mounted() {
@@ -57,9 +67,11 @@ export default {
 </script>
 <template>
   <section>
-    <h3>General group</h3>
+    <h5>General group</h5>
+       
+      <button type="button" class="btn-page my-1" @click="Logout">Logout</button><br>
       <!-- Button trigger modal -->
-      <button type="button" class="btn-page my-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">deleteAccaunt</button>
+      <button type="button" class="btn-page my-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">deleteAccaunt</button>
       <!-- Modal -->
       <div
         class="modal fade"
