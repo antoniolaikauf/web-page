@@ -97,6 +97,4 @@ export default {
     width: 100%;
   }
 }
-
-.error
 </style>

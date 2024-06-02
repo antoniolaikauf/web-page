@@ -18,6 +18,7 @@ export default {
       window.localStorage.setItem("name", this.dati.name); // salvati dati in localstore
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.dati);
+        console.log(call.data.prova);
         window.sessionStorage.setItem("remember_me_S", "true");
         window.dispatchEvent(new Event("storage_accesso"));
         // controllo dati gia esistenti
@@ -34,7 +35,7 @@ export default {
 <template>
   <section>
     <!-- dati gia esistenti -->
-    <h3 v-if="controllData" class="error">I dati presenti esistono gia</h3>
+    <h3 v-if="controllData" class="error mb-3">I dati presenti esistono gia</h3>
     <div class="dati_utente">
       <!-- form da riempire con dati -->
       <form @submit.prevent="form" class="my-2">
@@ -97,21 +98,6 @@ export default {
     top: 210px;
     right: 20px;
     position: absolute;
-  }
-}
-
-.error {
-  opacity: 0px;
-  margin-bottom: 30px;
-  animation-name: errorAnimation;
-  animation-duration: 2s;
-}
-@keyframes errorAnimation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 </style>

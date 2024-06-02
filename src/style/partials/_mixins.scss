@@ -13,3 +13,17 @@
         transform: scale(1.1);
     }
 }
+
+.error{
+    animation-name: error;
+    animation-duration: 2.5s;
+    opacity: 0px;
+}
+@keyframes error {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
