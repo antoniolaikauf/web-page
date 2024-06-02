@@ -19,13 +19,7 @@ export default {
     async deleteAccaunt() {
       try {
         const call = await axios.post("http://localhost:8000/api/v1/DeleteAccount", this.date);
-        // impostazioni per storage svuotamento 
-        localStorage.setItem("remember_me_L", 'null');
-        sessionStorage.setItem('remember_me_S', 'null')
-        // eseguire eventi
-        window.dispatchEvent(new Event('storage_accesso'))
-        window.dispatchEvent(new Event("storage")); //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage') crea un evento storage 
-        this.$router.push({ name: 'home' }) // porta alla pagina home è l'equivalente delle rotte nella navbar
+        this.date_store()
       } catch (error) {
         console.log(error);
       }
@@ -53,11 +47,14 @@ export default {
       this.date_store()
     },
     date_store() {
+       // impostazioni per storage svuotamento 
       localStorage.setItem('remember_me_L', 'null')
       sessionStorage.setItem('remember_me_S', 'null')
+       // eseguire eventi
       window.dispatchEvent(new Event("storage"))
       window.dispatchEvent(new Event('storage_accesso'))
-      this.$router.push({name:'home'})
+      //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage') crea un evento storage
+      this.$router.push({name:'home'}) // porta alla pagina home è l'equivalente delle rotte nella navbar 
     }
   },
   mounted() {
