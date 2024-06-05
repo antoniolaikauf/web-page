@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\passwordCheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 // tabelle importate
 use App\Models\Message;
@@ -24,7 +25,6 @@ class AccessoUser extends Controller
         $NewUser->email_verified_at = now();
         // mettere i validator per password
         $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel PASSWORD_DEFAULT tipo di algoritmo
-        // else return response()->json(['chiamata' => false]);  if ($userData['password'] !== null)
         $NewUser->remember_token = Str::random(10);
         // controllo se user gia esistente tramite name e email
         if (User::where('name', '=', $userData['name'])->exists() || User::where('email', '=', $userData['email'])->exists()) return response()->json(['chiamata' => false]);
@@ -43,7 +43,7 @@ class AccessoUser extends Controller
         $userData = $request->all();
         $password = $userData['password'];
         $name = $userData['name'];
-        if (User::where('name', '=', $name)->exists()) { // controllo user esistente 
+        if (Auth::attempt(['name' => $name, 'password' => $password])) { // controllo user esistente 
             if ($userData['remember_me']) {
                 $data = ['remember_token' => str::random(10)]; // cambiato dati se value true
                 User::where('name', '=', $name)->update($data); // update fa come save cambia i dati all'interno della colonna
@@ -51,10 +51,10 @@ class AccessoUser extends Controller
                 $data = ['remember_token' => null];  // cambiato dati se value false
                 User::where('name', '=', $name)->update($data);
             };
-            $user = User::where('name', '=', $name)->get(); // preso singolo user
-            $passwordUser = hash::check($password, $user[0]->password); // controllo password
+            $user = Auth::user(); // preso singolo user
+            $passwordUser = hash::check($password, $user->password); // controllo password
             if (!$passwordUser) return response()->json(['chiamata' => false, 'message' => 'password sbagliata']); // controllo password corretta
-            else return response()->json(['chiamata' => true, 'message' => $user[0], 'remember_token' => $user[0]->remember_token,]);
+            else return response()->json(['chiamata' => true, 'message' => $user, 'remember_token' => $user->remember_token,]);
         } else return response()->json(['chaimata' => false, 'message' => 'nome non esistente']);
     }
     public function deleteAccount(Request $request)

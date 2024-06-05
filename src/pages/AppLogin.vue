@@ -19,6 +19,7 @@ export default {
       // chiamata database
       try {
         const call = await axios.put("http://localhost:8000/api/v1/UserLogin", this.date);
+        console.log(call.data);
         if (call.data.chiamata === true) {
           // impostazione in baso a checkbox cliccato
           if (call.data.remember_token) {
