@@ -8,26 +8,6 @@ export default {
     Main,
     NavBar,
   },
-  data() {
-    return {
-      token: localStorage.getItem("remember_me_L"),
-    };
-  },
-  methods: {
-    async check_token() {
-      const call = await axios.get("http://localhost:8000/api/v1/Token_check", {
-        headers: { Authorization: this.token },
-      });
-      try {
-        console.log(call.data);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-  mounted() {
-    // this.check_token();
-  },
 };
 </script>
 
