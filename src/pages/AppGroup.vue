@@ -47,10 +47,11 @@ export default {
       this.date_store()
     },
     date_store() {
-       // impostazioni per storage svuotamento 
-      localStorage.setItem('remember_me_L', 'null')
+      // impostazioni per storage svuotamento 
+      localStorage.setItem('remember_me_L', 'null');
       sessionStorage.setItem('remember_me_S', 'null')
-       // eseguire eventi
+      // eseguire eventi
+      console.log(typeof sessionStorage.getItem("remember_me_L"));
       window.dispatchEvent(new Event("storage"))
       window.dispatchEvent(new Event('storage_accesso'))
       //dispatchEvent esegue un evento su un elemento in questo caso su windows, new Event('storage') crea un evento storage

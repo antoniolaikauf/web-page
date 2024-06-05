@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       // variabile può avere il token impostato da applogin o può essere nulla impostata da appgroup
-      isRemembered: localStorage.getItem("remember_me_L") !== null, // controlla della variabile attualmente
+      isRemembered: localStorage.getItem("remember_me_L") !== "null", // controlla della variabile attualmente
       remember_signin: sessionStorage.getItem("remember_me_S") === "true", // controlla variabile senza check
     };
   },
