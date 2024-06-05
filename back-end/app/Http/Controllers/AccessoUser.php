@@ -70,6 +70,9 @@ class AccessoUser extends Controller
     public function checkToken(Request $request)
     {
         $token = $request->header('Authorization');
-        return response()->json(['chiamata' => $token]);
+        $check_token = User::where('remember_token', '=', $token)->first();
+        if ($check_token) return response()->json(['chiamata' => true, 'value' => $token]);
+        else return response()->json(['chiamata' => false]);
+        return response()->json(['chiamata' => $check_token, 'fake' => $token]);
     }
 }

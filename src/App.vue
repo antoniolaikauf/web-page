@@ -26,7 +26,7 @@ export default {
     },
   },
   mounted() {
-    this.check_token();
+    // this.check_token();
   },
 };
 </script>
