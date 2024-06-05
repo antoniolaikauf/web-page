@@ -29,13 +29,11 @@ class AccessoUser extends Controller
         if (User::where('name', '=', $userData['name'])->exists() || User::where('email', '=', $userData['email'])->exists()) return response()->json(['chiamata' => false]);
         else {
             $NewUser->save(); //salvi nel database
-            if ($NewUser) {
-                return response()->json([
-                    'chiamata' => 'riuscita',
-                    'name' => $NewUser->name,
-                    'remember_me' => $NewUser->remember_token
-                ]);
-            }
+            return response()->json([
+                'chiamata' => 'riuscita',
+                'name' => $NewUser->name,
+                'remember_me' => $NewUser->remember_token
+            ]);
         }
     }
     public function UserLogin(Request $request)
