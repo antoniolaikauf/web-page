@@ -24,7 +24,7 @@ class passwordCheck extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'required|min:8'
+            'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/' // deve avere almeno un numero un carattere uppercase 
         ];
     }
 }

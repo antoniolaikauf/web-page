@@ -34,7 +34,7 @@ export default {
 <template>
   <section>
     <!-- dati gia esistenti -->
-    <h3 v-if="controllData" class="error mb-3">I dati presenti esistono gia</h3>
+    <h5 v-if="controllData" class="error mb-3">I dati presenti esistono gia o sono sbagliati</h5>
     <div class="dati_utente">
       <!-- form da riempire con dati -->
       <form @submit.prevent="form" class="my-2">
@@ -47,6 +47,7 @@ export default {
           <input type="email" id="email" placeholder="Email" v-model="dati.email" />
         </div>
         <div>
+          <small class="request">password lunghezza minima 8, contenente numeri, caratteri speciali, carattere uppercase</small><br />
           <label for="password"> Inserire password</label> <br />
           <input type="password" id="password" placeholder="Password" v-model="dati.password" />
         </div>
@@ -81,6 +82,9 @@ export default {
       border-radius: 2px;
       color: $black;
     }
+  }
+  .request {
+    font-size: 13px;
   }
 }
 
