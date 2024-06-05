@@ -16,7 +16,7 @@ export default {
   methods: {
     async check_token() {
       const call = await axios.get("http://localhost:8000/api/v1/Token_check", {
-        headers: this.token,
+        headers: { Authorization: this.token },
       });
       try {
         console.log(call.data);
