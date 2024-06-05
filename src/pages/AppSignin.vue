@@ -18,7 +18,6 @@ export default {
       window.localStorage.setItem("name", this.dati.name); // salvati dati in localstore
       try {
         const call = await axios.post("http://localhost:8000/api/v1/UserSignin", this.dati);
-        console.log(call.data.prova);
         window.sessionStorage.setItem("remember_me_S", "true");
         window.dispatchEvent(new Event("storage_accesso"));
         // controllo dati gia esistenti

@@ -25,7 +25,9 @@ class passwordCheck implements Rule
      */
     public function passes($attribute, $value)
     {
-        $password = array('password' => 'required|unique:forms');
+        $password = array('password' => 'required|min:8|',);
+        // 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+        
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\passwordCheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AccessoUser extends Controller
 {
-    public function UserSignin(Request $request)
+    public function UserSignin(passwordCheck $request)
     {
         $userData = $request->all(); // ottieni i dati inviati
         // creai un nuovo user
@@ -22,8 +23,8 @@ class AccessoUser extends Controller
         $NewUser->email = $userData['email'];
         $NewUser->email_verified_at = now();
         // mettere i validator per password
-        if ($userData['password'] !== null) $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel PASSWORD_DEFAULT tipo di algoritmo
-        else return response()->json(['chiamata' => false]);
+        $NewUser->password = password_hash($userData['password'], PASSWORD_DEFAULT); // è normale che non sia ritornato nell'oggetto lo nasconde laravel PASSWORD_DEFAULT tipo di algoritmo
+        // else return response()->json(['chiamata' => false]);  if ($userData['password'] !== null)
         $NewUser->remember_token = Str::random(10);
         // controllo se user gia esistente tramite name e email
         if (User::where('name', '=', $userData['name'])->exists() || User::where('email', '=', $userData['email'])->exists()) return response()->json(['chiamata' => false]);
