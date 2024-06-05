@@ -33,4 +33,6 @@ Route::group(['prefix' => '/v1'], function () {
     route::get('MessageAll', [MessageUser::class, 'MessageAll']);
     // call elimina account
     route::post('DeleteAccount', [AccessoUser::class, 'deleteAccount']);
+    // chiamata per controllo check_token
+    route::get('Token_check', [AccessoUser::class, 'checkToken']);
 });

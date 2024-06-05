@@ -44,14 +44,10 @@ class AccessoUser extends Controller
         $password = $userData['password'];
         $name = $userData['name'];
         if (Auth::attempt(['name' => $name, 'password' => $password])) { // controllo user esistente 
-            if ($userData['remember_me']) {
-                $data = ['remember_token' => str::random(10)]; // cambiato dati se value true
-                User::where('name', '=', $name)->update($data); // update fa come save cambia i dati all'interno della colonna
-            } else {
-                $data = ['remember_token' => null];  // cambiato dati se value false
-                User::where('name', '=', $name)->update($data);
-            };
             $user = Auth::user(); // preso singolo user
+            if ($userData['remember_me'])  $data = ['remember_token' => str::random(10)]; // cambiato dati se value true
+            else  $data = ['remember_token' => null];  // cambiato dati se value false
+            User::where('name', '=', $name)->update($data); // update fa come save cambia i dati all'interno della colonna
             $passwordUser = hash::check($password, $user->password); // controllo password
             if (!$passwordUser) return response()->json(['chiamata' => false, 'message' => 'password sbagliata']); // controllo password corretta
             else return response()->json(['chiamata' => true, 'message' => $user, 'remember_token' => $user->remember_token,]);
@@ -59,7 +55,6 @@ class AccessoUser extends Controller
     }
     public function deleteAccount(Request $request)
     {
-
         $dataUser = $request->all(); // ottieni dati
         $singleUser = $dataUser['name'];
         $user = User::where('name', '=', $singleUser)->get(); //cerca user
@@ -69,5 +64,10 @@ class AccessoUser extends Controller
         return response()->json([
             'chiamata' => 'account eliminato',
         ]);
+    }
+
+    public function checkToken(Request $request)
+    {
+        return response()->json(['chiamata' => true]);
     }
 }
