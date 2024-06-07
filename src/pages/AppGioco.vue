@@ -266,6 +266,11 @@ export default {
 <template>
   <div class="container">
     <div class="row">
+      <div>
+        <h3 class="output fs-5 text-center">
+          {{ output }}
+        </h3>
+      </div>
       <div class="d-flex container-giochi" v-if="!variable_game_SCF && !variable_game_tris && !variable_game_indovino">
         <img src="../../public/img/robot.png" alt="" />
         <div class="d-flex flex-wrap">
@@ -349,11 +354,6 @@ export default {
             {{ output_indovino }}
           </div>
         </div>
-      </div>
-      <div>
-        <h3 class="output fs-5 text-center">
-          {{ output }}
-        </h3>
       </div>
     </div>
   </div>

@@ -34,24 +34,25 @@ export default {
       if (this.isRemembered || this.remember_signin) return true; // controllo due variabili
       else return false;
     },
-    async check_token() {
-      // chiamata per controllo se il token all'interno del localstore e valido
-      if (localStorage.getItem("remember_me_L") !== "null") {
-        const call = await axios.get("http://localhost:8000/api/v1/Token_check", {
-          headers: { Authorization: localStorage.getItem("remember_me_L") },
-        });
-        try { 
-          // se token ha corrispondenza allora fai vedere group
-          if (call.data.value === localStorage.getItem("remember_me_L")) {
-            this.check = true;
-          } else {
-            this.check = false;
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    },
+    // sistemare
+    // async check_token() {
+    //   // chiamata per controllo se il token all'interno del localstore e valido
+    //   if (localStorage.getItem("remember_me_L") !== "null") {
+    //     const call = await axios.get("http://localhost:8000/api/v1/Token_check", {
+    //       headers: { Authorization: localStorage.getItem("remember_me_L") },
+    //     });
+    //     try {
+    //       // se token ha corrispondenza allora fai vedere group
+    //       if (call.data.value === localStorage.getItem("remember_me_L")) {
+    //         this.check = true;
+    //       } else {
+    //         this.check = false;
+    //       }
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   }
+    // },
   },
 };
 </script>
