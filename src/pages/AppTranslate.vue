@@ -94,7 +94,7 @@ export default {
             headers: {
               "content-type": "application/x-www-form-urlencoded",
               "Accept-Encoding": "application/gzip",
-              "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
+              "X-RapidAPI-Key": '35bac28155msh12acd48046117c7p1c758ejsnfe268454ef54',
               "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
             },},
           ); 
