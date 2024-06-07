@@ -13,7 +13,7 @@ export default {
     // montati eventi al caricamento della pagina
     window.addEventListener("storage", this.updateVerification_L);
     window.addEventListener("storage_accesso", this.updateVerification_S);
-    this.check_token();
+    // this.check_token();
   },
   beforeDestroy() {
     // togliere gli eventi  prima della distruzione dell componente (distruzione si intende per cambio pagina)
@@ -86,12 +86,12 @@ export default {
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'calcolatrice' }"> Calculator </router-link></a>
             </li>
             <!-- verifica se il remember_token -->
-            <!-- <li class="nav-item" v-if="!check()">
+            <!--<li class="nav-item" v-if="!check()">
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Signin' }">Signin</router-link></a>
             </li>
             <li class="nav-item" v-else>
               <a class="nav-link active fs-4" aria-current="page" href="#"><router-link :to="{ name: 'Message' }">Group</router-link></a>
-            </li> -->
+            </li>  -->
             <li class="nav-item">
               <a class="nav-link active fs-4" aria-current="page" href="#"> <router-link :to="{ name: 'gioco' }"> Games </router-link></a>
             </li>

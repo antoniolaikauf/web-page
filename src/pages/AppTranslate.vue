@@ -87,8 +87,8 @@ export default {
         // const token = "35bac28155msh12acd48046117c7p1c758ejsnfe268454ef54"; // token api
         const encodedParams = new URLSearchParams();  // dati encoded URL se no da problemi se non  si passano in questo modo 
         encodedParams.set('q', this.text);
-        encodedParams.set('target', this.lang_from_translate);
-        encodedParams.set('source', this.lang_to_translate);
+        encodedParams.set('target',  this.lang_to_translate);
+        encodedParams.set('source',this.lang_from_translate );
         try {
           const response = await axios.post('https://google-translate1.p.rapidapi.com/language/translate/v2', encodedParams, { // chiamata api
             headers: {
