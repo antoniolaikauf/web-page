@@ -19,11 +19,16 @@ header{
 .post{
     Font-size: 14px;
     color: #828282;
-    margin-bottom: 10px;
     display: block;
+    margin: 15px 0px;
+}
+
+.post>div{
+   margin: 10px 0px;
 }
 
 li{
     margin: 5px 0px;
     list-style-type: none;
 }
+
