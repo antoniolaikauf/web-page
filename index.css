@@ -2,7 +2,7 @@
     padding: 0px;
     margin: 0px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 main, header{
@@ -23,10 +23,7 @@ header{
     display: block;
 }
 
-ul{
-    margin-top: 40px;
-}
-
 li{
+    margin: 5px 0px;
     list-style-type: none;
 }
